@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Login from './src/pages/ChecksScreens/Login';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar hidden />
+      <Login/>
     </View>
   );
 }
