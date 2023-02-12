@@ -13,7 +13,6 @@ import {
 // Componente com a logo do projeto
 import Logo from "../../../components/Logo";
 
-
 // Biblioteca firabase
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../services/firebaseAuthentication";
@@ -21,14 +20,14 @@ import { auth } from "../../../services/firebaseAuthentication";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [passWord, setPassWors] = useState("");
-  const [errorLogin, setErrorLogin] = useState("");
 
   async function verifiUser() {
     await signInWithEmailAndPassword(auth, email, passWord)
-      .then(value => {
-        console.log(value)
-      })
+      .then(() => {})
       .catch((error) => console.log(error.message));
+
+    setEmail("");
+    setPassWors("");
   }
 
   return (
@@ -51,15 +50,6 @@ const Login = () => {
         value={passWord}
         onChangeText={(text) => setPassWors(text)}
       />
-
-      {/* Se errorLogin for verdadeiro entra nesta condição, se o email ou senha não existir exibe uma mensagem, se não não exibe nada*/}
-      {errorLogin === true ? (
-        <View style={styles.viewError}>
-          <Text style={styles.textError}>Ivalid e-mail or password</Text>
-        </View>
-      ) : (
-        <View />
-      )}
 
       {/* Verifica se o campo de email e senha foi preenchido se não estiver o botão de login é desabilitado*/}
       {email === "" || passWord === "" ? (
