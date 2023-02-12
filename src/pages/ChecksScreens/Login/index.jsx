@@ -1,6 +1,9 @@
 // States
 import { useState } from "react";
 
+// Navigation
+import { useNavigation } from "@react-navigation/native";
+
 // Components
 import {
   StyleSheet,
@@ -16,16 +19,21 @@ import Logo from "../../../components/Logo";
 // Biblioteca firabase
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../services/firebaseAuthentication";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = () => {
+
+  const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [passWord, setPassWors] = useState("");
 
-  async function verifiUser() {
-    await signInWithEmailAndPassword(auth, email, passWord)
+  // Função para logar e verificar se o usuario existe
+   async function verifiUser() {
+     await signInWithEmailAndPassword(auth, email, passWord)
       .then(() => {})
       .catch((error) => console.log(error.message));
 
+    // limpa os inputs caso tudo de certo
     setEmail("");
     setPassWors("");
   }
@@ -66,7 +74,10 @@ const Login = () => {
         <Text>Forgot your passWord?</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.touchableWitOutStyle}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("SignUp", { screen: "SignUp" })}
+        style={styles.touchableWitOutStyle}
+      >
         <Text>SIGN UP</Text>
       </TouchableOpacity>
     </View>
