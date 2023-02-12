@@ -71,14 +71,14 @@ const Login = () => {
       )}
 
       <TouchableOpacity style={styles.touchableWitOutStyle}>
-        <Text>Forgot your passWord?</Text>
+        <Text style={{color:"#fff"}}>Forgot your passWord?</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         onPress={() => navigation.navigate("SignUp", { screen: "SignUp" })}
         style={styles.touchableWitOutStyle}
       >
-        <Text>SIGN UP</Text>
+        <Text style={{color:"#fff"}}>SIGN UP</Text>
       </TouchableOpacity>
     </View>
   );
@@ -99,8 +99,6 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 20,
   },
-  viewError: {},
-  textError: {},
   touchable: {
     alignItems: "center",
     marginLeft: "25%",
