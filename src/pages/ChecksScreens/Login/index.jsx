@@ -22,16 +22,15 @@ import { auth } from "../../../services/firebaseAuthentication";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = () => {
-
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [passWord, setPassWors] = useState("");
 
   // Função para logar e verificar se o usuario existe
-   async function verifiUser() {
-     await signInWithEmailAndPassword(auth, email, passWord)
+  async function verifiUser() {
+    await signInWithEmailAndPassword(auth, email, passWord)
       .then(() => {})
-      .catch((error) => console.log(error.message));
+      .catch((error) => alert(error.code));
 
     // limpa os inputs caso tudo de certo
     setEmail("");
@@ -71,14 +70,14 @@ const Login = () => {
       )}
 
       <TouchableOpacity style={styles.touchableWitOutStyle}>
-        <Text style={{color:"#fff"}}>Forgot your passWord?</Text>
+        <Text style={{ color: "#fff" }}>Forgot your passWord?</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={() => navigation.navigate("SignUp", { screen: "SignUp" })}
+        onPress={() => navigation.navigate("SignUp")}
         style={styles.touchableWitOutStyle}
       >
-        <Text style={{color:"#fff"}}>SIGN UP</Text>
+        <Text style={{ color: "#fff" }}>SIGN UP</Text>
       </TouchableOpacity>
     </View>
   );

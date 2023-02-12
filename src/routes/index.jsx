@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { View } from "react-native";
 import Login from "../pages/ChecksScreens/Login";
 import SignUp from "../pages/ChecksScreens/SignUp";
+import Home from "../pages/UserScreens/Home";
 
 const Stack = createStackNavigator();
 
@@ -35,6 +36,13 @@ const Routes = () => {
               headerTitle: "Voltar",
             }}
           />
+
+          <Stack.Screen
+          component={Home}
+          name="Home"
+          />
+
+
         </Stack.Navigator>
       </NavigationContainer>
     </View>
