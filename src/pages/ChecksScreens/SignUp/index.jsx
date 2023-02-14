@@ -1,30 +1,52 @@
 import React, { useState } from "react";
 
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import Logo from "../../../components/Logo";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-import { auth } from '../../../services/firebaseAuthentication'
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import { auth } from "../../../services/firebaseAuthentication";
 
 const SignUp = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    const [ name, setName ] = useState('')
-    const [ email, setEmail ] = useState('')
-    const [ password, setPassword ] = useState('')
+  async function createUser() {
+    await createUserWithEmailAndPassword(auth, email, password)
+      .then((value) => {
+        alert(`Usuario criado: ${value.user.uid}`);
+      })
+      .catch((error) => {
+        if (error.code === "auth/invalid-email") {
+          alert("Email invalido");
+          return;
+        } 
+        if (error.code === "auth/weak-password") {
+          alert("Sua senha deve ter pelo menos 6 caracteres");
+          return;
+        }else {
+          alert("Ops algo deu errado!");
+          return;
+        }
+      });
 
-    async function createUser() {
-        await createUserWithEmailAndPassword(auth, email, password)
-        .then(value => {
-            
-        })
-        .catch(error => console.log(error))
-    }
-
+    setName("");
+    setEmail("");
+    setPassword("");
+  }
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#000" }}>
+    <View style={{ flex: 1, backgroundColor: "#008000" }}>
       <Logo />
 
       <TextInput
@@ -35,7 +57,7 @@ const SignUp = () => {
         onChangeText={(text) => setName(text)}
       />
 
-       <TextInput
+      <TextInput
         style={styles.input}
         placeholderTextColor="#FFF"
         placeholder="Informe seu email"
@@ -49,8 +71,8 @@ const SignUp = () => {
         placeholder="Informe sua senha"
         value={password}
         onChangeText={(text) => setPassword(text)}
+        secureTextEntry={true}
       />
-
 
       <TouchableOpacity style={styles.touchable} onPress={() => createUser()}>
         <Text>Cadastrar</Text>

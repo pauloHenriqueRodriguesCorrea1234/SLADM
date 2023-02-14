@@ -1,6 +1,9 @@
 // States
 import { useState } from "react";
 
+// Navigation
+import { useNavigation } from "@react-navigation/native";
+
 // Components
 import {
   StyleSheet,
@@ -13,22 +16,25 @@ import {
 // Componente com a logo do projeto
 import Logo from "../../../components/Logo";
 
-
 // Biblioteca firabase
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../services/firebaseAuthentication";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = () => {
+  const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [passWord, setPassWors] = useState("");
-  const [errorLogin, setErrorLogin] = useState("");
 
+  // Função para logar e verificar se o usuario existe
   async function verifiUser() {
     await signInWithEmailAndPassword(auth, email, passWord)
-      .then(value => {
-        console.log(value)
-      })
-      .catch((error) => console.log(error.message));
+      .then(() => {})
+      .catch((error) => alert(error.code));
+
+    // limpa os inputs caso tudo de certo
+    setEmail("");
+    setPassWors("");
   }
 
   return (
@@ -52,15 +58,6 @@ const Login = () => {
         onChangeText={(text) => setPassWors(text)}
       />
 
-      {/* Se errorLogin for verdadeiro entra nesta condição, se o email ou senha não existir exibe uma mensagem, se não não exibe nada*/}
-      {errorLogin === true ? (
-        <View style={styles.viewError}>
-          <Text style={styles.textError}>Ivalid e-mail or password</Text>
-        </View>
-      ) : (
-        <View />
-      )}
-
       {/* Verifica se o campo de email e senha foi preenchido se não estiver o botão de login é desabilitado*/}
       {email === "" || passWord === "" ? (
         <TouchableOpacity style={styles.touchable} disabled={true}>
@@ -73,11 +70,14 @@ const Login = () => {
       )}
 
       <TouchableOpacity style={styles.touchableWitOutStyle}>
-        <Text>Forgot your passWord?</Text>
+        <Text style={{ color: "#fff" }}>Forgot your passWord?</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.touchableWitOutStyle}>
-        <Text>SIGN UP</Text>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("SignUp")}
+        style={styles.touchableWitOutStyle}
+      >
+        <Text style={{ color: "#fff" }}>SIGN UP</Text>
       </TouchableOpacity>
     </View>
   );
@@ -98,8 +98,6 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 20,
   },
-  viewError: {},
-  textError: {},
   touchable: {
     alignItems: "center",
     marginLeft: "25%",
