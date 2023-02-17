@@ -42,7 +42,6 @@ const Routes = () => {
           name="Home"
           />
 
-
         </Stack.Navigator>
       </NavigationContainer>
     </View>
