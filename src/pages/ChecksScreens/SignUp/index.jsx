@@ -88,6 +88,8 @@ const SignUp = () => {
         secureTextEntry={true}
       />
 
+      
+
       <TouchableOpacity style={styles.touchable} onPress={() => createUser()}>
         <Text>Cadastrar</Text>
       </TouchableOpacity>
