@@ -5,6 +5,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  Switch,
   View,
 } from "react-native";
 
@@ -88,7 +89,9 @@ const SignUp = () => {
         secureTextEntry={true}
       />
 
+      <Switch
       
+      />
 
       <TouchableOpacity style={styles.touchable} onPress={() => createUser()}>
         <Text>Cadastrar</Text>
