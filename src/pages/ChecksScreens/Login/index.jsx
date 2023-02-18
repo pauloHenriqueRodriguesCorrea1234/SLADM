@@ -19,7 +19,6 @@ import Logo from "../../../components/Logo";
 // Biblioteca firabase
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../services/firebaseAuthentication";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = () => {
   const navigation = useNavigation();

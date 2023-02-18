@@ -12,34 +12,48 @@ import Logo from "../../../components/Logo";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import { auth } from "../../../services/firebaseAuthentication";
 
 const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [producert, setProducer] = useState(false)
+
+  const handleAuthError = (error) => {
+    if (error.code) {
+      switch (error.code) {
+        case "auth/weak-password":
+          alert("Senha muito fraca");
+          break;
+
+        case "auth/email-already-in-use":
+          alert("Este e-mail já está em uso por outro usuário");
+          break;
+
+        case "auth/wrong-password":
+          alert("Senha incorreta");
+          break;
+
+        case "auth/invalid-email":
+          alert("Formato de email invalido");
+
+        default:
+          alert("Ops... Aconteceu algum erro");
+      }
+    }
+  };
 
   async function createUser() {
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then((value) => {
-        alert(`Usuario criado: ${value.user.uid}`);
-      })
-      .catch((error) => {
-        if (error.code === "auth/invalid-email") {
-          alert("Email invalido");
-          return;
-        } 
-        if (error.code === "auth/weak-password") {
-          alert("Sua senha deve ter pelo menos 6 caracteres");
-          return;
-        }else {
-          alert("Ops algo deu errado!");
-          return;
-        }
-      });
+    await createUserWithEmailAndPassword(auth, email, password, name)
+      .then((data) => {
+        const user = data.user;
 
+        user.sendEmailVerification()
+          .then((r) => alert("Email de confirmação enviado"))
+          .catch((err) => alert("Ops... Aconteceu algum erro"));
+      })
+      .catch(handleAuthError);
     setName("");
     setEmail("");
     setPassword("");
