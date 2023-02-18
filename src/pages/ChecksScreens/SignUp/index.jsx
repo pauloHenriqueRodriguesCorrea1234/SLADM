@@ -90,7 +90,7 @@ const SignUp = () => {
       />
 
       <Switch
-      
+      // Este é na branch test
       />
 
       <TouchableOpacity style={styles.touchable} onPress={() => createUser()}>
