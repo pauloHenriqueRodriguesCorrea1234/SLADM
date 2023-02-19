@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   Switch,
+  SafeAreaView,
   View,
 } from "react-native";
 
@@ -14,60 +15,51 @@ import Logo from "../../../components/Logo";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import { auth } from "../../../services/firebaseAuthentication";
+import { useNavigation } from "@react-navigation/native";
 
 const SignUp = () => {
+  const navigation = useNavigation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [producert, setProducer] = useState(false)
-
-  const handleAuthError = (error) => {
-    if (error.code) {
-      switch (error.code) {
-        case "auth/weak-password":
-          alert("Senha muito fraca");
-          break;
-
-        case "auth/email-already-in-use":
-          alert("Este e-mail já está em uso por outro usuário");
-          break;
-
-        case "auth/wrong-password":
-          alert("Senha incorreta");
-          break;
-
-        case "auth/invalid-email":
-          alert("Formato de email invalido");
-
-        default:
-          alert("Ops... Aconteceu algum erro");
-      }
-    }
-  };
+  const [producert, setProducer] = useState(false);
+  const [phone, setPhone] = useState("");
 
   async function createUser() {
     await createUserWithEmailAndPassword(auth, email, password, name)
-      .then((data) => {
-        const user = data.user;
-
-        user.sendEmailVerification()
-          .then((r) => alert("Email de confirmação enviado"))
-          .catch((err) => alert("Ops... Aconteceu algum erro"));
+      .then(() => {
+        alert("Usuário cadastrado com sucesso!" + value.user.name);
+        navigation.navigate("Login");
       })
-      .catch(handleAuthError);
+      .catch((error) => {
+        if (error.code === "auth/invalid-email") {
+          alert("Email invalido");
+          return;
+        }
+        if (error.code === "auth/weak-password") {
+          alert("Senha invalida");
+          return;
+        } else {
+          alert("Ops... Alguma coisa deu errado!");
+          return;
+        }
+      });
+
     setName("");
     setEmail("");
     setPassword("");
+    setProducer(false);
+    setPhone("");
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#008000" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#008000" }}>
       <Logo />
 
       <TextInput
         style={styles.input}
         placeholderTextColor="#FFF"
-        placeholder="Informe seu nome"
+        placeholder="Nome"
         value={name}
         onChangeText={(text) => setName(text)}
       />
@@ -75,7 +67,7 @@ const SignUp = () => {
       <TextInput
         style={styles.input}
         placeholderTextColor="#FFF"
-        placeholder="Informe seu email"
+        placeholder="E-mail"
         value={email}
         onChangeText={(text) => setEmail(text)}
       />
@@ -83,33 +75,53 @@ const SignUp = () => {
       <TextInput
         style={styles.input}
         placeholderTextColor="#FFF"
-        placeholder="Informe sua senha"
+        placeholder="Senha"
         value={password}
         onChangeText={(text) => setPassword(text)}
         secureTextEntry={true}
       />
 
-      <Switch
-      // Este é na branch test
-      />
+      <View style={styles.viewProducer}>
+        <Text style={styles.textProducer}>Você é um produtor? </Text>
+
+        <Switch
+          style={{ alignItems: "flex-start" }}
+          trackColor={{ false: "#777", true: "#8bf" }}
+          thumbColor={producert ? "#00f" : "#444"}
+          value={producert}
+          onValueChange={() => setProducer(!producert)}
+        />
+      </View>
+
+      {producert ? (
+        <TextInput
+          style={styles.input}
+          placeholder="Telefone"
+          placeholderTextColor="#FFF"
+          value={phone}
+          onChangeText={(text) => setPhone(text)}
+        />
+      ) : (
+        <View />
+      )}
 
       <TouchableOpacity style={styles.touchable} onPress={() => createUser()}>
         <Text>Cadastrar</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   input: {
-    borderBottomWidth: 1,
-    borderBottomColor: "#fff",
-    justifyContent: "center",
-    height: 50,
-    margin: 20,
     textAlign: "center",
+    borderColor: "#fff",
+    borderWidth: 1,
+    height: 50,
+    margin: 10,
     color: "#fff",
-    fontSize: 20,
+    fontSize: 16,
+    borderRadius: 5,
   },
   touchable: {
     alignItems: "center",
@@ -119,6 +131,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 30,
     padding: 14,
+  },
+  viewProducer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  textProducer: {
+    color: "#fff",
+    fontSize: 18,
   },
 });
 
