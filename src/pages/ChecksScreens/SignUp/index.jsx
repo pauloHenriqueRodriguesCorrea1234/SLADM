@@ -27,7 +27,7 @@ const SignUp = () => {
 
   async function createUser() {
     await createUserWithEmailAndPassword(auth, email, password, name)
-      .then(() => {
+      .then((value) => {
         alert("Usuário cadastrado com sucesso!" + value.user.name);
         navigation.navigate("Login");
       })

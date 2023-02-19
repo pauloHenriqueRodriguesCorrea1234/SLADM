@@ -11,7 +11,7 @@ const Routes = () => {
   return (
     <View style={{ flex: 1 }}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator initialRouteName="Home">
           <Stack.Screen
             component={Login}
             name="Login"
@@ -40,6 +40,11 @@ const Routes = () => {
           <Stack.Screen
           component={Home}
           name="Home"
+          options={{
+            title: "",
+            headerTransparent: true,
+            headerShown: false,
+          }}
           />
 
         </Stack.Navigator>
