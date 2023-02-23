@@ -12,9 +12,7 @@ import {
 
 import Logo from "../../../components/Logo";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
-
-import { auth } from "../../../services/firebaseAuthentication";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native";
 
 const SignUp = () => {
@@ -24,16 +22,26 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [producert, setProducer] = useState(false);
   const [phone, setPhone] = useState("");
+  const auth = getAuth();
 
   async function createUser() {
-    await createUserWithEmailAndPassword(auth, email, password, name)
+    await createUserWithEmailAndPassword(auth, email, password)
       .then((value) => {
-        alert("Usuário cadastrado com sucesso!" + value.user.name);
+        // 1 Enviar dados para o firebase
+
+        // 2 Fazer verificação se o usuário é um produtor ou não
+
+        alert("Usuário cadastrado com sucesso!");
         navigation.navigate("Login");
       })
       .catch((error) => {
+        console.log(error.code);
         if (error.code === "auth/invalid-email") {
           alert("Email invalido");
+          return;
+        }
+        if (error.code === "auth/internal-error") {
+          alert(error.code);
           return;
         }
         if (error.code === "auth/weak-password") {

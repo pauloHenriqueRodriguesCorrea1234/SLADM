@@ -4,6 +4,7 @@ import { getAuth } from 'firebase/auth'
 const firebaseConfig = {
   apiKey: "AIzaSyBGmrl68Xj3iXNh_5BMiWHvujN8gpvDMcw",
   authDomain: "solofertiladm-ae735.firebaseapp.com",
+  databaseURL: "https://solofertiladm-ae735-default-rtdb.firebaseio.com",
   projectId: "solofertiladm-ae735",
   storageBucket: "solofertiladm-ae735.appspot.com",
   messagingSenderId: "737930469242",
