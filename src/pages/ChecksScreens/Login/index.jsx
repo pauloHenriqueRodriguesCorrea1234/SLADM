@@ -19,59 +19,46 @@ import Logo from "../../../components/Logo";
 // Biblioteca firabase
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { auth } from "../../../services/firebaseAuthentication";
-import { firebaseApp } from "../SignUp"
+// import { FirebaseApp } from "../../../services/firebaseAuthentication";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const authStatuses = [
-  'auth/wrong-password',
-  'auth/user-not-found',
-  'auth/invalid-email',
-];
-
-/* const Login = () => {
+ const Login = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [passWord, setPassWord] = useState("");
 
   // Função para logar e verificar se o usuario existe
+
   async function verifiUser() {
-    await signInWithEmailAndPassword(auth, email, passWord)
-      .then((value) => {
-        alert(`Usuario Logado: ${value.user.uid}`);
-        navigation.navigate('SignUp');
-      })
-      .catch((error) => alert(error.code));
-
-    // limpa os inputs caso tudo de certo
-    setEmail("");
-    setPassWord("");
-  } */
-
-  const Login = () => {
-    const [email, setEmail] = useState('');
-    const [passWord, setPassWord] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
-  
-    const navigation = useNavigation();
-  
-    const verifiUser = async () => {
-      try {
-        const auth = getAuth(firebaseApp); // obtém a instância de autenticação do Firebase com as configurações previamente definidas
-        const userCredential = await signInWithEmailAndPassword(auth, email, passWord); // tenta realizar o login utilizando o email e a senha fornecidos
-        const { user } = userCredential; // extrai o usuário do resultado da autenticação
-        const idToken = await user.getIdToken(); // obtém o token de autenticação do usuário
-        localStorage.setItem('token', idToken); // salva o token de autenticação no armazenamento local
-        navigation.navigate('SignUp'); 
-      } catch (error) {
-        const { code } = error; // extrai o código de erro do objeto de erro retornado
-  
-        if (authStatuses.includes(code)) { // se o código de erro estiver no array authStatuses
-          setErrorMessage('Credenciais inválidas'); // define a mensagem de erro como "Credenciais inválidas"
-        } else {
-          console.log(code); // imprime o código de erro no console
-        }
+    try {
+      const { user: { uid } } = await signInWithEmailAndPassword(auth, email, passWord); // Faz o login do usuário com o e-mail e senha fornecidos
+      alert(`Usuario Logado: ${uid}`); // Exibe uma mensagem de sucesso e navega para a tela 'Home'
+      const idToken = await user.getIdToken();
+      await AsyncStorage.setItem('token', idToken);
+      navigation.navigate('Home');
+      setEmail('');
+      setPassWord('');
+      // Limpa os estados de e-mail e senha para que os campos fiquem vazios
+    } catch (error) { 
+      // Lida com diferentes tipos de erros de autenticação e mostra uma mensagem de erro para um erro especifico
+      switch (error.code) {
+        case 'auth/invalid-email':
+          alert('O endereço de e-mail não é válido.');
+          break;
+        case 'auth/user-disabled':
+          alert('A conta do usuário foi desativada.');
+          break;
+        case 'auth/user-not-found':
+          alert('Não existe uma conta com esse endereço de e-mail.');
+          break;
+        case 'auth/wrong-password':
+          alert('Senha inválida.');
+          break;
+        default:
+          alert('Erro ao efetuar login. Tente novamente mais tarde.');
       }
-    };
-  
+    }
+  }
 
   return (
     <View style={styles.conteiner}>
