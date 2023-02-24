@@ -60,6 +60,40 @@ const SignUp = () => {
     setPhone("");
   }
 
+  /* async function createUser() {
+  try { try susbstitui o .then
+    const { user } = await createUserWithEmailAndPassword(auth, email, password);
+
+    // 1. Send data to Firebase
+    // 2. Check if user is a producer or not
+
+    alert("User successfully registered!");
+    navigation.navigate("Login");
+  } catch (error) {
+    switch (error.code) { Acho que o switch deixa mais eficiente
+      case "auth/invalid-email":
+        alert("Invalid email");
+        break;
+      case "auth/internal-error":
+        alert(error.code);
+        break;
+      case "auth/weak-password":
+        alert("Weak password");
+        break;
+      default:
+        alert("Something went wrong!");
+        break;
+    }
+  }
+
+  setName("");
+  setEmail("");
+  setPassword("");
+  setProducer(false);
+  setPhone("");
+}
+ */
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#008000" }}>
       <Logo />
