@@ -35,12 +35,11 @@ const SignUp = () => {
       .then((data) => {
         const users = data.user.uid;
 
-        /* 
-        => Enviar dados para o firebase
-        => Fazer verificação se o usuário é um produtor ou não
-       */
+        // Verifica se o usuário é um produtor
         if (producer === true) {
-          set(ref(db, "producer/" + users ), {
+          //Enviando dados para o firebase
+          set(ref(db, "producer/" + users), {
+            // Dados do produtor
             username: name,
             email: email,
             password: password,
@@ -48,10 +47,11 @@ const SignUp = () => {
             phone: phone,
           });
         } else {
-          set(ref(db, "user/" + name), {
+          set(ref(db, "user/" + users), {
+            // Dados do usuário
             username: name,
             email: email,
-            password: password
+            password: password,
           });
         }
 
