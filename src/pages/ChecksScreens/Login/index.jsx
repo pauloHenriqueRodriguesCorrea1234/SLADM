@@ -20,7 +20,7 @@ import Logo from "../../../components/Logo";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { auth } from "../../../services/firebaseAuthentication";
 // import { FirebaseApp } from "../../../services/firebaseAuthentication";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = () => {
   const navigation = useNavigation();
@@ -35,8 +35,8 @@ const Login = () => {
         user: { uid },
       } = await signInWithEmailAndPassword(auth, email, passWord); // Faz o login do usuário com o e-mail e senha fornecidos
       alert(`Usuario Logado: ${uid}`); // Exibe uma mensagem de sucesso e navega para a tela 'Home'
-      const idToken = await user.getIdToken();
-      await AsyncStorage.setItem("token", idToken);
+      // const idToken = await user.getIdToken();
+      // await AsyncStorage.setItem("token", idToken);
       navigation.navigate("Home");
       setEmail("");
       setPassWord("");
