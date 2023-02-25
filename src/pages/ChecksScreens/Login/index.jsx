@@ -22,7 +22,7 @@ import { auth } from "../../../services/firebaseAuthentication";
 // import { FirebaseApp } from "../../../services/firebaseAuthentication";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
- const Login = () => {
+const Login = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [passWord, setPassWord] = useState("");
@@ -31,31 +31,33 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
   async function verifiUser() {
     try {
-      const { user: { uid } } = await signInWithEmailAndPassword(auth, email, passWord); // Faz o login do usuário com o e-mail e senha fornecidos
+      const {
+        user: { uid },
+      } = await signInWithEmailAndPassword(auth, email, passWord); // Faz o login do usuário com o e-mail e senha fornecidos
       alert(`Usuario Logado: ${uid}`); // Exibe uma mensagem de sucesso e navega para a tela 'Home'
       const idToken = await user.getIdToken();
-      await AsyncStorage.setItem('token', idToken);
-      navigation.navigate('Home');
-      setEmail('');
-      setPassWord('');
+      await AsyncStorage.setItem("token", idToken);
+      navigation.navigate("Home");
+      setEmail("");
+      setPassWord("");
       // Limpa os estados de e-mail e senha para que os campos fiquem vazios
-    } catch (error) { 
+    } catch (error) {
       // Lida com diferentes tipos de erros de autenticação e mostra uma mensagem de erro para um erro especifico
       switch (error.code) {
-        case 'auth/invalid-email':
-          alert('O endereço de e-mail não é válido.');
+        case "auth/invalid-email":
+          alert("O endereço de e-mail não é válido.");
           break;
-        case 'auth/user-disabled':
-          alert('A conta do usuário foi desativada.');
+        case "auth/user-disabled":
+          alert("A conta do usuário foi desativada.");
           break;
-        case 'auth/user-not-found':
-          alert('Não existe uma conta com esse endereço de e-mail.');
+        case "auth/user-not-found":
+          alert("Não existe uma conta com esse endereço de e-mail.");
           break;
-        case 'auth/wrong-password':
-          alert('Senha inválida.');
+        case "auth/wrong-password":
+          alert("Senha inválida.");
           break;
         default:
-          alert('Erro ao efetuar login. Tente novamente mais tarde.');
+          alert("Erro ao efetuar login. Tente novamente mais tarde.");
       }
     }
   }

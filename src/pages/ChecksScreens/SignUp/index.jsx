@@ -12,24 +12,48 @@ import {
 
 import Logo from "../../../components/Logo";
 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native";
+
+// Auth
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
+// Realtime Database
+import { db } from "../../../services/firebaseAuthentication";
+import { ref, set } from "firebase/database";
 
 const SignUp = () => {
   const navigation = useNavigation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [producert, setProducer] = useState(false);
+  const [producer, setProducer] = useState(false);
   const [phone, setPhone] = useState("");
   const auth = getAuth();
 
   async function createUser() {
     await createUserWithEmailAndPassword(auth, email, password)
-      .then((value) => {
-        // 1 Enviar dados para o firebase
+      .then((data) => {
+        const users = data.user.uid;
 
-        // 2 Fazer verificação se o usuário é um produtor ou não
+        /* 
+        => Enviar dados para o firebase
+        => Fazer verificação se o usuário é um produtor ou não
+       */
+        if (producer === true) {
+          set(ref(db, "producer/" + users ), {
+            username: name,
+            email: email,
+            password: password,
+            producer: producer,
+            phone: phone,
+          });
+        } else {
+          set(ref(db, "user/" + name), {
+            username: name,
+            email: email,
+            password: password
+          });
+        }
 
         alert("Usuário cadastrado com sucesso!");
         navigation.navigate("Login");
@@ -59,40 +83,6 @@ const SignUp = () => {
     setProducer(false);
     setPhone("");
   }
-
-  /* async function createUser() {
-  try { try susbstitui o .then
-    const { user } = await createUserWithEmailAndPassword(auth, email, password);
-
-    // 1. Send data to Firebase
-    // 2. Check if user is a producer or not
-
-    alert("User successfully registered!");
-    navigation.navigate("Login");
-  } catch (error) {
-    switch (error.code) { Acho que o switch deixa mais eficiente
-      case "auth/invalid-email":
-        alert("Invalid email");
-        break;
-      case "auth/internal-error":
-        alert(error.code);
-        break;
-      case "auth/weak-password":
-        alert("Weak password");
-        break;
-      default:
-        alert("Something went wrong!");
-        break;
-    }
-  }
-
-  setName("");
-  setEmail("");
-  setPassword("");
-  setProducer(false);
-  setPhone("");
-}
- */
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#008000" }}>
@@ -129,13 +119,13 @@ const SignUp = () => {
         <Switch
           style={{ alignItems: "flex-start" }}
           trackColor={{ false: "#777", true: "#8bf" }}
-          thumbColor={producert ? "#00f" : "#444"}
-          value={producert}
-          onValueChange={() => setProducer(!producert)}
+          thumbColor={producer ? "#00f" : "#444"}
+          value={producer}
+          onValueChange={() => setProducer(!producer)}
         />
       </View>
 
-      {producert ? (
+      {producer ? (
         <TextInput
           style={styles.input}
           placeholder="Telefone"
