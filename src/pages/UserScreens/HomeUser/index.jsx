@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import Footer from "../../../components/Footer";
 
 
-const Home = () => {
+const HomeUser = () => {
 
   return (
     <View style={styles.conteiner}>
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Home;
+export default HomeUser;

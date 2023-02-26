@@ -39,13 +39,14 @@ const Login = () => {
       const snapshot = await get(child(ref(database), `user/${uid}` && `producer/${uid}`));
       const isProducer = snapshot.exists() ? snapshot.val().producer : false;
       if (isProducer === true) {
-        navigation.navigate("Home");
+        navigation.navigate("HomeProducer");
         alert('Produtor logado com sucesso')
       } else {
-        navigation.navigate("SignUp");
+        navigation.navigate("HomeUser");
         alert('Usuário logado com sucesso')
       }
 
+      // Limpa os inputs
       setEmail('');
       setPassWord('');
     } catch (error) {
