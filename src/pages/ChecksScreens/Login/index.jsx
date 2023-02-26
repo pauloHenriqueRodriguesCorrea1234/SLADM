@@ -20,7 +20,10 @@ import Logo from "../../../components/Logo";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { auth } from "../../../services/firebaseAuthentication";
 // import { FirebaseApp } from "../../../services/firebaseAuthentication";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getDatabase, ref, child, get } from "firebase/database";
+
+const database = getDatabase();
 
 const Login = () => {
   const navigation = useNavigation();
@@ -29,41 +32,46 @@ const Login = () => {
 
   // Função para logar e verificar se o usuario existe
 
-  async function verifiUser() {
+  const verifiUser = async () => {
     try {
       const {
         user: { uid },
       } = await signInWithEmailAndPassword(auth, email, passWord); // Faz o login do usuário com o e-mail e senha fornecidos
       alert(`Usuario Logado: ${uid}`); // Exibe uma mensagem de sucesso e navega para a tela 'Home'
+      const idToken = await user.getIdToken();
+      await AsyncStorage.setItem("token", idToken);
       navigation.navigate("Home");
       setEmail("");
       setPassWord("");
       // Limpa os estados de e-mail e senha para que os campos fiquem vazios
+      setEmail('');
+      setPassWord('');
+  
+      // Navega para a tela apropriada
+      navigation.navigate(navigateToScreen);
     } catch (error) {
-      // Lida com diferentes tipos de erros de autenticação e mostra uma mensagem de erro para um erro especifico
-      switch (error.code) {
-        case "auth/invalid-email":
-          alert("O endereço de e-mail não é válido.");
-          break;
-        case "auth/user-disabled":
-          alert("A conta do usuário foi desativada.");
-          break;
-        case "auth/user-not-found":
-          alert("Não existe uma conta com esse endereço de e-mail.");
-          break;
-        case "auth/wrong-password":
-          alert("Senha inválida.");
-          break;
-        default:
-          alert("Erro ao efetuar login. Tente novamente mais tarde.");
-      }
+      // Trata diversos erros de autenticação e exibe uma mensagem de erro
+      handleError(error);
     }
-  }
-
-  function GoSignUp() {
-    setEmail("");
-    setPassWord("");
-    navigation.navigate("SignUp");
+  };
+  // Criei uma função separada somente para os erros
+  const handleError = (error) => {
+    switch (error.code) {
+      case 'auth/invalid-email':
+        Alert.alert('O endereço de e-mail não é válido.');
+        break;
+      case 'auth/user-disabled':
+        Alert.alert('A conta do usuário foi desativada.');
+        break;
+      case 'auth/user-not-found':
+        Alert.alert('Não existe uma conta com esse endereço de e-mail.');
+        break;
+      case 'auth/wrong-password':
+        Alert.alert('Senha inválida.');
+        break;
+      default:
+        Alert.alert('Erro ao efetuar login. Tente novamente mais tarde.');
+    }
   }
 
   return (
