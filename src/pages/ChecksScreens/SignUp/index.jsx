@@ -19,7 +19,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 // Realtime Database
 import { db } from "../../../services/firebaseAuthentication";
-import { ref, set } from "firebase/database";
+import { ref, set} from "firebase/database";
 
 const SignUp = () => {
   const navigation = useNavigation();

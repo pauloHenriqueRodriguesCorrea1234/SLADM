@@ -35,8 +35,6 @@ const Login = () => {
         user: { uid },
       } = await signInWithEmailAndPassword(auth, email, passWord); // Faz o login do usuário com o e-mail e senha fornecidos
       alert(`Usuario Logado: ${uid}`); // Exibe uma mensagem de sucesso e navega para a tela 'Home'
-      const idToken = await user.getIdToken();
-      await AsyncStorage.setItem("token", idToken);
       navigation.navigate("Home");
       setEmail("");
       setPassWord("");
@@ -60,6 +58,12 @@ const Login = () => {
           alert("Erro ao efetuar login. Tente novamente mais tarde.");
       }
     }
+  }
+
+  function GoSignUp() {
+    setEmail("");
+    setPassWord("");
+    navigation.navigate("SignUp");
   }
 
   return (
@@ -98,10 +102,7 @@ const Login = () => {
         <Text style={{ color: "#fff" }}>Forgot your passWord?</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate("SignUp")}
-        style={styles.touchableWitOutStyle}
-      >
+      <TouchableOpacity onPress={GoSignUp} style={styles.touchableWitOutStyle}>
         <Text style={{ color: "#fff" }}>SIGN UP</Text>
       </TouchableOpacity>
     </View>

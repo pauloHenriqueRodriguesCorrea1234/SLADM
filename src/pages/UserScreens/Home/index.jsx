@@ -6,7 +6,7 @@ const Home = () => {
 
   return (
     <View style={styles.conteiner}>
-      <Text>PRODUCTS</Text>
+      <Text>User routes</Text>
       <Footer/>
     </View>
   );
