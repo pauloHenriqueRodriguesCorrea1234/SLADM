@@ -20,8 +20,6 @@ import Logo from "../../../components/Logo";
 // Biblioteca firabase
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { auth } from "../../../services/firebaseAuthentication";
-// import { FirebaseApp } from "../../../services/firebaseAuthentication";
-// import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getDatabase, ref, child, get } from "firebase/database";
 
 const database = getDatabase();
@@ -39,12 +37,13 @@ const Login = () => {
 
       const uid = userCredential.user.uid;
       const snapshot = await get(child(ref(database), `user/${uid}` && `producer/${uid}`));
-      console.log(uid);
       const isProducer = snapshot.exists() ? snapshot.val().producer : false;
       if (isProducer === true) {
         navigation.navigate("Home");
+        alert('Produtor logado com sucesso')
       } else {
-        navigation.navigate("SignUp"); 
+        navigation.navigate("SignUp");
+        alert('Usuário logado com sucesso')
       }
 
       setEmail('');
@@ -150,45 +149,3 @@ const styles = StyleSheet.create({
 });
 
 export default Login;
-
-/* const verifiUser = async () => {
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, passWord);
-
-      // Se o login foi bem-sucedido, obtém o ID do usuário e busca seus dados no banco de dados
-      const userId = userCredential.user.uid;
-      const snapshot = await get(child(ref(database), `users/${uid}`));
-
-      // Verifica se o usuário é produtor ou não e navega até a tela apropriada
-      const isProducer = snapshot.exists() ? snapshot.val().producer : false;
-      // let navigateToScreen;
-      if (isProducer) {
-        navigateToScreen = 'Home';
-      } else {
-        navigateToScreen = 'SignUp';
-      }
-      // Limpa os estados de e-mail e senha para que os campos fiquem vazios
-      setEmail('');
-      setPassWord('');
-      // Navega para a tela apropriada
-      // navigation.navigate(navigateToScreen);
-    } catch (error) {
-      // Trata diversos erros de autenticação e exibe uma mensagem de erro
-      switch (error.code) {
-        case 'auth/invalid-email':
-          Alert.alert('O endereço de e-mail não é válido.');
-          break;
-        case 'auth/user-disabled':
-          Alert.alert('A conta do usuário foi desativada.');
-          break;
-        case 'auth/user-not-found':
-          Alert.alert('Não existe uma conta com esse endereço de e-mail.');
-          break;
-        case 'auth/wrong-password':
-          Alert.alert('Senha inválida.');
-          break;
-        default:
-          Alert.alert('Erro ao efetuar login. Tente novamente mais tarde.');
-      }
-    }
-  }; */
