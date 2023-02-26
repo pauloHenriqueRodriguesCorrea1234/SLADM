@@ -3,8 +3,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { View } from "react-native";
 import Login from "../pages/ChecksScreens/Login";
 import SignUp from "../pages/ChecksScreens/SignUp";
-import HomeUser from "../pages/UserScreens/HomeUser"
-import HomeProducer from "../pages/ProducerScreens/HomeProducer"
+
+import HomeProducer from "../pages/ProducerScreens/HomeProducer";
+import HomeUser from "../pages/UserScreens/HomeUser";
 
 const Stack = createStackNavigator();
 
@@ -39,23 +40,23 @@ const Routes = () => {
           />
 
           <Stack.Screen
-          component={HomeUser}
-          name="HomeUser"
-          options={{
-            title: "",
-            headerTransparent: true,
-            headerShown: false,
-          }}
+            component={HomeProducer}
+            name="HomeProducer"
+            options={{
+              title: "",
+              headerTransparent: true,
+              headerShown: false,
+            }}
           />
 
           <Stack.Screen
-          component={HomeProducer}
-          name="HomeProducer"
-          options={{
-            title: "",
-            headerTransparent: true,
-            headerShown: false,
-          }}
+            component={HomeUser}
+            name="HomeUser"
+            options={{
+              title: "",
+              headerTransparent: true,
+              headerShown: false,
+            }}
           />
 
         </Stack.Navigator>

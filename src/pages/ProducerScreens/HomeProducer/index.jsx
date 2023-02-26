@@ -1,11 +1,19 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet} from "react-native";
 
 const HomeProducer = () => {
   return (
-    <View>
+    <View style={styles.conteiner}>
       <Text>Producer routes</Text>
     </View>
   );
 };
 
-export default HomeProducer;
+const styles = StyleSheet.create({
+  conteiner: {
+    flex:1,
+    backgroundColor:"#008000",
+    alignContent: 'center',
+    justifyContent:"center"
+  }
+})
+export  default HomeProducer;
