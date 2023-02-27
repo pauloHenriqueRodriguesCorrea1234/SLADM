@@ -8,6 +8,7 @@ import {
   Switch,
   SafeAreaView,
   View,
+  Alert,
 } from "react-native";
 
 import Logo from "../../../components/Logo";
@@ -23,24 +24,29 @@ import { ref, set } from "firebase/database";
 
 const SignUp = () => {
   const navigation = useNavigation();
+  
+  // States inputs
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [producer, setProducer] = useState(false);
   const [phone, setPhone] = useState("");
+  
+  // Authentication
   const auth = getAuth();
 
   async function createUser() {
+    // Verifica se os campos estão preenchidos
     if (name === null || name === "") {
-      alert(`Informe seu nome`);
+      Alert.alert(`Informe seu nome`);
       return;
     }
     if (email === null || email === "") {
-      alert(`Informe seu e-mail`);
+      Alert.alert(`Informe seu e-mail`);
       return;
     }
     if (password === null || password === "") {
-      alert(`Informe sua senha`);
+      Alert.alert(`Informe sua senha`);
       return;
     } else {
       await createUserWithEmailAndPassword(auth, email, password)
@@ -49,8 +55,9 @@ const SignUp = () => {
 
           // Verifica se o usuário é um produtor
           if (producer === true) {
+            // Verifica se o telefone foi informado
             if (phone === null || phone === "") {
-              alert("Informe seu telefone");
+              Alert.alert("Informe seu telefone");
               return;
             } else {
               //Enviando dados para o firebase
@@ -72,7 +79,7 @@ const SignUp = () => {
             });
           }
 
-          alert("Usuário cadastrado com sucesso!");
+          Alert.alert("Usuário cadastrado com sucesso!");
           navigation.navigate("Login");
           setName("");
           setEmail("");
@@ -84,33 +91,37 @@ const SignUp = () => {
         .catch((error) => {
           console.log(error.code);
           if (error.code === "auth/email-already-in-use") {
-            alert("Já existi uma conta com o endereço de email fornecido.");
+            Alert.alert(
+              "Já existi uma conta com o endereço de email fornecido."
+            );
             return;
           }
 
           if (error.code === "auth/invalid-email") {
-            alert("Email invalido");
+            Alert.alert("Email invalido");
             return;
           }
 
           if (error.code === "auth/weak-password") {
-            alert("Sua senha deve ter pelo menos 6 caracteres");
+            Alert.alert("Sua senha deve ter pelo menos 6 caracteres");
             return;
           }
           if (error.code === "auth/email-already-exists") {
-            alert("O e-mail fornecido já está em uso.");
+            Alert.alert("O e-mail fornecido já está em uso.");
             return;
           }
           if (error.code === "auth/invalid-password") {
-            alert("A senha é inválida, precisa ter pelo menos 6 caracteres.");
+            Alert.alert(
+              "A senha é inválida, precisa ter pelo menos 6 caracteres."
+            );
             return;
           }
 
           if (error.code === "auth/weak-password") {
-            alert("A senha é muito fraca.");
+            Alert.alert("A senha é muito fraca.");
             return;
           } else {
-            alert("Ops... Alguma coisa deu errado!");
+            Alert.alert("Ops... Alguma coisa deu errado!");
             return;
           }
         });
@@ -125,6 +136,7 @@ const SignUp = () => {
         style={styles.input}
         placeholderTextColor="#FFF"
         placeholder="Nome"
+        keyboardType="email-address"
         value={name}
         onChangeText={(text) => setName(text)}
       />
@@ -135,6 +147,7 @@ const SignUp = () => {
         placeholder="E-mail"
         value={email}
         onChangeText={(text) => setEmail(text)}
+        keyboardType="email-address"
       />
 
       <TextInput
@@ -165,6 +178,7 @@ const SignUp = () => {
           placeholderTextColor="#FFF"
           value={phone}
           onChangeText={(text) => setPhone(text)}
+          keyboardType="phone-pad"
         />
       ) : (
         <View />
