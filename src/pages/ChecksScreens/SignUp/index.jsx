@@ -8,9 +8,12 @@ import {
   Switch,
   SafeAreaView,
   View,
+  Alert,
 } from "react-native";
 
 import Logo from "../../../components/Logo";
+
+import errorCodeMessages from "../ConfigError/errorCodeMessages"
 
 import { useNavigation } from "@react-navigation/native";
 
@@ -80,40 +83,12 @@ const SignUp = () => {
           setProducer(false);
           setPhone("");
         })
-
         .catch((error) => {
-          console.log(error.code);
-          if (error.code === "auth/email-already-in-use") {
-            alert("Já existi uma conta com o endereço de email fornecido.");
-            return;
-          }
+          const errorMessage = errorCodeMessages[error.code] || 'Erro ao efetuar o cadastramento. Tente novamente mais tarde.';
+            Alert.alert(errorMessage);
+        })
 
-          if (error.code === "auth/invalid-email") {
-            alert("Email invalido");
-            return;
-          }
-
-          if (error.code === "auth/weak-password") {
-            alert("Sua senha deve ter pelo menos 6 caracteres");
-            return;
-          }
-          if (error.code === "auth/email-already-exists") {
-            alert("O e-mail fornecido já está em uso.");
-            return;
-          }
-          if (error.code === "auth/invalid-password") {
-            alert("A senha é inválida, precisa ter pelo menos 6 caracteres.");
-            return;
-          }
-
-          if (error.code === "auth/weak-password") {
-            alert("A senha é muito fraca.");
-            return;
-          } else {
-            alert("Ops... Alguma coisa deu errado!");
-            return;
-          }
-        });
+        
     }
   }
 
@@ -209,3 +184,8 @@ const styles = StyleSheet.create({
 });
 
 export default SignUp;
+
+// Se o e-mail não terminar com '@gmail.com'ou '@outlook.com'ou '@yahoo.com' ele dará um alerta para colocar o e-mail corretamente
+/* if (!email.includes('@gmail.com') && !email.includes('@outlook.com') && !email.includes('@yahoo.com')) {
+  alert('Informe o seu e-mail corretamente');
+} */
