@@ -69,6 +69,7 @@ const Login = () => {
         type="text"
         value={email}
         onChangeText={(text) => setEmail(text)}
+        keyboardType='email-address'
       />
       <TextInput
         style={styles.input}
@@ -82,23 +83,23 @@ const Login = () => {
       {/* Verifica se o campo de email e senha foi preenchido se não estiver o botão de login é desabilitado*/}
       {email === "" || passWord === "" ? (
         <TouchableOpacity style={styles.touchable} disabled={true}>
-          <Text>LOGIN</Text>
+          <Text>Logar</Text>
         </TouchableOpacity>
       ) : (
         <TouchableOpacity style={styles.touchable} onPress={() => verifiUser()}>
-          <Text>LOGIN</Text>
+          <Text>Logar</Text>
         </TouchableOpacity>
       )}
 
       <TouchableOpacity style={styles.touchableWitOutStyle}>
-        <Text style={{ color: "#fff" }}>Forgot your passWord?</Text>
+        <Text style={{ color: "#fff" }}>Esquceu sua senha?</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         onPress={() => navigation.navigate("SignUp")}
         style={styles.touchableWitOutStyle}
       >
-        <Text style={{ color: "#fff" }}>SIGN UP</Text>
+        <Text style={{ color: "#fff" }}>Cadastrar</Text>
       </TouchableOpacity>
     </View>
   );
