@@ -1,21 +1,19 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StyleSheet, View } from "react-native";
+
 import Login from "../pages/ChecksScreens/Login";
 import SignUp from "../pages/ChecksScreens/SignUp";
-
 import HomeProducer from "../pages/ProducerScreens/HomeProducer";
 import HomeUser from "../pages/UserScreens/HomeUser";
 
 const Stack = createStackNavigator();
-const Drawer = createDrawerNavigator();
 
 const Routes = () => {
   return (
     <View style={styles.conteiner}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="HomeProducer">
+        <Stack.Navigator initialRouteName="Login">
           <Stack.Screen
             component={Login}
             name="Login"
@@ -60,7 +58,6 @@ const Routes = () => {
               headerShown: false,
             }}
           />
-
         </Stack.Navigator>
       </NavigationContainer>
    

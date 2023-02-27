@@ -19,7 +19,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 // Realtime Database
 import { db } from "../../../services/firebaseAuthentication";
-import { ref, set} from "firebase/database";
+import { ref, set } from "firebase/database";
 
 const SignUp = () => {
   const navigation = useNavigation();
@@ -31,57 +31,90 @@ const SignUp = () => {
   const auth = getAuth();
 
   async function createUser() {
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then((data) => {
-        const users = data.user.uid;
+    if (name === null || name === "") {
+      alert(`Informe seu nome`);
+      return;
+    }
+    if (email === null || email === "") {
+      alert(`Informe seu e-mail`);
+      return;
+    }
+    if (password === null || password === "") {
+      alert(`Informe sua senha`);
+      return;
+    } else {
+      await createUserWithEmailAndPassword(auth, email, password)
+        .then((data) => {
+          const users = data.user.uid;
 
-        // Verifica se o usuário é um produtor
-        if (producer === true) {
-          //Enviando dados para o firebase
-          set(ref(db, "producer/" + users), {
-            // Dados do produtor
-            username: name,
-            email: email,
-            password: password,
-            producer: producer,
-            phone: phone,
-          });
-        } else {
-          set(ref(db, "user/" + users), {
-            // Dados do usuário
-            username: name,
-            email: email,
-            password: password,
-          });
-        }
+          // Verifica se o usuário é um produtor
+          if (producer === true) {
+            if (phone === null || phone === "") {
+              alert("Informe seu telefone");
+              return;
+            } else {
+              //Enviando dados para o firebase
+              set(ref(db, "producer/" + users), {
+                // Dados do produtor
+                username: name,
+                email: email,
+                password: password,
+                producer: producer,
+                phone: phone,
+              });
+            }
+          } else {
+            set(ref(db, "user/" + users), {
+              // Dados do usuário
+              username: name,
+              email: email,
+              password: password,
+            });
+          }
 
-        alert("Usuário cadastrado com sucesso!");
-        navigation.navigate("Login");
-      })
-      .catch((error) => {
-        console.log(error.code);
-        if (error.code === "auth/invalid-email") {
-          alert("Email invalido");
-          return;
-        }
-        if (error.code === "auth/internal-error") {
-          alert(error.code);
-          return;
-        }
-        if (error.code === "auth/weak-password") {
-          alert("Senha invalida");
-          return;
-        } else {
-          alert("Ops... Alguma coisa deu errado!");
-          return;
-        }
-      });
+          alert("Usuário cadastrado com sucesso!");
+          navigation.navigate("Login");
+          setName("");
+          setEmail("");
+          setPassword("");
+          setProducer(false);
+          setPhone("");
+        })
 
-    setName("");
-    setEmail("");
-    setPassword("");
-    setProducer(false);
-    setPhone("");
+        .catch((error) => {
+          console.log(error.code);
+          if (error.code === "auth/email-already-in-use") {
+            alert("Já existi uma conta com o endereço de email fornecido.");
+            return;
+          }
+
+          if (error.code === "auth/invalid-email") {
+            alert("Email invalido");
+            return;
+          }
+
+          if (error.code === "auth/weak-password") {
+            alert("Sua senha deve ter pelo menos 6 caracteres");
+            return;
+          }
+          if (error.code === "auth/email-already-exists") {
+            alert("O e-mail fornecido já está em uso.");
+            return;
+          }
+          if (error.code === "auth/invalid-password") {
+            alert("A senha é inválida, precisa ter pelo menos 6 caracteres.");
+            return;
+          }
+
+          if (error.code === "auth/weak-password") {
+            alert("A senha é muito fraca.");
+            return;
+          } else {
+            alert("Ops... Alguma coisa deu errado!");
+            return;
+          }
+        });
+    }
   }
 
   return (
