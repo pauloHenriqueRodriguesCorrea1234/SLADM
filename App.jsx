@@ -1,12 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
-import Routes from './src/routes';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, View } from "react-native";
+import Routes from "./src/routes";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <StatusBar  barStyle="light-content" />
-      <Routes/>
+      <StatusBar hidden />
+      <Routes />
     </View>
   );
 }
@@ -14,5 +14,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  }
+  },
 });
