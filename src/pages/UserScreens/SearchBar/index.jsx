@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 import { getDatabase, ref, onValue } from "firebase/database";
-import { firebaseConfig } from "../../../services/firebaseAuthentication";
 
 const database = getDatabase();
 
-export default function App() {
+export default function SearchBar() {
   const [product, setProduct] = useState(null);
   const [searchValue, setSearchValue] = useState("");
 
@@ -16,7 +15,7 @@ export default function App() {
     // Utiliza o método on para monitorar mudanças no nó dos produtos
     onValue(productsRef, (snapshot) => {
       const data = snapshot.val();
-      
+
       // Busca pelo produto com o nome especificado
       const filteredProduct = Object.keys(data)
         .map((key) => ({ key, ...data[key] }))

@@ -5,8 +5,8 @@ import Routes from "./src/routes";
 export default function App() {
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
-      <Routes />
+      <StatusBar hidden1 />
+        <Routes />
     </View>
   );
 }
