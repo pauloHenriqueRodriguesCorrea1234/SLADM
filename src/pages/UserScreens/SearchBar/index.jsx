@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 import { getDatabase, ref, onValue } from "firebase/database";
-import { firebaseConfig } from "../../../../services/firebaseAuthentication";
+import { firebaseConfig } from "../../../services/firebaseAuthentication";
 
 const database = getDatabase();
 
