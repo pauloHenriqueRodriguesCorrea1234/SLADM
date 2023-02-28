@@ -13,6 +13,8 @@ import {
 
 import Logo from "../../../components/Logo";
 
+import errorCodeMessages from "../ConfigError/errorCodeMessages"
+
 import { useNavigation } from "@react-navigation/native";
 
 // Auth
@@ -24,29 +26,24 @@ import { ref, set } from "firebase/database";
 
 const SignUp = () => {
   const navigation = useNavigation();
-  
-  // States inputs
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [producer, setProducer] = useState(false);
   const [phone, setPhone] = useState("");
-  
-  // Authentication
   const auth = getAuth();
 
   async function createUser() {
-    // Verifica se os campos estão preenchidos
     if (name === null || name === "") {
-      Alert.alert(`Informe seu nome`);
+      alert(`Informe seu nome`);
       return;
     }
     if (email === null || email === "") {
-      Alert.alert(`Informe seu e-mail`);
+      alert(`Informe seu e-mail`);
       return;
     }
     if (password === null || password === "") {
-      Alert.alert(`Informe sua senha`);
+      alert(`Informe sua senha`);
       return;
     } else {
       await createUserWithEmailAndPassword(auth, email, password)
@@ -55,9 +52,8 @@ const SignUp = () => {
 
           // Verifica se o usuário é um produtor
           if (producer === true) {
-            // Verifica se o telefone foi informado
             if (phone === null || phone === "") {
-              Alert.alert("Informe seu telefone");
+              alert("Informe seu telefone");
               return;
             } else {
               //Enviando dados para o firebase
@@ -79,7 +75,7 @@ const SignUp = () => {
             });
           }
 
-          Alert.alert("Usuário cadastrado com sucesso!");
+          alert("Usuário cadastrado com sucesso!");
           navigation.navigate("Login");
           setName("");
           setEmail("");
@@ -87,44 +83,12 @@ const SignUp = () => {
           setProducer(false);
           setPhone("");
         })
-
         .catch((error) => {
-          console.log(error.code);
-          if (error.code === "auth/email-already-in-use") {
-            Alert.alert(
-              "Já existi uma conta com o endereço de email fornecido."
-            );
-            return;
-          }
+          const errorMessage = errorCodeMessages[error.code] || 'Erro ao efetuar o cadastramento. Tente novamente mais tarde.';
+            Alert.alert(errorMessage);
+        })
 
-          if (error.code === "auth/invalid-email") {
-            Alert.alert("Email invalido");
-            return;
-          }
-
-          if (error.code === "auth/weak-password") {
-            Alert.alert("Sua senha deve ter pelo menos 6 caracteres");
-            return;
-          }
-          if (error.code === "auth/email-already-exists") {
-            Alert.alert("O e-mail fornecido já está em uso.");
-            return;
-          }
-          if (error.code === "auth/invalid-password") {
-            Alert.alert(
-              "A senha é inválida, precisa ter pelo menos 6 caracteres."
-            );
-            return;
-          }
-
-          if (error.code === "auth/weak-password") {
-            Alert.alert("A senha é muito fraca.");
-            return;
-          } else {
-            Alert.alert("Ops... Alguma coisa deu errado!");
-            return;
-          }
-        });
+        
     }
   }
 
@@ -136,7 +100,6 @@ const SignUp = () => {
         style={styles.input}
         placeholderTextColor="#FFF"
         placeholder="Nome"
-        keyboardType="email-address"
         value={name}
         onChangeText={(text) => setName(text)}
       />
@@ -147,7 +110,6 @@ const SignUp = () => {
         placeholder="E-mail"
         value={email}
         onChangeText={(text) => setEmail(text)}
-        keyboardType="email-address"
       />
 
       <TextInput
@@ -178,7 +140,6 @@ const SignUp = () => {
           placeholderTextColor="#FFF"
           value={phone}
           onChangeText={(text) => setPhone(text)}
-          keyboardType="phone-pad"
         />
       ) : (
         <View />
@@ -223,3 +184,8 @@ const styles = StyleSheet.create({
 });
 
 export default SignUp;
+
+// Se o e-mail não terminar com '@gmail.com'ou '@outlook.com'ou '@yahoo.com' ele dará um alerta para colocar o e-mail corretamente
+/* if (!email.includes('@gmail.com') && !email.includes('@outlook.com') && !email.includes('@yahoo.com')) {
+  alert('Informe o seu e-mail corretamente');
+} */
