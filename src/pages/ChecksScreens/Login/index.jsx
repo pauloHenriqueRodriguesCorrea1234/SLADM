@@ -54,33 +54,11 @@ const Login = () => {
       }
 
       // Limpa os inputs
-<<<<<<< HEAD
-      setEmail("");
-      setPassWord("");
-    } catch (error) {
-      switch (error.code) {
-        case "auth/invalid-email":
-          Alert.alert("O endereço de e-mail não é válido.");
-          break;
-        case "auth/user-disabled":
-          Alert.alert("A conta do usuário foi desativada.");
-          break;
-        case "auth/user-not-found":
-          Alert.alert("Não existe uma conta com esse endereço de e-mail.");
-          break;
-        case "auth/wrong-password":
-          Alert.alert("Senha inválida.");
-          break;
-        default:
-          Alert.alert("Erro ao efetuar login. Tente novamente mais tarde.");
-      }
-=======
       setEmail('');
       setPassWord('');
      } catch (error) {
       const errorMessage = errorCodeMessages[error.code] || 'Erro ao efetuar login. Tente novamente mais tarde.';
       Alert.alert(errorMessage);
->>>>>>> e8d071b1936455ff8c7b08a433002b17181aea8f
     }
      
     
