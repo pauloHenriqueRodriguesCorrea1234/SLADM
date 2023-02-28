@@ -16,6 +16,7 @@ import {
 
 // Componente com a logo do projeto
 import Logo from "../../../components/Logo";
+import errorCodeMessages from "../ConfigError/errorCodeMessages"
 
 // Biblioteca firabase
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
@@ -53,6 +54,7 @@ const Login = () => {
       }
 
       // Limpa os inputs
+<<<<<<< HEAD
       setEmail("");
       setPassWord("");
     } catch (error) {
@@ -72,7 +74,16 @@ const Login = () => {
         default:
           Alert.alert("Erro ao efetuar login. Tente novamente mais tarde.");
       }
+=======
+      setEmail('');
+      setPassWord('');
+     } catch (error) {
+      const errorMessage = errorCodeMessages[error.code] || 'Erro ao efetuar login. Tente novamente mais tarde.';
+      Alert.alert(errorMessage);
+>>>>>>> e8d071b1936455ff8c7b08a433002b17181aea8f
     }
+     
+    
   };
 
   return (
