@@ -1,6 +1,6 @@
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
-export const Footer = ( { style } ) => {
+export const Footer = ({ style }) => {
   return (
     <View style={styles.conteiner}>
       <TouchableOpacity style={styles.toucgable}>
@@ -38,11 +38,10 @@ const styles = StyleSheet.create({
   },
   toucgable: {
     padding: 5,
-    alignItems:"center"
   },
   img: {
-    height: 50,
-    width: 50,
+    height: 45,
+    width: 45,
   },
 });
 

@@ -5,7 +5,7 @@ import Routes from "./src/routes";
 export default function App() {
   return (
     <View style={styles.container}>
-      <StatusBar hidden1 />
+      <StatusBar hidden />
         <Routes />
     </View>
   );
