@@ -1,6 +1,7 @@
 import { TextInput } from "react-native";
 import { View, Text, StyleSheet } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import Footer from "../../../components/Footer";
 
 const HomeProducer = () => {
   return (
@@ -14,7 +15,7 @@ const HomeProducer = () => {
         />
       </View>
 
-      <AntDesign name="windows" style={{ color: "#f00", fontSize: 50 }} />
+      <Footer/>
     </View>
   );
 };
