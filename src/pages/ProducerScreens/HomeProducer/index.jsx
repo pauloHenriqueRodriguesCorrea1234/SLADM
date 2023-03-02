@@ -1,5 +1,6 @@
 import { TextInput } from "react-native";
 import { View, Text, StyleSheet } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
 const HomeProducer = () => {
@@ -13,8 +14,10 @@ const HomeProducer = () => {
           placeholder="Escreva o nome do produto"
         />
       </View>
-
-      <AntDesign name="windows" style={{ color: "#f00", fontSize: 50 }} />
+      <TouchableOpacity style={{marginTop: "150%", marginLeft: "85%"}}>
+        <AntDesign name="plus" style={{ color: "#000", fontSize: 50, }} />
+      </TouchableOpacity>
+      
     </View>
   );
 };
