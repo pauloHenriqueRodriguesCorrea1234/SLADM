@@ -6,6 +6,7 @@ import Login from "../pages/ChecksScreens/Login";
 import SignUp from "../pages/ChecksScreens/SignUp";
 import HomeProducer from "../pages/ProducerScreens/HomeProducer";
 import HomeUser from "../pages/UserScreens/HomeUser";
+import Menu from "../components/Menu";
 
 const Stack = createStackNavigator();
 
@@ -13,7 +14,8 @@ const Routes = () => {
   return (
     <View style={styles.conteiner}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="HomeProducer">
+        <Stack.Navigator initialRouteName="Menu">
+
           <Stack.Screen
             component={Login}
             name="Login"
@@ -58,17 +60,27 @@ const Routes = () => {
               headerShown: false,
             }}
           />
+
+          <Stack.Screen
+            component={Menu}
+            name="Menu"
+            options={{
+              title: "",
+              headerTransparent: true,
+              headerShown: false,
+            }}
+          />
+
         </Stack.Navigator>
       </NavigationContainer>
-   
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   conteiner: {
-    flex: 1
-  }
-})
+    flex: 1,
+  },
+});
 
 export default Routes;

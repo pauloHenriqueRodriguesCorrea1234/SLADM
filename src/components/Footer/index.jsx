@@ -1,19 +1,18 @@
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
-import AntDesign from "react-native-vector-icons/AntDesign";
+import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
+import Feather from "react-native-vector-icons/Feather";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 export const Footer = () => {
   return (
     <View style={styles.conteiner}>
       <TouchableOpacity style={styles.toucgable}>
-        <AntDesign name="home" style={{ color: "#f00", fontSize: 50 }} />
+        <Ionicons  name="home" style={{ color: "#000", fontSize: 30 }} />
+        <Text>Home</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.toucgable}>
-        <AntDesign name="windows" style={{ color: "#f00", fontSize: 50 }} />
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.toucgable}>
-        <AntDesign name="home" style={{ color: "#f00", fontSize: 50 }} />
+        <Feather name="menu" ma style={{ color: "#000", fontSize: 40 }} />
+        <Text>Menu</Text>
       </TouchableOpacity>
     </View>
   );
@@ -24,12 +23,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-end",
     backgroundColor: "#d9d9d9",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     borderTopRightRadius: 5,
     borderTopLeftRadius: 5,
+    position: 'absolute',
+    width: "100%",
+    marginTop: "176%"
   },
   toucgable: {
     padding: 5,
+    alignItems:"center"
   },
   img: {
     height: 45,

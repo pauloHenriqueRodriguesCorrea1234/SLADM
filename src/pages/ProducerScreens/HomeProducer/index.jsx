@@ -1,7 +1,7 @@
-import { TextInput } from "react-native";
-import { View, Text, StyleSheet } from "react-native";
-import AntDesign from "react-native-vector-icons/AntDesign";
+import { View, Text, StyleSheet, TextInput} from "react-native";
 import Footer from "../../../components/Footer";
+
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const HomeProducer = () => {
   return (
@@ -13,9 +13,10 @@ const HomeProducer = () => {
           style={styles.input}
           placeholder="Escreva o nome do produto"
         />
+        <Ionicons name="search" style={{fontSize:25}}/>
       </View>
 
-      <Footer/>
+      <Footer />
     </View>
   );
 };
@@ -32,6 +33,7 @@ const styles = StyleSheet.create({
   },
   viewInput: {
     margin: 10,
+    flexDirection:"row"
   },
   input: {
     textAlign: "center",
@@ -40,6 +42,7 @@ const styles = StyleSheet.create({
     height: 50,
     color: "#fff",
     fontSize: 16,
+    width: "100%"
   },
 });
 export default HomeProducer;
