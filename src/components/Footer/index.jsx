@@ -1,18 +1,26 @@
 import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { StackActions, useNavigation } from "@react-navigation/native";
+
 
 export const Footer = () => {
+
+  const navigation = useNavigation();
+  
+  const Logout = () => {
+    navigation.dispatch(StackActions.push("Menu"));
+  }
   return (
     <View style={styles.conteiner}>
       <TouchableOpacity style={styles.toucgable}>
-        <Ionicons  name="home" style={{ color: "#000", fontSize: 30 }} />
+        <Ionicons /*onPress={Button}*/ name="home" style={{ color: "#000", fontSize: 30 }} />
         <Text>Home</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.toucgable}>
+      <TouchableOpacity onPress={Logout}  style={styles.toucgable}>
         <Feather name="menu" ma style={{ color: "#000", fontSize: 40 }} />
-        <Text>Menu</Text>
+        <Text  >Menu</Text>
       </TouchableOpacity>
     </View>
   );
@@ -28,11 +36,11 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 5,
     position: 'absolute',
     width: "100%",
-    marginTop: "176%"
+    marginTop: "185%"
   },
   toucgable: {
     padding: 5,
-    alignItems:"center"
+    alignItems: "center"
   },
   img: {
     height: 45,

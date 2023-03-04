@@ -14,7 +14,7 @@ const Routes = () => {
   return (
     <View style={styles.conteiner}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Menu">
+        <Stack.Navigator initialRouteName="Login">
 
           <Stack.Screen
             component={Login}

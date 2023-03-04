@@ -3,15 +3,15 @@ import Feather from "react-native-vector-icons/Feather";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Footer from "../Footer";
 import { auth } from "../../services/firebaseAuthentication";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, StackActions } from "@react-navigation/native";
 import { Linking } from "react-native";
 
 const Menu = () => {
   const navigation = useNavigation();
 
   const Logout = () => {
-    auth.signOut();
-    navigation.navigate("Login");
+    auth.signOut()
+    navigation.dispatch(StackActions.popToTop());
   };
 
   const Instagram = () => {
