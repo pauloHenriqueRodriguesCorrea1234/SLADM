@@ -16,7 +16,7 @@ import {
 
 // Componente com a logo do projeto
 import Logo from "../../../components/Logo";
-import errorCodeMessages from "../ConfigError/errorCodeMessages"
+import errorCodeMessages from "../ConfigError/errorCodeMessages";
 
 // Biblioteca firabase
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
@@ -54,14 +54,20 @@ const Login = () => {
       }
 
       // Limpa os inputs
-      setEmail('');
-      setPassWord('');
-     } catch (error) {
-      const errorMessage = errorCodeMessages[error.code] || 'Erro ao efetuar login. Tente novamente mais tarde.';
+      setEmail("");
+      setPassWord("");
+    } catch (error) {
+      const errorMessage =
+        errorCodeMessages[error.code] ||
+        "Erro ao efetuar login. Tente novamente mais tarde.";
       Alert.alert(errorMessage);
     }
-     
-    
+  };
+
+  const GoSignup = () => {
+    navigation.navigate("SignUp");
+    setEmail("");
+    setPassWord("");
   };
 
   return (
@@ -101,10 +107,7 @@ const Login = () => {
         <Text style={{ color: "#fff" }}>Esquceu sua senha?</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate("SignUp")}
-        style={styles.touchableWitOutStyle}
-      >
+      <TouchableOpacity onPress={GoSignup} style={styles.touchableWitOutStyle}>
         <Text style={{ color: "#fff" }}>Cadastrar</Text>
       </TouchableOpacity>
     </View>

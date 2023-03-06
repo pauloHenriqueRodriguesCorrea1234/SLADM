@@ -7,6 +7,7 @@ import SignUp from "../pages/ChecksScreens/SignUp";
 import HomeProducer from "../pages/ProducerScreens/HomeProducer";
 import HomeUser from "../pages/UserScreens/HomeUser";
 import Menu from "../components/Menu";
+import Products from "../pages/ProducerScreens/Products";
 
 const Stack = createStackNavigator();
 
@@ -14,8 +15,7 @@ const Routes = () => {
   return (
     <View style={styles.conteiner}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
-
+        <Stack.Navigator initialRouteName="HomeProducer">
           <Stack.Screen
             component={Login}
             name="Login"
@@ -71,6 +71,15 @@ const Routes = () => {
             }}
           />
 
+          <Stack.Screen
+            component={Products}
+            name="Products"
+            options={{
+              title: "",
+              headerTransparent: true,
+              headerShown: false,
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

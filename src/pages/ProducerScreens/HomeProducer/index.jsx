@@ -1,22 +1,33 @@
-import { View, Text, StyleSheet, TextInput } from "react-native";
-import Footer from "../../../components/Footer";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
+import Footer from "../../../components/Footer";
 
 const HomeProducer = () => {
+  const Search = () => {
+    alert("FIME");
+  };
   return (
     <View style={styles.conteiner}>
       <Text style={styles.titleProduct}>PRODUCT</Text>
+
       <View style={styles.viewInput}>
         <TextInput
-          placeholderTextColor="#000"
           style={styles.input}
+          placeholderTextColor="#000"
           placeholder="Escreva o nome do produto"
         />
-        <Ionicons name="search" style={{ fontSize: 25 }} />
+        <TouchableOpacity onPress={Search}>
+          <Ionicons style={styles.icon} name="search" />
+        </TouchableOpacity>
       </View>
-
-      <Footer />
+      <Footer/>
     </View>
   );
 };
@@ -32,17 +43,22 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   viewInput: {
-    margin: 10,
     flexDirection: "row",
+    borderWidth: 1,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginHorizontal: 8,
+    marginVertical: 10,
   },
   input: {
-    textAlign: "center",
-    borderBottomColor: "#fff",
-    borderBottomWidth: 1,
-    height: 50,
-    color: "#fff",
     fontSize: 16,
-    width: "100%",
+    textAlign: "center",
+    marginLeft: 10,
+  },
+  icon: {
+    fontSize: 25,
+    marginRight: 20,
   },
 });
 export default HomeProducer;
