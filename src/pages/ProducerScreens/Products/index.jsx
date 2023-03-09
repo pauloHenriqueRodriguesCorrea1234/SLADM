@@ -10,15 +10,17 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import Footer from "../../../components/Footer";
 
 const Products = () => {
+
   const navigation = useNavigation();
 
   const Search = () => {
     alert("FIME");
   };
 
-  const AdicionarProduto = () => {
+  const Add = () => {
     navigation.navigate("AddProduct");
-  };
+  }
+
   return (
     <View style={styles.conteiner}>
       <Text style={styles.titleMyProducts}>MEUS PRODUTOS</Text>
@@ -36,7 +38,8 @@ const Products = () => {
 
       <View style={styles.viewAddProduct}>
         <TouchableOpacity
-          onPress={AdicionarProduto}
+        onPress={Add}
+          activeOpacity={0.7}
           style={styles.touchableAddProduct}
         >
           <Ionicons style={styles.addProduct} name="add" />
@@ -81,19 +84,19 @@ const styles = StyleSheet.create({
     fontSize: 35,
   },
   viewAddProduct: {
-    // position: "absolute",
-    // justifyContent:'flex-start'
     flex: 1,
     flexDirection: "row-reverse",
   },
   touchableAddProduct: {
     alignItems: "center",
-    height: 50,
-    width: 50,
+    height: 60,
+    width: 60,
     justifyContent: "center",
     backgroundColor: "#d9d9d9",
-
     borderRadius: 30,
+    position: "absolute",
+    right: "84%",
+    bottom: "3%",
   },
 });
 
