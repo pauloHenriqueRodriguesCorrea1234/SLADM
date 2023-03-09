@@ -7,15 +7,18 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 export const Footer = () => {
   const navigation = useNavigation();
 
+  const Home = () => {
+    navigation.push("HomeProducer")
+  };
   const MyProducts = () => {
-    navigation.navigate("Products");
+    navigation.push("Products");
   };
   const Logout = () => {
-    navigation.dispatch(StackActions.push("Menu"));
+    navigation.push("Menu")
   };
   return (
     <View style={styles.conteiner}>
-      <TouchableOpacity style={styles.toucgable}>
+      <TouchableOpacity onPress={Home} style={styles.toucgable}>
         <Ionicons name="home" style={{ color: "#000", fontSize: 30 }} />
         <Text>Home</Text>
       </TouchableOpacity>

@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import {
   StyleSheet,
   Text,
@@ -9,8 +10,14 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import Footer from "../../../components/Footer";
 
 const Products = () => {
+  const navigation = useNavigation();
+
   const Search = () => {
     alert("FIME");
+  };
+
+  const AdicionarProduto = () => {
+    navigation.navigate("AddProduct");
   };
   return (
     <View style={styles.conteiner}>
@@ -28,7 +35,10 @@ const Products = () => {
       </View>
 
       <View style={styles.viewAddProduct}>
-        <TouchableOpacity style={styles.touchableAddProduct}>
+        <TouchableOpacity
+          onPress={AdicionarProduto}
+          style={styles.touchableAddProduct}
+        >
           <Ionicons style={styles.addProduct} name="add" />
         </TouchableOpacity>
       </View>
@@ -74,7 +84,7 @@ const styles = StyleSheet.create({
     // position: "absolute",
     // justifyContent:'flex-start'
     flex: 1,
-    flexDirection:'row-reverse'
+    flexDirection: "row-reverse",
   },
   touchableAddProduct: {
     alignItems: "center",

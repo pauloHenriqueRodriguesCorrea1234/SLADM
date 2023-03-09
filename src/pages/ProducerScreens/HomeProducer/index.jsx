@@ -27,7 +27,7 @@ const HomeProducer = () => {
           <Ionicons style={styles.icon} name="search" />
         </TouchableOpacity>
       </View>
-      <Footer/>
+      <Footer />
     </View>
   );
 };

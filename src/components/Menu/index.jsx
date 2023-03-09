@@ -10,20 +10,18 @@ const Menu = () => {
   const navigation = useNavigation();
 
   const Logout = () => {
-    auth.signOut()
+    auth.signOut();
     navigation.dispatch(StackActions.popToTop());
   };
 
   const Instagram = () => {
-
-    Linking.openURL("https://www.instagram.com/solo_fertil_campus_aquidauana/")
+    Linking.openURL("https://www.instagram.com/solo_fertil_campus_aquidauana/");
   };
 
   return (
     <View style={styles.conteinerPrncipal}>
-
+      <Text style={styles.title}>MENU</Text>
       <View style={styles.conteiner}>
-        
         <TouchableOpacity onPress={Logout} style={styles.touchable}>
           <Feather name="log-out" style={styles.img} />
           <Text>Logout</Text>
@@ -34,9 +32,8 @@ const Menu = () => {
           <Text>Instagram</Text>
         </TouchableOpacity>
       </View>
-      
-      <Footer />
 
+      <Footer />
     </View>
   );
 };
@@ -46,8 +43,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#4D8900",
   },
+  title:{
+    textAlign:'center',
+    fontSize: 30,
+    margin: 30
+  },
   conteiner: {
-    marginVertical: "10%",
+    marginBottom: "10%",
     marginHorizontal: "5%",
     backgroundColor: "#D9D9D9",
     borderRadius: 20,
