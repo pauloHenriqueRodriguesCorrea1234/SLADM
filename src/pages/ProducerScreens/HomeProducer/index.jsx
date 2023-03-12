@@ -35,7 +35,7 @@ const HomeProducer = () => {
 const styles = StyleSheet.create({
   conteiner: {
     flex: 1,
-    backgroundColor: "#008000",
+    backgroundColor: "#4D8900",
   },
   titleProduct: {
     textAlign: "center",

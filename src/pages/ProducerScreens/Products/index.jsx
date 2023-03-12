@@ -54,7 +54,7 @@ const Products = () => {
 const styles = StyleSheet.create({
   conteiner: {
     flex: 1,
-    backgroundColor: "#008000",
+    backgroundColor: "#4D8900",
   },
   titleMyProducts: {
     textAlign: "center",
