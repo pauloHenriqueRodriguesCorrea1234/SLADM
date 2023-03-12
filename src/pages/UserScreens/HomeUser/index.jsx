@@ -1,25 +1,34 @@
-import { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import Footer from "../../../components/Footer";
+import FruitCards from  '../../../components/FruitCards'
+import { TouchableOpacity } from "react-native";
+import { Text } from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 
-import { itens } from "../../../../data/product.json";
-
-import FruitCards from "../../../components/FruitCards";
-import { FlatList } from "react-native";
-const HomeUser = ({ navigation }) => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    setProducts(itens);
-  }, []);
+const HomeUser = () => {
+  const dados = [
+    { key: "linha 1" },
+    { key: "linha 2" },
+    { key: "linha 3" },
+    { key: "linha 4" },
+    { key: "linha 5" },
+    { key: "linha 6" },
+    { key: "linha 7" },
+    { key: "linha 8" },
+    { key: "linha 9" },
+    { key: "linha 10" },
+    { key: "linha 11" },
+    { key: "linha 12" },
+  ];
 
   return (
     <View style={styles.conteiner}>
-      <Text>User routes</Text>
-      {products.length > 0 && <FlatList
-      
-      />}
-      <Footer />
+      <FlatList
+        data={dados}
+        renderItem={({ item }) => (
+          <TouchableOpacity>
+            <FruitCards productName={item.key}/>
+          </TouchableOpacity>
+        )}
+      />
     </View>
   );
 };
