@@ -1,37 +1,34 @@
-import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 const FruitCards = ({ productName, imgProduct }) => {
   return (
-    <TouchableOpacity style={styles.conteiner}>
-
-      <Image 
-      source={{ uri: imgProduct }} 
-      style={StyleSheet.img} />
-      
+    <View style={styles.conteiner}>
+      <Image source={{ uri: imgProduct }} style={StyleSheet.img} />
       <Text style={styles.text}>{productName}</Text>
-    </TouchableOpacity>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   conteiner: {
-    flex: 1,
-    width: "100%",
-    paddingHorizontal: 20,
-    height: 40,
+    borderWidth: 1.1,
+    marginHorizontal: "2%",
+    marginVertical: "3%",
     flexDirection: "row",
+    backgroundColor: "#d1d0ca",
     justifyContent: "space-between",
+    borderRadius: 10,
   },
 
   imgProduct: {
-    height: 45,
-    width: 45,
+    height: 120,
+    width: 120,
   },
   text: {
-    fontSize: 24,
-    paddingRight: 10,
+    fontSize: 17,
+    paddingRight: 9,
+    alignItems: "flex-end",
   },
 });
 
-
-export default FruitCards
+export default FruitCards;
