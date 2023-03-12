@@ -17,7 +17,7 @@ const AddProduct = () => {
 const styles = StyleSheet.create({
   conteiner: {
     flex: 1,
-    backgroundColor: "#008000",
+    backgroundColor: "#4D8900",
   },
   textNewProduct: {
     textAlign: "center",
@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     height: 50,
     marginHorizontal: 20,
     textAlign: "center",
-    flex: 1
   },
   button: {},
 });
