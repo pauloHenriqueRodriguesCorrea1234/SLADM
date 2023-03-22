@@ -8,8 +8,7 @@ import HomeUser from "../pages/UserScreens/HomeUser";
 import HomeProducer from "../pages/ProducerScreens/HomeProducer";
 import Menu from "../components/Menu";
 import Products from "../pages/ProducerScreens/Products";
-import AddProduct from "../pages/ProducerScreens/AddPRoduct";
-// import AddProduct from "../pages/ProducerScreens/AddProduct";
+import AddProduct from "../pages/ProducerScreens/AddProduct";
 
 const Stack = createStackNavigator();
 
@@ -17,7 +16,7 @@ const Routes = () => {
   return (
     <View style={styles.conteiner}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="HomeUser">
+        <Stack.Navigator initialRouteName="Login">
           <Stack.Screen
             component={Login}
             name="Login"

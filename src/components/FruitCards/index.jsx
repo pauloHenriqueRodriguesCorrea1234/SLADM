@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 const FruitCards = ({ productName, imgProduct }) => {
   return (
     <View style={styles.conteiner}>
-      <Image source={{ uri: imgProduct }} style={StyleSheet.img} />
+      <Image source={imgProduct} style={StyleSheet.img} />
       <Text style={styles.text}>{productName}</Text>
     </View>
   );
