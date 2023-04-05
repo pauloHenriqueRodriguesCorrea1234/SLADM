@@ -4,7 +4,7 @@ import { StyleSheet, View } from "react-native";
 
 import Login from "../pages/ChecksScreens/Login";
 import SignUp from "../pages/ChecksScreens/SignUp";
-import HomeUser from "../pages/UserScreens/HomeUser";
+// import HomeUser from "../pages/UserScreens/HomeUser";
 import HomeProducer from "../pages/ProducerScreens/HomeProducer";
 import Menu from "../components/Menu";
 import Products from "../pages/ProducerScreens/Products";
@@ -51,7 +51,7 @@ const Routes = () => {
               headerShown: false,
             }}
           />
-
+{/* 
           <Stack.Screen
             component={HomeUser}
             name="HomeUser"
@@ -60,7 +60,7 @@ const Routes = () => {
               headerTransparent: true,
               headerShown: false,
             }}
-          />
+          /> */}
 
           <Stack.Screen
             component={Menu}

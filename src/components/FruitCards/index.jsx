@@ -1,10 +1,10 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 
-const FruitCards = ({ productName, imgProduct }) => {
+const FruitCards = ({ name, img }) => {
   return (
     <View style={styles.conteiner}>
-      <Image source={imgProduct} style={StyleSheet.img} />
-      <Text style={styles.text}>{productName}</Text>
+      <Image source={{ uri: img }} style={styles.imgProduct} />
+      <Text style={styles.text}>{name}</Text>
     </View>
   );
 };
@@ -25,6 +25,8 @@ const styles = StyleSheet.create({
     width: 120,
   },
   text: {
+    textAlign: "right",
+    fontStyle: "italic",
     fontSize: 17,
     paddingRight: 9,
     alignItems: "flex-end",
