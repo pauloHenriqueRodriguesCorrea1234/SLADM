@@ -8,7 +8,7 @@ import HomeUser from "../pages/UserScreens/HomeUser";
 import HomeProducer from "../pages/ProducerScreens/HomeProducer";
 import Menu from "../components/Menu";
 import Products from "../pages/ProducerScreens/Products";
-import AddProduct from "../pages/ProducerScreens/AddProduct";
+// import AddProduct from "../pages/ProducerScreens/AddProduct";
 
 const Stack = createStackNavigator();
 
@@ -82,14 +82,14 @@ const Routes = () => {
             }}
           />
 
-          <Stack.Screen
+          {/* <Stack.Screen
             component={AddProduct}
             name="AddProduct"
             options={{
               headerTransparent: true,
               headerShown: false,
             }}
-          />
+          /> */}
         </Stack.Navigator>
       </NavigationContainer>
     </View>
