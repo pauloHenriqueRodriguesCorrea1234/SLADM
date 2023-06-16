@@ -13,7 +13,7 @@ import {
 
 import Logo from "../../../components/Logo";
 
-import errorCodeMessages from "../ConfigError/errorCodeMessages"
+import errorCodeMessages from "../ConfigError/errorCodeMessages";
 
 import { useNavigation } from "@react-navigation/native";
 
@@ -84,11 +84,11 @@ const SignUp = () => {
           setPhone("");
         })
         .catch((error) => {
-          const errorMessage = errorCodeMessages[error.code] || 'Erro ao efetuar o cadastramento. Tente novamente mais tarde.';
-            Alert.alert(errorMessage);
-        })
-
-        
+          const errorMessage =
+            errorCodeMessages[error.code] ||
+            "Erro ao efetuar o cadastramento. Tente novamente mais tarde.";
+          Alert.alert(errorMessage);
+        });
     }
   }
 

@@ -19,7 +19,7 @@ import Logo from "../../../components/Logo";
 import errorCodeMessages from "../ConfigError/errorCodeMessages";
 
 // Biblioteca firabase
-import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../services/firebaseAuthentication";
 import { getDatabase, ref, child, get } from "firebase/database";
 
@@ -83,6 +83,7 @@ const Login = () => {
         onChangeText={(text) => setEmail(text)}
         keyboardType="email-address"
       />
+
       <TextInput
         style={styles.input}
         placeholderTextColor="#FFF"
@@ -93,15 +94,10 @@ const Login = () => {
       />
 
       {/* Verifica se o campo de email e senha foi preenchido se não estiver o botão de login é desabilitado*/}
-      {email === "" || passWord === "" ? (
-        <TouchableOpacity style={styles.touchable} disabled={true}>
-          <Text>Logar</Text>
-        </TouchableOpacity>
-      ) : (
         <TouchableOpacity style={styles.touchable} onPress={() => verifiUser()}>
           <Text>Logar</Text>
         </TouchableOpacity>
-      )}
+  
 
       <TouchableOpacity style={styles.touchableWitOutStyle}>
         <Text style={{ color: "#fff" }}>Esquceu sua senha?</Text>
