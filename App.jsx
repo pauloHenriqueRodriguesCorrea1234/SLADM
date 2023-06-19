@@ -1,13 +1,16 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
-import Routes from "./src/routes";
+import { StatusBar } from "expo-status-bar"
+import { StyleSheet, View } from "react-native"
+import { UserContextProvider } from './src/context/UserContext'
+import Routes from "./src/routes"
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar hidden />
-        <Routes />
-    </View>
+    <UserContextProvider>
+      <View style={styles.container}>
+        <StatusBar hidden />
+          <Routes />
+      </View>
+    </UserContextProvider>
   );
 }
 

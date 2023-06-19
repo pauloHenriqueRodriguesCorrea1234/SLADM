@@ -1,13 +1,13 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { StyleSheet, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native"
+import { createStackNavigator } from "@react-navigation/stack"
+import { StyleSheet, View } from "react-native"
 
-import Login from "../pages/ChecksScreens/Login";
-import SignUp from "../pages/ChecksScreens/SignUp";
+import Login from "../pages/ChecksScreens/Login"
+import SignUp from "../pages/ChecksScreens/SignUp"
 // import HomeUser from "../pages/UserScreens/HomeUser";
-import HomeProducer from "../pages/ProducerScreens/HomeProducer";
-import Menu from "../components/Menu";
-import Products from "../pages/ProducerScreens/Products";
+import Menu from "../components/Menu"
+import HomeProducer from "../pages/ProducerScreens/HomeProducer"
+import Products from "../pages/ProducerScreens/Products"
 // import AddProduct from "../pages/ProducerScreens/AddProduct";
 
 const Stack = createStackNavigator();

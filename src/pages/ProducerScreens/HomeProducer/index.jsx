@@ -1,29 +1,59 @@
 import {
-  View,
-  Text,
+  Alert,
+  BackHandler,
+  ScrollView,
   StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity,
-  ScrollView,
-} from "react-native";
+  View,
+} from 'react-native'
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
-import Ionicons from "react-native-vector-icons/Ionicons";
-import Footer from "../../../components/Footer";
-import FruitCards from "../../../components/FruitCards";
-import { itens } from "../../../../data/itens.json";
+import { itens } from '../../../../data/itens.json'
+import Footer from '../../../components/Footer'
+import FruitCards from '../../../components/FruitCards'
 
 const HomeProducer = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([])
+  const [filter, setFilter] = useState('')
 
   useEffect(() => {
-    setProducts(itens);
-  }, []);
+    setProducts(itens)
+    const backAction = () => {
+      console.log('Saindo...')
+      Alert.alert('Sair', 'Deseja realmente sair do app?', [
+        {
+          text: 'Cancelar',
+          onPress: () => null,
+          style: 'cancel',
+        },
+        { text: 'Sim', onPress: () => BackHandler.exitApp() },
+      ])
+      return true
+    }
 
-  const Search = () => {
-    alert("FIME");
-  };
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction
+    )
+
+    return () => backHandler.remove()
+  }, [])
+
+  useEffect(() => {
+    if (filter) {
+      const filteredProducts = itens.filter((p) =>
+        p.nomeProduto.toLowerCase().includes(filter.toLowerCase())
+      )
+
+      setProducts(filteredProducts)
+    } else {
+      setProducts(itens)
+    }
+  }, [filter])
+
   return (
     <View style={styles.conteiner}>
       <Text style={styles.titleProduct}>PRODUTOS</Text>
@@ -31,12 +61,11 @@ const HomeProducer = () => {
       <View style={styles.viewInput}>
         <TextInput
           style={styles.input}
-          placeholderTextColor="#000"
-          placeholder="Escreva o nome do produto"
+          placeholderTextColor='#000'
+          placeholder='Escreva o nome do produto'
+          value={filter}
+          onChangeText={setFilter}
         />
-        <TouchableOpacity onPress={Search}>
-          <Ionicons style={styles.icon} name="search" />
-        </TouchableOpacity>
       </View>
 
       {products.length > 0 && (
@@ -51,36 +80,36 @@ const HomeProducer = () => {
 
       <Footer />
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   conteiner: {
     flex: 1,
-    backgroundColor: "#4D8900",
+    backgroundColor: '#4D8900',
   },
   titleProduct: {
-    textAlign: "center",
+    textAlign: 'center',
     marginTop: 20,
     fontSize: 30,
   },
   viewInput: {
-    flexDirection: "row",
+    flexDirection: 'row',
     borderWidth: 1,
     height: 50,
-    alignItems: "center",
-    justifyContent: "space-between",
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginHorizontal: 8,
     marginVertical: 10,
   },
   input: {
     fontSize: 16,
-    textAlign: "center",
+    textAlign: 'center',
     marginLeft: 10,
   },
   icon: {
     fontSize: 25,
     marginRight: 20,
   },
-});
-export default HomeProducer;
+})
+export default HomeProducer
