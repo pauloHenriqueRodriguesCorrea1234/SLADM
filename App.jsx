@@ -8,6 +8,7 @@ export default function App() {
     <UserContextProvider>
       <View style={styles.container}>
         <StatusBar hidden />
+        {/* Comentário teste */}
           <Routes />
       </View>
     </UserContextProvider>
