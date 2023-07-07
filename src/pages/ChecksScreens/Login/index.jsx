@@ -31,6 +31,7 @@ const Login = ({ navigation }) => {
   const [passWord, setPassWord] = useState("");
   const { setToken, setUserEmail, setIsProducer } = useContext(UserContext);
 
+  // Verifica se o usuário é um produtor ou não
   const goToHome = (isProducer) => {
     if (isProducer === true) {
       navigation.dispatch(StackActions.push("HomeProducer"));
@@ -40,7 +41,6 @@ const Login = ({ navigation }) => {
   };
 
   // Função para logar e verificar se o usuario existe
-
   const verifyUser = async () => {
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -70,10 +70,11 @@ const Login = ({ navigation }) => {
       const errorMessage =
         errorCodeMessages[error.code] ||
         "Erro ao efetuar login. Tente novamente mais tarde.";
-      Alert.alert(errorMessage);
+      Alert.alert(errorMessage); 
     }
   };
 
+  // Vai para tela de cadastro
   const goToSignUp = () => {
     navigation.navigate("SignUp");
     setEmail("");
@@ -105,10 +106,6 @@ const Login = ({ navigation }) => {
 
       <TouchableOpacity style={styles.touchable} onPress={() => verifyUser()}>
         <Text>Logar</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.touchableWitOutStyle}>
-        <Text style={{ color: "#fff" }}>Esquceu sua senha?</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
