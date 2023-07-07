@@ -1,22 +1,15 @@
 import { StatusBar } from "expo-status-bar"
-import { StyleSheet, View } from "react-native"
+import { Conteiner } from "./AppStyle"
 import { UserContextProvider } from './src/context/UserContext'
 import Routes from "./src/routes"
 
 export default function App() {
   return (
     <UserContextProvider>
-      <View style={styles.container}>
+      <Conteiner>
         <StatusBar hidden />
-        {/* Comentário teste */}
           <Routes />
-      </View>
+      </Conteiner>
     </UserContextProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

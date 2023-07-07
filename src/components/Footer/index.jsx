@@ -1,16 +1,20 @@
-import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
+// Styles
+import { Conteiner, TouchableOpacity, Text } from "./styles.js";
+
+// Icons
 import Feather from "react-native-vector-icons/Feather";
 import Zocial from "react-native-vector-icons/Zocial";
-import { StackActions, useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+
+// Navigation components
+import { StackActions, useNavigation } from "@react-navigation/native";
 
 export const Footer = () => {
   const navigation = useNavigation();
 
   const Home = () => {
-    navigation.push("HomeProducer")
-    }
-;
+    navigation.push("HomeProducer");
+  };
   const MyProducts = () => {
     navigation.push("Products");
   };
@@ -19,40 +23,22 @@ export const Footer = () => {
     navigation.dispatch(StackActions.push("Menu"));
   };
   return (
-    <View style={styles.conteiner}>
-      <TouchableOpacity onPress={Home} style={styles.toucgable}>
-        <Ionicons name="home" style={styles.img} />
+    <Conteiner>
+      <TouchableOpacity onPress={Home}>
+        <Ionicons name="home" style={{ fontSize: 40 }} />
         <Text>Home</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={MyProducts} style={styles.toucgable}>
-        <Zocial name="cart" style={styles.img} />
+      <TouchableOpacity onPress={MyProducts}>
+        <Zocial name="cart" style={{ fontSize: 40 }} />
         <Text>Produtos</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={Menu} style={styles.toucgable}>
-        <Feather name="menu" ma style={styles.img} />
+      <TouchableOpacity onPress={Menu}>
+        <Feather name="menu" style={{ fontSize: 40 }} />
         <Text>Menu</Text>
       </TouchableOpacity>
-    </View>
+    </Conteiner>
   );
 };
-
-const styles = StyleSheet.create({
-  conteiner: {
-    flexDirection: "row",
-    alignItems: "flex-end",
-    backgroundColor: "#d9d9d9",
-    justifyContent: "space-around",
-    borderRadius: 5,
-    width: "100%",
-  },
-  toucgable: {
-    padding: 5,
-    alignItems: "center",
-  },
-  img: {
-    fontSize: 40,
-  },
-});
 
 export default Footer;

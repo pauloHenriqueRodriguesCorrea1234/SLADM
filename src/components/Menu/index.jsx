@@ -1,10 +1,25 @@
-import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
+// Styles
+import {
+  MainConteiner,
+  ContentConteiner,
+  Title,
+  TouchableOpacity,
+  Text,
+} from "./styles";
+import { Linking } from "react-native";
+
+// Icons
 import Feather from "react-native-vector-icons/Feather";
 import AntDesign from "react-native-vector-icons/AntDesign";
+
+// Components
 import Footer from "../Footer";
+
+// Autentication with the firebase
 import { auth } from "../../services/firebaseAuthentication";
+
+// Navigations components
 import { useNavigation, StackActions } from "@react-navigation/native";
-import { Linking } from "react-native";
 
 const Menu = () => {
   const navigation = useNavigation();
@@ -19,50 +34,23 @@ const Menu = () => {
   };
 
   return (
-    <View style={styles.conteinerPrncipal}>
-      <Text style={styles.title}>MENU</Text>
-      <View style={styles.conteiner}>
-        <TouchableOpacity onPress={Logout} style={styles.touchable}>
-          <Feather name="log-out" style={styles.img} />
+    <MainConteiner>
+      <Title>MENU</Title>
+      <ContentConteiner>
+        <TouchableOpacity onPress={Logout}>
+          <Feather name="log-out" style={{ fontSize: 54 }} />
           <Text>Logout</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={Instagram} style={styles.touchable}>
-          <AntDesign style={styles.img} name="instagram" />
+        <TouchableOpacity onPress={Instagram}>
+          <AntDesign name="instagram" style={{ fontSize: 54 }} />
           <Text>Instagram</Text>
         </TouchableOpacity>
-      </View>
+      </ContentConteiner>
 
       <Footer />
-    </View>
+    </MainConteiner>
   );
 };
-
-const styles = StyleSheet.create({
-  conteinerPrncipal: {
-    flex: 1,
-    backgroundColor: "#4D8900",
-  },
-  title:{
-    textAlign:'center',
-    fontSize: 30,
-    margin: 30
-  },
-  conteiner: {
-    marginBottom: "10%",
-    marginHorizontal: "5%",
-    backgroundColor: "#D9D9D9",
-    borderRadius: 20,
-    flex: 1,
-  },
-  img: {
-    fontSize: 54,
-  },
-  touchable: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 15,
-  },
-});
 
 export default Menu;
