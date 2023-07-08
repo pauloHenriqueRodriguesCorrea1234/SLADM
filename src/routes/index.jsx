@@ -1,6 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
-import { StyleSheet, View } from "react-native"
 
 import Login from "../pages/ChecksScreens/Login"
 import SignUp from "../pages/ChecksScreens/SignUp"
@@ -10,11 +9,13 @@ import HomeProducer from "../pages/ProducerScreens/HomeProducer"
 import Products from "../pages/ProducerScreens/Products"
 // import AddProduct from "../pages/ProducerScreens/AddProduct";
 
+import { Conteiner } from './styles'
+
 const Stack = createStackNavigator();
 
 const Routes = () => {
   return (
-    <View style={styles.conteiner}>
+    <Conteiner>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen
@@ -92,14 +93,8 @@ const Routes = () => {
           /> */}
         </Stack.Navigator>
       </NavigationContainer>
-    </View>
+    </Conteiner>
   );
 };
-
-const styles = StyleSheet.create({
-  conteiner: {
-    flex: 1,
-  },
-});
 
 export default Routes;

@@ -1,14 +1,13 @@
 import FruitCards from "../../../components/FruitCards";
 import {
-  Text,
   StyleSheet,
-  View,
-  TextInput,
   TouchableOpacity,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useEffect, useState, ScrollView } from "react"
 import { itens } from "../../../../data/itens.json";
+
+import { Conteiner, TitleProduct, Input, ViewInput } from './styles'
 
 const HomeUser = () => {
   const [products, setProducts] = useState([]);
@@ -22,11 +21,10 @@ const HomeUser = () => {
   };
 
   return (
-    <View style={styles.conteiner}>
-      <Text style={styles.titleProduct}>Produtos</Text>
-      <View style={styles.viewInput}>
-        <TextInput
-          style={styles.input}
+    <Conteiner>
+      <TitleProduct>Produtos</TitleProduct>
+      <ViewInput>
+        <Input
           placeholderTextColor="#000"
           placeholder="Escreva o nome do produto"
         />
@@ -47,35 +45,12 @@ const HomeUser = () => {
         </ScrollView>
       )}
 
-      </View>
-    </View>
+      </ViewInput>
+    </Conteiner>
   );
 };
 
 const styles = StyleSheet.create({
-  conteiner: {
-    flex: 1,
-    backgroundColor: "#4d8900",
-  },
-  titleProduct: {
-    textAlign: "center",
-    marginHorizontal: "2%",
-    fontSize: 32,
-  },
-  input: {
-    fontSize: 16,
-    textAlign: "center",
-    marginLeft: 10,
-  },
-  viewInput: {
-    flexDirection: "row",
-    borderWidth: 1,
-    height: 50,
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginHorizontal: 8,
-    marginVertical: 10,
-  },
   icon: {
     fontSize: 25,
     marginRight: 20,

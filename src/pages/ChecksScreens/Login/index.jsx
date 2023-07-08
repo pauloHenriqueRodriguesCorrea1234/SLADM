@@ -7,12 +7,10 @@ import { StackActions } from "@react-navigation/native";
 // Components
 import {
   Alert,
-  StyleSheet,
   Text,
-  TextInput,
-  TouchableOpacity,
-  View,
 } from "react-native";
+
+import { Conteiner, Input, Touchable, TouchableWitOutStyle } from './styles'
 
 // Componente com a logo do projeto
 import Logo from "../../../components/Logo";
@@ -82,11 +80,10 @@ const Login = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.conteiner}>
+    <Conteiner>
       <Logo />
 
-      <TextInput
-        style={styles.input}
+      <Input
         placeholderTextColor="#FFF"
         placeholder="Informe seu E-mail"
         type="text"
@@ -95,8 +92,7 @@ const Login = ({ navigation }) => {
         keyboardType="email-address"
       />
 
-      <TextInput
-        style={styles.input}
+      <Input
         placeholderTextColor="#FFF"
         secureTextEntry={true}
         placeholder={"Informe sua senha"}
@@ -104,52 +100,17 @@ const Login = ({ navigation }) => {
         onChangeText={setPassWord}
       />
 
-      <TouchableOpacity style={styles.touchable} onPress={() => verifyUser()}>
+      <Touchable onPress={() => verifyUser()}>
         <Text>Logar</Text>
-      </TouchableOpacity>
+      </Touchable>
 
-      <TouchableOpacity
+      <TouchableWitOutStyle
         onPress={goToSignUp}
-        style={styles.touchableWitOutStyle}
       >
         <Text style={{ color: "#fff" }}>Cadastrar</Text>
-      </TouchableOpacity>
-    </View>
+      </TouchableWitOutStyle>
+    </Conteiner>
   );
 };
-
-const styles = StyleSheet.create({
-  conteiner: {
-    flex: 1,
-    backgroundColor: "#008000",
-  },
-  input: {
-    textAlign: "center",
-    borderColor: "#fff",
-    borderWidth: 1,
-    height: 50,
-    margin: 10,
-    color: "#fff",
-    fontSize: 16,
-    borderRadius: 5,
-  },
-  touchable: {
-    alignItems: "center",
-    marginLeft: "25%",
-    marginRight: "25%",
-    marginTop: "5%",
-    backgroundColor: "#fff",
-    borderRadius: 30,
-    padding: 14,
-  },
-  touchableWitOutStyle: {
-    alignItems: "center",
-    marginTop: "11.5%",
-    fontSize: 20,
-    textAlign: "center",
-    marginBottom: 25,
-    height: 30,
-  },
-});
 
 export default Login;

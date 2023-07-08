@@ -1,11 +1,9 @@
 import {
   ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
   TouchableOpacity,
-  View,
 } from "react-native";
+
+import { Conteiner, TitleProduct, ViewInput, Input } from './styles'
 
 // React States
 import { useEffect, useState } from "react";
@@ -40,18 +38,17 @@ const HomeProducer = () => {
   }, [filter]);
 
   return (
-    <View style={styles.conteiner}>
-      <Text style={styles.titleProduct}>PRODUTOS</Text>
+    <Conteiner>
+      <TitleProduct>PRODUTOS</TitleProduct>
 
-      <View style={styles.viewInput}>
-        <TextInput
-          style={styles.input}
+      <ViewInput>
+        <Input
           placeholderTextColor="#000"
           placeholder="Escreva o nome do produto"
           value={filter}
           onChangeText={setFilter}
         />
-      </View>
+      </ViewInput>
 
       {products.length > 0 && (
         <ScrollView>
@@ -64,37 +61,8 @@ const HomeProducer = () => {
       )}
 
       <Footer />
-    </View>
+    </Conteiner>
   );
 };
 
-const styles = StyleSheet.create({
-  conteiner: {
-    flex: 1,
-    backgroundColor: "#4D8900",
-  },
-  titleProduct: {
-    textAlign: "center",
-    marginTop: 20,
-    fontSize: 30,
-  },
-  viewInput: {
-    flexDirection: "row",
-    borderWidth: 1,
-    height: 50,
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginHorizontal: 8,
-    marginVertical: 10,
-  },
-  input: {
-    fontSize: 16,
-    textAlign: "center",
-    marginLeft: 10,
-  },
-  icon: {
-    fontSize: 25,
-    marginRight: 20,
-  },
-});
 export default HomeProducer;

@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 
 import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
   Switch,
   SafeAreaView,
   View,
   Alert,
 } from "react-native";
+
+import { Input, ViewProducer, Touchable, TextProducer, TextCadastrar } from './styles'
 
 import Logo from "../../../components/Logo";
 
@@ -96,24 +94,21 @@ const SignUp = () => {
     <SafeAreaView style={{ flex: 1, backgroundColor: "#008000" }}>
       <Logo />
 
-      <TextInput
-        style={styles.input}
+      <Input
         placeholderTextColor="#FFF"
         placeholder="Nome"
         value={name}
         onChangeText={(text) => setName(text)}
       />
 
-      <TextInput
-        style={styles.input}
+      <Input
         placeholderTextColor="#FFF"
         placeholder="E-mail"
         value={email}
         onChangeText={(text) => setEmail(text)}
       />
 
-      <TextInput
-        style={styles.input}
+      <Input
         placeholderTextColor="#FFF"
         placeholder="Senha"
         value={password}
@@ -121,8 +116,8 @@ const SignUp = () => {
         secureTextEntry={true}
       />
 
-      <View style={styles.viewProducer}>
-        <Text style={styles.textProducer}>Você é um produtor? </Text>
+      <ViewProducer>
+        <TextProducer>Você é um produtor? </TextProducer>
 
         <Switch
           style={{ alignItems: "flex-start" }}
@@ -131,11 +126,10 @@ const SignUp = () => {
           value={producer}
           onValueChange={() => setProducer(!producer)}
         />
-      </View>
+      </ViewProducer>
 
       {producer ? (
-        <TextInput
-          style={styles.input}
+        <Input
           placeholder="Telefone"
           placeholderTextColor="#FFF"
           value={phone}
@@ -145,43 +139,12 @@ const SignUp = () => {
         <View />
       )}
 
-      <TouchableOpacity style={styles.touchable} onPress={() => createUser()}>
-        <Text>Cadastrar</Text>
-      </TouchableOpacity>
+      <Touchable onPress={() => createUser()}>
+        <TextCadastrar>Cadastrar</TextCadastrar>
+      </Touchable>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  input: {
-    textAlign: "center",
-    borderColor: "#fff",
-    borderWidth: 1,
-    height: 50,
-    margin: 10,
-    color: "#fff",
-    fontSize: 16,
-    borderRadius: 5,
-  },
-  touchable: {
-    alignItems: "center",
-    marginLeft: "25%",
-    marginRight: "25%",
-    marginTop: "5%",
-    backgroundColor: "#fff",
-    borderRadius: 30,
-    padding: 14,
-  },
-  viewProducer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  textProducer: {
-    color: "#fff",
-    fontSize: 18,
-  },
-});
 
 export default SignUp;
 

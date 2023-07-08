@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 import { getDatabase, ref, onValue } from "firebase/database";
 
+import { Conteiner, Input, Product } from './styles'
+
 const database = getDatabase();
 
 export default function SearchBar() {
@@ -30,41 +32,25 @@ export default function SearchBar() {
   };
 
   return (
-    <View style={styles.container}>
-      <TextInput
+    <Conteiner>
+      <Input
         placeholder="Digite o nome do produto"
         onChangeText={(text) => setSearchValue(text)}
         value={searchValue}
-        style={styles.input}
       />
       <Button title="Buscar" onPress={handleSearch} />
       {product ? (
-        <View style={styles.product}>
+        <Product style={styles.product}>
           <Text>{product.name}</Text>
           <Text>R${product.price}</Text>
           <Text>{product.description}</Text>
-        </View>
+        </Product>
       ) : null}
-    </View>
+    </Conteiner>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF",
-    padding: 16,
-  },
-  input: {
-    width: "100%",
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 4,
-    padding: 8,
-    marginBottom: 16,
-  },
   product: {
     marginTop: 16,
   },
