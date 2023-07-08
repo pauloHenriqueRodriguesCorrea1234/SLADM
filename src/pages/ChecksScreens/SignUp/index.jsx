@@ -99,6 +99,7 @@ const SignUp = () => {
         placeholder="Nome"
         value={name}
         onChangeText={(text) => setName(text)}
+        autoCapitalize='words'
       />
 
       <Input
@@ -106,6 +107,7 @@ const SignUp = () => {
         placeholder="E-mail"
         value={email}
         onChangeText={(text) => setEmail(text)}
+        autoCapitalize='none'
       />
 
       <Input
@@ -114,6 +116,7 @@ const SignUp = () => {
         value={password}
         onChangeText={(text) => setPassword(text)}
         secureTextEntry={true}
+        autoCapitalize='none'
       />
 
       <ViewProducer>
