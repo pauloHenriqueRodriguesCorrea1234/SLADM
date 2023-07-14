@@ -4,21 +4,14 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Footer from "../../../components/Footer";
+
 
 import { Conteiner, TitleMyProducts, ViewInput, Input, ViewAddProduct, TouchableAddProduct } from './style'
 
-const Products = () => {
-
-  const navigation = useNavigation();
-
+const MyProducts = () => {
   const Search = () => {
     alert("FIME");
   };
-
-  const Add = () => {
-    navigation.navigate("AddProduct");
-  }
 
   return (
     <Conteiner>
@@ -34,16 +27,6 @@ const Products = () => {
         </TouchableOpacity>
       </ViewInput>
 
-      <ViewAddProduct>
-        <TouchableAddProduct 
-        onPress={Add}
-          activeOpacity={0.7}
-        >
-          <Ionicons style={styles.addProduct} name="add" />
-        </TouchableAddProduct>
-      </ViewAddProduct>
-
-      <Footer />
     </Conteiner>
   );
 };
@@ -59,4 +42,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Products;
+export default MyProducts;

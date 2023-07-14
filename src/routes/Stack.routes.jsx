@@ -1,15 +1,12 @@
-import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import Login from "../pages/ChecksScreens/Login";
 import SignUp from "../pages/ChecksScreens/SignUp";
-import DrawerRoutes from "./Drawer.routes";
 
 const Stack = createStackNavigator();
 
-const Routes = () => {
+const StackRoutes = () => {
   return (
-    <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
           component={Login}
@@ -36,8 +33,7 @@ const Routes = () => {
           }}
         />
       </Stack.Navigator>
-    </NavigationContainer>
   );
 };
 
-export default Routes;
+export default StackRoutes;

@@ -60,7 +60,7 @@ const HomeProducer = () => {
         </ScrollView>
       )}
 
-      <Footer />
+      {/* <Footer /> */}
     </Conteiner>
   );
 };
