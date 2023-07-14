@@ -2,12 +2,13 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Login from "../pages/ChecksScreens/Login";
 import SignUp from "../pages/ChecksScreens/SignUp";
+import DrawerRoutes from "./Drawer.routes";
 
 const Stack = createStackNavigator();
 
 const StackRoutes = () => {
   return (
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator>
         <Stack.Screen
           component={Login}
           name="Login"
@@ -16,6 +17,11 @@ const StackRoutes = () => {
             headerTransparent: true,
             headerShown: false,
           }}
+        />
+
+        <Stack.Screen
+        name="DrawerRoutes"
+        component={DrawerRoutes}
         />
 
         <Stack.Screen

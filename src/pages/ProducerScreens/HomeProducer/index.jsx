@@ -12,7 +12,6 @@ import { useEffect, useState } from "react";
 import { itens } from "../../../../data/itens.json";
 
 // Components
-import Footer from "../../../components/Footer";
 import FruitCards from "../../../components/FruitCards";
 import { ExitApp } from "../../../components/BackHandler";
 
@@ -59,8 +58,6 @@ const HomeProducer = () => {
           ))}
         </ScrollView>
       )}
-
-      {/* <Footer /> */}
     </Conteiner>
   );
 };
