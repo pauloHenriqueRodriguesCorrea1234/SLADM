@@ -28,6 +28,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [producer, setProducer] = useState(false);
+  const [products, setProducts] = []
   const [phone, setPhone] = useState("");
   const auth = getAuth();
 
@@ -62,6 +63,7 @@ const SignUp = () => {
                 password: password,
                 producer: producer,
                 phone: phone,
+                products: products
               });
             }
           } else {
@@ -80,6 +82,7 @@ const SignUp = () => {
           setPassword("");
           setProducer(false);
           setPhone("");
+          se
         })
         .catch((error) => {
           const errorMessage =

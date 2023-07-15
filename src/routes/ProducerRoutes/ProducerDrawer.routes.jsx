@@ -5,11 +5,14 @@ import TabRoutes from "./ProducerTab.routes";
 import { Feather } from "@expo/vector-icons";
 import { Linking } from "react-native";
 import { auth } from "../../services/firebaseAuthentication";
-import HomeProducer from "../../pages/ProducerScreens/HomeProducer";
+import { useNavigation } from "@react-navigation/native";
 
 const Drawer = createDrawerNavigator();
 
 const Logout = () => {
+  
+  const navigation = useNavigation();
+  navigation.navigate("Login");
   auth.signOut();
 };
 const Instagram = () => {

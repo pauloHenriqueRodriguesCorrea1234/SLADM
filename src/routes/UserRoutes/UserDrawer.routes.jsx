@@ -2,11 +2,14 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { auth } from "../../services/firebaseAuthentication";
 import { Linking } from "react-native";
 import UserTabRoutes from "./UserTab.routes";
+import { useNavigation } from "@react-navigation/native";
 
 const Drawer = createDrawerNavigator();
 
 const UserDrawerRoutes = () => {
+  const navigation = useNavigation()
   const Logout = () => {
+    navigation.navigate("Login");
     auth.signOut();
   };
   const Instagram = () => {

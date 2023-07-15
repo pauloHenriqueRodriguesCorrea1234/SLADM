@@ -5,7 +5,11 @@ const Tab = createBottomTabNavigator()
 
 const UserTabRoutes = () => {
     return(
-        <Tab.Navigator>
+        <Tab.Navigator
+        screenOptions={{
+            headerShown: false
+        }}
+        >
             <Tab.Screen
             name="HomeUser"
             component={HomeProducer}
