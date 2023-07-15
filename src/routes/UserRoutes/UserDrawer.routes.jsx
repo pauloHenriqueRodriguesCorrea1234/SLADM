@@ -1,6 +1,7 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { auth } from "../../services/firebaseAuthentication";
 import { Linking } from "react-native";
+import UserTabRoutes from "./UserTab.routes";
 
 const Drawer = createDrawerNavigator();
 
@@ -13,7 +14,17 @@ const UserDrawerRoutes = () => {
   };
 
   return (
-    <Drawer.Navigator>
+    <Drawer.Navigator
+    initialRouteName="Home"
+    >
+      <Drawer.Screen
+      name="Home"
+      component={UserTabRoutes}
+      options={{
+        drawerLabel:"Inicio"
+      }}
+
+      />
       <Drawer.Screen
         name="Instagram"
         component={Instagram}

@@ -34,7 +34,7 @@ const Login = ({ navigation }) => {
     if (isProducer === true) {
       navigation.dispatch(StackActions.push("ProducerDrawerRoutes"));
     } else {
-      navigation.dispatch(StackActions.push("HomeUser"));
+      navigation.dispatch(StackActions.push("UserDrawerRoutes"));
     }
   };
 
