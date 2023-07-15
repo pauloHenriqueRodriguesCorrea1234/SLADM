@@ -1,0 +1,6 @@
+Notas
+Estilizar as rotas 
+Implementar o backhandler na homeUser
+Componentizar o SearchBar
+Adicionar os produtos existentes do .json no Firestore/Realtimes 
+Adicionar uma menssagem ao não encontrar produto exitente na barra de busca
