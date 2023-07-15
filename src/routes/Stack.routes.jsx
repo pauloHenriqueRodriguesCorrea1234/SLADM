@@ -3,19 +3,24 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Login from "../pages/ChecksScreens/Login";
 import SignUp from "../pages/ChecksScreens/SignUp";
 import DrawerRoutes from "./Drawer.routes";
+import HomeProducer from "../pages/ProducerScreens/HomeProducer";
 
 const Stack = createStackNavigator();
 
 const StackRoutes = () => {
   return (
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Login"
+      screenOptions={{
+    headerTransparent: true,
+            headerShown: false,
+      }}
+      >
         <Stack.Screen
           component={Login}
           name="Login"
           options={{
             title: "",
-            headerTransparent: true,
-            headerShown: false,
+        
           }}
         />
 
@@ -37,6 +42,11 @@ const StackRoutes = () => {
             headerBackTitleVisible: false,
             headerTitle: "Voltar",
           }}
+        />
+
+        <Stack.Screen
+        name="HomeProducer"
+        component={HomeProducer}
         />
       </Stack.Navigator>
   );

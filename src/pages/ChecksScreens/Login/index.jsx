@@ -32,7 +32,7 @@ const Login = ({ navigation }) => {
   // Verifica se o usuário é um produtor ou não
   const goToHome = (isProducer) => {
     if (isProducer === true) {
-      navigation.dispatch(StackActions.push("HomeProducer"));
+      navigation.dispatch(StackActions.push("DrawerRoutes"));
     } else {
       navigation.dispatch(StackActions.push("HomeUser"));
     }

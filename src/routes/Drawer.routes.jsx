@@ -5,6 +5,7 @@ import TabRoutes from "./Tab.routes";
 import { Feather } from "@expo/vector-icons";
 import { Linking } from "react-native";
 import { auth } from "../services/firebaseAuthentication";
+import HomeProducer from "../pages/ProducerScreens/HomeProducer";
 
 const Drawer = createDrawerNavigator();
 
@@ -18,8 +19,12 @@ const Instagram = () => {
 const DrawerRoutes = () => {
   return (
     <Drawer.Navigator
+      initialRouteName="home"
       screenOptions={{
         title: "",
+        headerStyle: {
+          backgroundColor: "#4D8900",
+        },
       }}
     >
       <Drawer.Screen
