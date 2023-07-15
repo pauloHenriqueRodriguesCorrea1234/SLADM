@@ -1,8 +1,8 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather, Ionicons, Zocial } from "@expo/vector-icons";
 
-import MyProducts from "../pages/ProducerScreens/MyProducts";
-import HomeProducer from "../pages/ProducerScreens/HomeProducer";
+import MyProducts from "../../pages/ProducerScreens/MyProducts";
+import HomeProducer from "../../pages/ProducerScreens/HomeProducer";
 
 const Tab = createBottomTabNavigator();
 
