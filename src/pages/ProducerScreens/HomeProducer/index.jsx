@@ -13,7 +13,7 @@ import { itens } from "../../../../data/itens.json";
 
 // Components
 import FruitCards from "../../../components/FruitCards";
-import { ExitApp } from "../../../components/BackHandler";
+import ExitApp from "../../../components/BackHandler";
 
 const HomeProducer = () => {
   const [products, setProducts] = useState([]);
@@ -38,11 +38,9 @@ const HomeProducer = () => {
 
   return (
     <Conteiner>
-      <TitleProduct>PRODUTOS</TitleProduct>
-
       <ViewInput>
         <Input
-          placeholderTextColor="#000"
+          placeholderTextColor="#fff"
           placeholder="Escreva o nome do produto"
           value={filter}
           onChangeText={setFilter}

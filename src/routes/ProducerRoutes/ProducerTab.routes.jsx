@@ -12,8 +12,13 @@ const TabRoutes = () => {
       initialRouteName="HomeProducer"
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: "red",
+        tabBarActiveTintColor: "#000",
         tabBarInactiveTintColor: "gray",
+        
+        tabBarStyle: {
+          backgroundColor: "#b06c49"
+        },
+        headerShown: false
       }}
     >
       <Tab.Screen
@@ -27,11 +32,11 @@ const TabRoutes = () => {
         }}
       />
       <Tab.Screen
-        name="MyProducts"
+        name="MEU PRODUTOS"
         component={MyProducts}
         options={{
           tabBarIcon: ({ color, size }) => {
-            <Zocial name="cart" color={color} size={size} />;
+            <Zocial name="cart" color={color} size={size}/>;
           },
           tabBarLabel:"Meus produtos"
         }}

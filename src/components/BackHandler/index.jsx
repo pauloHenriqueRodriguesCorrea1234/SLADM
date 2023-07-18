@@ -1,6 +1,6 @@
 import { Alert, BackHandler } from "react-native";
 
-export const ExitApp = () => {
+const ExitApp = () => {
   const backAction = () => {
     console.log("Saindo...");
     Alert.alert("Sair", "Deseja realmente sair do app?", [
@@ -21,3 +21,5 @@ export const ExitApp = () => {
 
   return () => backHandler.remove();
 };
+
+export default ExitApp;
