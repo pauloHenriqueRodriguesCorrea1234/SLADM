@@ -1,40 +1,37 @@
-import {
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native"
 
-import { Conteiner, TitleProduct, ViewInput, Input } from './styles'
+import { Conteiner, ViewInput, Input } from "./styles"
 
 // React States
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
 // products json
-import { itens } from "../../../../data/itens.json";
+import { itens } from "../../../../data/itens.json"
 
 // Components
-import FruitCards from "../../../components/FruitCards";
-import ExitApp from "../../../components/BackHandler";
+import FruitCards from "../../../components/FruitCards"
+import ExitApp from "../../../components/BackHandler"
 
 const HomeProducer = () => {
-  const [products, setProducts] = useState([]);
-  const [filter, setFilter] = useState("");
+  const [products, setProducts] = useState([])
+  const [filter, setFilter] = useState("")
 
   useEffect(() => {
-    setProducts(itens);
-    ExitApp();
-  }, []);
+    setProducts(itens)
+    ExitApp()
+  }, [])
 
   useEffect(() => {
-    if (filter) {
+    if (filter.length > 0) {
       const filteredProducts = itens.filter((p) =>
         p.nomeProduto.toLowerCase().includes(filter.toLowerCase())
-      );
+      )
 
-      setProducts(filteredProducts);
+      setProducts(filteredProducts)
     } else {
-      setProducts(itens);
+      setProducts(itens)
     }
-  }, [filter]);
+  }, [filter])
 
   return (
     <Conteiner>
@@ -44,6 +41,7 @@ const HomeProducer = () => {
           placeholder="Escreva o nome do produto"
           value={filter}
           onChangeText={setFilter}
+          textAlign="center"
         />
       </ViewInput>
 
@@ -57,7 +55,7 @@ const HomeProducer = () => {
         </ScrollView>
       )}
     </Conteiner>
-  );
-};
+  )
+}
 
-export default HomeProducer;
+export default HomeProducer
