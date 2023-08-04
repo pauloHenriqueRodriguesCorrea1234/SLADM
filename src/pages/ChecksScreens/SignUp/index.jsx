@@ -1,59 +1,60 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
+
+import { Switch, SafeAreaView, View, Alert } from "react-native"
 
 import {
-  Switch,
-  SafeAreaView,
-  View,
-  Alert,
-} from "react-native";
+  Input,
+  ViewProducer,
+  Touchable,
+  TextProducer,
+  TextCadastrar,
+} from "./styles"
 
-import { Input, ViewProducer, Touchable, TextProducer, TextCadastrar } from './styles'
+import Logo from "../../../components/Logo"
 
-import Logo from "../../../components/Logo";
+import errorCodeMessages from "../ConfigError/errorCodeMessages"
 
-import errorCodeMessages from "../ConfigError/errorCodeMessages";
-
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native"
 
 // Auth
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 
 // Realtime Database
-import { db } from "../../../services/firebaseAuthentication";
-import { ref, set } from "firebase/database";
+import { db } from "../../../services/firebaseAuthentication"
+import { ref, set } from "firebase/database"
 
 const SignUp = () => {
-  const navigation = useNavigation();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [producer, setProducer] = useState(false);
-  const [products, setProducts] = []
-  const [phone, setPhone] = useState("");
-  const auth = getAuth();
+  const navigation = useNavigation()
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [producer, setProducer] = useState(false)
+  const [products, setProducts] = [{}]
+  const [phone, setPhone] = useState("")
+  const auth = getAuth()
 
   async function createUser() {
     if (name === null || name === "") {
-      alert(`Informe seu nome`);
-      return;
+      alert(`Informe seu nome`)
+      return
     }
     if (email === null || email === "") {
-      alert(`Informe seu e-mail`);
-      return;
+      alert(`Informe seu e-mail`)
+      return
     }
     if (password === null || password === "") {
-      alert(`Informe sua senha`);
-      return;
+      alert(`Informe sua senha`)
+      return
     } else {
       await createUserWithEmailAndPassword(auth, email, password)
         .then((data) => {
-          const users = data.user.uid;
+          const users = data.user.uid
 
           // Verifica se o usuário é um produtor
           if (producer === true) {
             if (phone === null || phone === "") {
-              alert("Informe seu telefone");
-              return;
+              alert("Informe seu telefone")
+              return
             } else {
               //Enviando dados para o firebase
               set(ref(db, "producer/" + users), {
@@ -63,8 +64,8 @@ const SignUp = () => {
                 password: password,
                 producer: producer,
                 phone: phone,
-                products: products
-              });
+                products: products,
+              })
             }
           } else {
             set(ref(db, "user/" + users), {
@@ -72,29 +73,28 @@ const SignUp = () => {
               username: name,
               email: email,
               password: password,
-            });
+            })
           }
 
-          alert("Usuário cadastrado com sucesso!");
-          navigation.navigate("Login");
-          setName("");
-          setEmail("");
-          setPassword("");
-          setProducer(false);
-          setPhone("");
-          se
+          alert("Usuário cadastrado com sucesso!")
+          navigation.navigate("Login")
+          setName("")
+          setEmail("")
+          setPassword("")
+          setProducer(false)
+          setPhone("")
         })
         .catch((error) => {
           const errorMessage =
             errorCodeMessages[error.code] ||
-            "Erro ao efetuar o cadastramento. Tente novamente mais tarde.";
-          Alert.alert(errorMessage);
-        });
+            "Erro ao efetuar o cadastramento. Tente novamente mais tarde."
+          Alert.alert(errorMessage)
+        })
     }
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#008000" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#b06c49" }}>
       <Logo />
 
       <Input
@@ -102,7 +102,7 @@ const SignUp = () => {
         placeholder="Nome"
         value={name}
         onChangeText={(text) => setName(text)}
-        autoCapitalize='words'
+        autoCapitalize="words"
       />
 
       <Input
@@ -110,7 +110,8 @@ const SignUp = () => {
         placeholder="E-mail"
         value={email}
         onChangeText={(text) => setEmail(text)}
-        autoCapitalize='none'
+        autoCapitalize="none"
+        keyboardType="email-address"
       />
 
       <Input
@@ -119,7 +120,7 @@ const SignUp = () => {
         value={password}
         onChangeText={(text) => setPassword(text)}
         secureTextEntry={true}
-        autoCapitalize='none'
+        autoCapitalize="none"
       />
 
       <ViewProducer>
@@ -127,7 +128,7 @@ const SignUp = () => {
 
         <Switch
           style={{ alignItems: "flex-start" }}
-          trackColor={{ false: "#777", true: "#8bf" }}
+          trackColor={{ false: "#fff", true: "#d3d3d3" }}
           thumbColor={producer ? "#00f" : "#444"}
           value={producer}
           onValueChange={() => setProducer(!producer)}
@@ -140,6 +141,8 @@ const SignUp = () => {
           placeholderTextColor="#FFF"
           value={phone}
           onChangeText={(text) => setPhone(text)}
+          inputMode="tel"
+          keyboardType="numeric"
         />
       ) : (
         <View />
@@ -149,10 +152,10 @@ const SignUp = () => {
         <TextCadastrar>Cadastrar</TextCadastrar>
       </Touchable>
     </SafeAreaView>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default SignUp
 
 // Se o e-mail não terminar com '@gmail.com'ou '@outlook.com'ou '@yahoo.com' ele dará um alerta para colocar o e-mail corretamente
 /* if (!email.includes('@gmail.com') && !email.includes('@outlook.com') && !email.includes('@yahoo.com')) {

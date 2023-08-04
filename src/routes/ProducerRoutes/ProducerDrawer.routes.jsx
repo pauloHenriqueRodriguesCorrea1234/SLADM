@@ -22,16 +22,17 @@ const Instagram = () => {
 const ProducerDrawerRoutes = () => {
   return (
     <Drawer.Navigator
-      initialRouteName="home"
       screenOptions={{
         title: "",
+        headerTintColor:"#fff",
+        headerTransparent: false, 
         headerStyle: {
-          backgroundColor: "#4D8900",
+          backgroundColor: "#777a67",
         },
       }}
     >
       <Drawer.Screen
-        name="home"
+        name="PRODUTOS"
         component={TabRoutes}
         options={{
           drawerIcon: ({ color, size }) => {

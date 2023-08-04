@@ -19,6 +19,13 @@ const UserDrawerRoutes = () => {
   return (
     <Drawer.Navigator
     initialRouteName="Home"
+    screenOptions={{
+      title: "",
+      headerTransparent: true,
+      headerStyle:{
+        backgroundColor: "#4D8900",
+      }
+    }}
     >
       <Drawer.Screen
       name="Home"

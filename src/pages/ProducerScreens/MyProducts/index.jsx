@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native";
 import {
   StyleSheet,
   TouchableOpacity,
@@ -6,7 +5,7 @@ import {
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 
-import { Conteiner, TitleMyProducts, ViewInput, Input, ViewAddProduct, TouchableAddProduct } from './style'
+import { Conteiner, ViewInput, Input} from './style'
 
 const MyProducts = () => {
   const Search = () => {
@@ -15,8 +14,6 @@ const MyProducts = () => {
 
   return (
     <Conteiner>
-      <TitleMyProducts>MEUS PRODUTOS</TitleMyProducts>
-
       <ViewInput>
         <Input
           placeholderTextColor="#000"

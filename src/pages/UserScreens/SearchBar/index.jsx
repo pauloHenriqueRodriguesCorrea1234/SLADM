@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import { Text, Button } from "react-native";
 import { getDatabase, ref, onValue } from "firebase/database";
 
 import { Conteiner, Input, Product } from './styles'
@@ -40,7 +40,7 @@ export default function SearchBar() {
       />
       <Button title="Buscar" onPress={handleSearch} />
       {product ? (
-        <Product style={styles.product}>
+        <Product>
           <Text>{product.name}</Text>
           <Text>R${product.price}</Text>
           <Text>{product.description}</Text>
@@ -50,8 +50,3 @@ export default function SearchBar() {
   );
 }
 
-const styles = StyleSheet.create({
-  product: {
-    marginTop: 16,
-  },
-});
