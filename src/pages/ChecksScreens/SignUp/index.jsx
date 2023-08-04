@@ -25,14 +25,16 @@ import { ref, set } from "firebase/database"
 
 const SignUp = () => {
   const navigation = useNavigation()
+
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [producer, setProducer] = useState(false)
-  const [products, setProducts] = [{}]
-  const [phone, setPhone] = useState("")
-  const auth = getAuth()
 
+  const [producer, setProducer] = useState(false)
+  const products = useState({})
+  const [phone, setPhone] = useState("")
+  
+  const auth = getAuth()
   async function createUser() {
     if (name === null || name === "") {
       alert(`Informe seu nome`)

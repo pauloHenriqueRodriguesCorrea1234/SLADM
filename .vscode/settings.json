@@ -27,7 +27,7 @@
   "prettier.semi": false,
 
   // terminal
-  "terminal.integrated.fontSize": 18,
+  "terminal.integrated.fontSize": 16,
   "terminal.integrated.profiles.windows": {
     "Git Bash": {
       "source": "Git Bash"

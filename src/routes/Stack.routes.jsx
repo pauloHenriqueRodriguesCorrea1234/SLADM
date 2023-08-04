@@ -1,13 +1,13 @@
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator } from "@react-navigation/stack"
 
-import Login from "../pages/ChecksScreens/Login";
-import SignUp from "../pages/ChecksScreens/SignUp";
+import Login from "../pages/ChecksScreens/Login"
+import SignUp from "../pages/ChecksScreens/SignUp"
 
-import ProducerDrawerRoutes from "./ProducerRoutes/ProducerDrawer.routes";
-import HomeProducer from "../pages/ProducerScreens/HomeProducer";
-import UserDrawerRoutes from "./UserRoutes/UserDrawer.routes";
+import ProducerDrawerRoutes from "./ProducerRoutes/ProducerDrawer.routes"
+import HomeProducer from "../pages/ProducerScreens/HomeProducer"
+import UserDrawerRoutes from "./UserRoutes/UserDrawer.routes"
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
 const StackRoutes = () => {
   return (
@@ -43,14 +43,14 @@ const StackRoutes = () => {
             borderBottomColor: "#fff",
           },
           headerTintColor: "#fff",
-          headerBackTitleVisible: false,
+          headerBackTitleVisible: true,
           headerTitle: "Voltar",
         }}
       />
 
       <Stack.Screen name="HomeProducer" component={HomeProducer} />
     </Stack.Navigator>
-  );
-};
+  )
+}
 
-export default StackRoutes;
+export default StackRoutes

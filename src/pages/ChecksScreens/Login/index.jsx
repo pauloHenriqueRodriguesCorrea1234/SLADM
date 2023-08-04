@@ -15,6 +15,7 @@ import { Conteiner, Input, Touchable, TouchableWitOutStyle } from './styles'
 // Componente com a logo do projeto
 import Logo from "../../../components/Logo";
 import errorCodeMessages from "../ConfigError/errorCodeMessages";
+import { useNavigation } from "@react-navigation/native"
 
 // Biblioteca firabase
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -24,7 +25,8 @@ import { auth } from "../../../services/firebaseAuthentication";
 
 const database = getDatabase();
 
-const Login = ({ navigation }) => {
+const Login = () => {
+  const navigation = useNavigation()
   const [email, setEmail] = useState("");
   const [passWord, setPassWord] = useState("");
   const { setToken, setUserEmail, setIsProducer } = useContext(UserContext);
@@ -32,9 +34,9 @@ const Login = ({ navigation }) => {
   // Verifica se o usuário é um produtor ou não
   const goToHome = (isProducer) => {
     if (isProducer === true) {
-      navigation.dispatch(StackActions.push("ProducerDrawerRoutes"));
+      navigation.navigate("ProducerDrawerRoutes");
     } else {
-      navigation.dispatch(StackActions.push("UserDrawerRoutes"));
+      navigation.navigate("UserDrawerRoutes")
     }
   };
 
