@@ -1,17 +1,26 @@
-import { createDrawerNavigator } from "@react-navigation/drawer"
-import { auth } from "../../services/firebaseAuthentication"
+// Componentes do React Native
 import { Linking } from "react-native"
-import UserTabRoutes from "./UserTab.routes"
+
+// Biblioteca de Navegação
 import { useNavigation } from "@react-navigation/native"
+import { createDrawerNavigator } from "@react-navigation/drawer"
+
+// Configuração do firebase 
+import { auth } from "../../services/firebaseAuthentication"
+
+// Componentes
+import UserTabRoutes from "./UserTab.routes"
 
 const Drawer = createDrawerNavigator()
 
 const UserDrawerRoutes = () => {
   const navigation = useNavigation()
+
   const Logout = () => {
     navigation.navigate("Login")
     auth.signOut()
   }
+  
   const Instagram = () => {
     Linking.openURL("https://www.instagram.com/solo_fertil_campus_aquidauana/")
   }

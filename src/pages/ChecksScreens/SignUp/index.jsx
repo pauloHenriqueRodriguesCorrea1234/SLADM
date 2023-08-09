@@ -131,7 +131,7 @@ const SignUp = () => {
         <Switch
           style={{ alignItems: "flex-start" }}
           trackColor={{ false: "#fff", true: "#d3d3d3" }}
-          thumbColor={producer ? "#00f" : "#444"}
+          thumbColor={producer ? "#fff" : "#000"}
           value={producer}
           onValueChange={() => setProducer(!producer)}
         />

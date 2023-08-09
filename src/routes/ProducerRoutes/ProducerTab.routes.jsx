@@ -13,13 +13,11 @@ const TabRoutes = () => {
       initialRouteName="HomeProducer"
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: "#000",
-        tabBarInactiveTintColor: "gray",
-
+        tabBarActiveTintColor: "#d3d3d3",
+        tabBarInactiveTintColor: "#fff",
         tabBarStyle: {
           backgroundColor: "#b06c49",
         },
-        headerShown: false,
       }}
     >
       <Tab.Screen
@@ -27,7 +25,7 @@ const TabRoutes = () => {
         component={HomeProducer}
         options={{
           tabBarIcon: ({ color, size }) => {
-            ;<AntDesign name="home" color={color} size={size} />
+            <AntDesign name="home" color={color} size={size} />
           },
           tabBarLabel: "Início",
         }}
@@ -36,6 +34,7 @@ const TabRoutes = () => {
         name="MeusProdutos"
         component={MyProducts}
         options={{
+          title: "MEUS PRODUTOS",
           tabBarIcon: ({ color, size }) => {
             <AntDesign name="tags" color={color} size={size} />
           },

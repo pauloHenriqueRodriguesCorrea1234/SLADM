@@ -1,11 +1,10 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { useNavigation } from "@react-navigation/native";
+
+import { auth } from "../../services/firebaseAuthentication";
 
 import TabRoutes from "./ProducerTab.routes";
-
-import { Feather } from "@expo/vector-icons";
-import { Linking } from "react-native";
-import { auth } from "../../services/firebaseAuthentication";
-import { useNavigation } from "@react-navigation/native";
+import Instagram from "../../components/Instagram";
 
 const Drawer = createDrawerNavigator();
 
@@ -15,17 +14,14 @@ const Logout = () => {
   navigation.navigate("Login");
   auth.signOut();
 };
-const Instagram = () => {
-  Linking.openURL("https://www.instagram.com/solo_fertil_campus_aquidauana/");
-};
+
 
 const ProducerDrawerRoutes = () => {
   return (
     <Drawer.Navigator
       screenOptions={{
-        title: "",
+        title: "Menu",
         headerTintColor:"#fff",
-        headerTransparent: false, 
         headerStyle: {
           backgroundColor: "#777a67",
         },
@@ -35,15 +31,12 @@ const ProducerDrawerRoutes = () => {
         name="PRODUTOS"
         component={TabRoutes}
         options={{
-          drawerIcon: ({ color, size }) => {
-          <Feather name="activity" color={color} size={size} />
-          },
           drawerLabel: "Início",
         }}
       />
 
       <Drawer.Screen
-        name="instagram"
+        name="Instagram"
         component={Instagram}
         options={{
           drawerLabel: "Instagram",

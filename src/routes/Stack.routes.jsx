@@ -4,7 +4,6 @@ import Login from "../pages/ChecksScreens/Login"
 import SignUp from "../pages/ChecksScreens/SignUp"
 
 import ProducerDrawerRoutes from "./ProducerRoutes/ProducerDrawer.routes"
-import HomeProducer from "../pages/ProducerScreens/HomeProducer"
 import UserDrawerRoutes from "./UserRoutes/UserDrawer.routes"
 
 const Stack = createStackNavigator()
@@ -25,7 +24,6 @@ const StackRoutes = () => {
           component={ProducerDrawerRoutes}
         />
         <Stack.Screen name="UserDrawerRoutes" component={UserDrawerRoutes} />
-        <Stack.Screen name="HomeProducer" component={HomeProducer} />
       </Stack.Group>
 
       <Stack.Screen
@@ -33,14 +31,8 @@ const StackRoutes = () => {
         name="SignUp"
         options={{
           headerTransparent: true,
-          headerStyle: {
-            backgroundColor: "#008000",
-            borderBottomWidth: 0.8,
-            borderBottomColor: "#fff",
-          },
           headerTintColor: "#fff",
-          headerBackTitleVisible: true,
-          headerTitle: "",
+          headerTitle: "Voltar",
         }}
       />
     </Stack.Navigator>
