@@ -6,17 +6,18 @@ background-color: #b06c49;
 `
 
 export const ViewInput = styled.View`
-flex-direction: row;
-border-width: 1px;
-height: 50px;
-align-items: center;
-justify-content: space-between;
-margin: 10px 8px 10px 8px;
+  flex-direction: row;
+  border-width: 1px;
+  height: 50px;
+  align-items: center;
+  justify-content: space-between;
+  border-color: #fff;
+  margin: 8px 10px 8px 10px;
 `
 
 export const Input = styled.TextInput`
-font-size: 16px;
-text-align: center;
-margin-left: 10px;
+  font-size: 16px;
+  text-align: center;
+  margin-left: 10px;
 `
 

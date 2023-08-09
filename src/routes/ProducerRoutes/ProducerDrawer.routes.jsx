@@ -36,7 +36,7 @@ const ProducerDrawerRoutes = () => {
         component={TabRoutes}
         options={{
           drawerIcon: ({ color, size }) => {
-            <Feather name="home" color={color} size={size} />;
+          <Feather name="activity" color={color} size={size} />
           },
           drawerLabel: "Início",
         }}

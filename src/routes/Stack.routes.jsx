@@ -11,32 +11,28 @@ const Stack = createStackNavigator()
 
 const StackRoutes = () => {
   return (
-    <Stack.Navigator
-      initialRouteName="Login"
-      screenOptions={{
-        headerTransparent: true,
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen
-        component={Login}
-        name="Login"
-        options={{
+    <Stack.Navigator>
+      <Stack.Group
+        screenOptions={{
           title: "",
+          headerTransparent: true,
+          headerShown: false,
         }}
-      />
-
-      <Stack.Screen
-        name="ProducerDrawerRoutes"
-        component={ProducerDrawerRoutes}
-      />
-
-      <Stack.Screen name="UserDrawerRoutes" component={UserDrawerRoutes} />
+      >
+        <Stack.Screen component={Login} name="Login" />
+        <Stack.Screen
+          name="ProducerDrawerRoutes"
+          component={ProducerDrawerRoutes}
+        />
+        <Stack.Screen name="UserDrawerRoutes" component={UserDrawerRoutes} />
+        <Stack.Screen name="HomeProducer" component={HomeProducer} />
+      </Stack.Group>
 
       <Stack.Screen
         component={SignUp}
         name="SignUp"
         options={{
+          headerTransparent: true,
           headerStyle: {
             backgroundColor: "#008000",
             borderBottomWidth: 0.8,
@@ -44,11 +40,9 @@ const StackRoutes = () => {
           },
           headerTintColor: "#fff",
           headerBackTitleVisible: true,
-          headerTitle: "Voltar",
+          headerTitle: "",
         }}
       />
-
-      <Stack.Screen name="HomeProducer" component={HomeProducer} />
     </Stack.Navigator>
   )
 }

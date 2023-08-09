@@ -27,7 +27,7 @@ const TabRoutes = () => {
         component={HomeProducer}
         options={{
           tabBarIcon: ({ color, size }) => {
-            <AntDesign name="home" color={color} size={size}/>
+            ;<AntDesign name="home" color={color} size={size} />
           },
           tabBarLabel: "Início",
         }}
@@ -43,7 +43,7 @@ const TabRoutes = () => {
         }}
       />
     </Tab.Navigator>
-  );
-};
+  )
+}
 
 export default TabRoutes

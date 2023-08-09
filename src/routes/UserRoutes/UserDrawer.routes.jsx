@@ -1,39 +1,39 @@
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import { auth } from "../../services/firebaseAuthentication";
-import { Linking } from "react-native";
-import UserTabRoutes from "./UserTab.routes";
-import { useNavigation } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer"
+import { auth } from "../../services/firebaseAuthentication"
+import { Linking } from "react-native"
+import UserTabRoutes from "./UserTab.routes"
+import { useNavigation } from "@react-navigation/native"
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator()
 
 const UserDrawerRoutes = () => {
   const navigation = useNavigation()
   const Logout = () => {
-    navigation.navigate("Login");
-    auth.signOut();
-  };
+    navigation.navigate("Login")
+    auth.signOut()
+  }
   const Instagram = () => {
-    Linking.openURL("https://www.instagram.com/solo_fertil_campus_aquidauana/");
-  };
+    Linking.openURL("https://www.instagram.com/solo_fertil_campus_aquidauana/")
+  }
 
   return (
     <Drawer.Navigator
-    initialRouteName="Home"
-    screenOptions={{
-      title: "",
-      headerTransparent: true,
-      headerStyle:{
-        backgroundColor: "#4D8900",
-      }
-    }}
+      initialRouteName="Home"
+      screenOptions={{
+        title: "",
+        headerTintColor: "#fff",
+        headerTransparent: false,
+        headerStyle: {
+          backgroundColor: "#777a67",
+        },
+      }}
     >
       <Drawer.Screen
-      name="Home"
-      component={UserTabRoutes}
-      options={{
-        drawerLabel:"Inicio"
-      }}
-
+        name="Home"
+        component={UserTabRoutes}
+        options={{
+          drawerLabel: "Inicio",
+        }}
       />
       <Drawer.Screen
         name="Instagram"
@@ -50,7 +50,7 @@ const UserDrawerRoutes = () => {
         }}
       />
     </Drawer.Navigator>
-  );
-};
+  )
+}
 
-export default UserDrawerRoutes;
+export default UserDrawerRoutes
