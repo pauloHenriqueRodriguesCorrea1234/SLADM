@@ -1,6 +1,12 @@
-import { ScrollView, TouchableOpacity } from "react-native"
+import { ScrollView, TouchableOpacity, Text } from "react-native"
 
-import { Conteiner, ViewInput, Input } from "./styles"
+import {
+  Conteiner,
+  ViewInput,
+  Input,
+  NotFaundText,
+  ViewNotFaund,
+} from "./styles"
 
 // React States
 import { useEffect, useState } from "react"
@@ -15,6 +21,7 @@ import ExitApp from "../../../components/BackHandler"
 const HomeProducer = () => {
   const [products, setProducts] = useState([])
   const [filter, setFilter] = useState("")
+  const [notFaund, setNotFaund] = useState(false)
 
   useEffect(() => {
     setProducts(itens)
@@ -23,13 +30,19 @@ const HomeProducer = () => {
 
   useEffect(() => {
     if (filter.length > 0) {
+      // Verifica se existe algo que foi digitado existe no array de objeto
       const filteredProducts = itens.filter((p) =>
         p.nomeProduto.toLowerCase().includes(filter.toLowerCase())
       )
 
-      setProducts(filteredProducts)
-    } else {
-      setProducts(itens)
+      // Se o que estiver dentro de filteredProducts
+      if (filteredProducts.length == 0) {
+        setNotFaund(true)
+        setProducts(filteredProducts)
+      } else {
+        setProducts(itens)
+        setNotFaund(false)
+      }
     }
   }, [filter])
 
@@ -44,6 +57,14 @@ const HomeProducer = () => {
           textAlign="center"
         />
       </ViewInput>
+
+      {notFaund == true ? (
+        <ViewNotFaund>
+          <NotFaundText>PRODUTO NÃO ENCONTRADO</NotFaundText>
+        </ViewNotFaund>
+      ) : (
+        notFaund == false
+      )}
 
       {products.length > 0 && (
         <ScrollView>

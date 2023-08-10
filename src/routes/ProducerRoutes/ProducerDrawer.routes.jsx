@@ -1,34 +1,24 @@
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import { useNavigation } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer"
 
-import { auth } from "../../services/firebaseAuthentication";
+import TabRoutes from "./ProducerTab.routes"
+import Instagram from "../../components/LinkInstagram"
+import Logout from "../../components/Logout"
 
-import TabRoutes from "./ProducerTab.routes";
-import Instagram from "../../components/Instagram";
-
-const Drawer = createDrawerNavigator();
-
-const Logout = () => {
-  
-  const navigation = useNavigation();
-  navigation.navigate("Login");
-  auth.signOut();
-};
-
+const Drawer = createDrawerNavigator()
 
 const ProducerDrawerRoutes = () => {
   return (
     <Drawer.Navigator
       screenOptions={{
         title: "Menu",
-        headerTintColor:"#fff",
+        headerTintColor: "#fff",
         headerStyle: {
           backgroundColor: "#777a67",
         },
       }}
     >
       <Drawer.Screen
-        name="PRODUTOS"
+        name="Home"
         component={TabRoutes}
         options={{
           drawerLabel: "Início",
@@ -51,7 +41,7 @@ const ProducerDrawerRoutes = () => {
         }}
       />
     </Drawer.Navigator>
-  );
-};
+  )
+}
 
-export default ProducerDrawerRoutes;
+export default ProducerDrawerRoutes

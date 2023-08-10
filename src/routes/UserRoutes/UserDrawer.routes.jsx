@@ -1,30 +1,13 @@
-// Componentes do React Native
-import { Linking } from "react-native"
-
-// Biblioteca de Navegação
-import { useNavigation } from "@react-navigation/native"
 import { createDrawerNavigator } from "@react-navigation/drawer"
-
-// Configuração do firebase 
-import { auth } from "../../services/firebaseAuthentication"
 
 // Componentes
 import UserTabRoutes from "./UserTab.routes"
+import Instagram from "../../components/LinkInstagram"
+import Logout from "../../components/Logout"
 
 const Drawer = createDrawerNavigator()
 
 const UserDrawerRoutes = () => {
-  const navigation = useNavigation()
-
-  const Logout = () => {
-    navigation.navigate("Login")
-    auth.signOut()
-  }
-  
-  const Instagram = () => {
-    Linking.openURL("https://www.instagram.com/solo_fertil_campus_aquidauana/")
-  }
-
   return (
     <Drawer.Navigator
       initialRouteName="Home"
