@@ -7,6 +7,7 @@ import UserTabRoutes from "./UserTab.routes"
 import Instagram from "../../components/LinkInstagram"
 import Logout from "../../components/Logout"
 
+// Criação do Drawer Navigator para as rotas do usuário
 const Drawer = createDrawerNavigator()
 
 const UserDrawerRoutes = () => {
@@ -22,6 +23,8 @@ const UserDrawerRoutes = () => {
         },
       }}
     >
+
+       {/* Rota para a tela de início do usuário (UserTabRoutes) */}
       <Drawer.Screen
         name="Home"
         component={UserTabRoutes}
@@ -32,6 +35,8 @@ const UserDrawerRoutes = () => {
           ),
         }}
       />
+
+      {/* Rota para a tela de Instagram (LinkInstagram) */}
       <Drawer.Screen
         name="Instagram"
         component={Instagram}
@@ -42,6 +47,8 @@ const UserDrawerRoutes = () => {
           ),
         }}
       />
+
+      {/* Rota para a tela de Logout (Logout) */}
       <Drawer.Screen
         name="Logout"
         component={Logout}

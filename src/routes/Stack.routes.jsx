@@ -6,6 +6,7 @@ import SignUp from "../pages/ChecksScreens/SignUp"
 import ProducerDrawerRoutes from "./ProducerRoutes/ProducerDrawer.routes"
 import UserDrawerRoutes from "./UserRoutes/UserDrawer.routes"
 
+// Criação do Stack Navigator para as rotas de pilha
 const Stack = createStackNavigator()
 
 const StackRoutes = () => {
@@ -18,14 +19,21 @@ const StackRoutes = () => {
           headerShown: false,
         }}
       >
+
+        {/* Rota para a tela de Login */}
         <Stack.Screen component={Login} name="Login" />
+
+         {/* Rota para as rotas de produtor (ProducerDrawerRoutes) */}
         <Stack.Screen
           name="ProducerDrawerRoutes"
           component={ProducerDrawerRoutes}
         />
+
+          {/* Rota para as rotas de usuário (UserDrawerRoutes) */}
         <Stack.Screen name="UserDrawerRoutes" component={UserDrawerRoutes} />
       </Stack.Group>
 
+          {/* Rota para a tela de SignUp */}
       <Stack.Screen
         component={SignUp}
         name="SignUp"

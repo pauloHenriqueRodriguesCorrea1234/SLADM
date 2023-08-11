@@ -5,6 +5,7 @@ import { Ionicons, MaterialIcons } from "react-native-vector-icons"
 import MyProducts from "../../pages/ProducerScreens/MyProducts"
 import HomeProducer from "../../pages/ProducerScreens/HomeProducer"
 
+// Criação do Bottom Tab Navigator para as rotas do produtor
 const Tab = createBottomTabNavigator()
 
 const TabRoutes = () => {
@@ -20,6 +21,8 @@ const TabRoutes = () => {
         },
       }}
     >
+
+       {/* Rota para a tela de início do produtor (HomeProducer) */}
       <Tab.Screen
         name="HomeProducer"
         component={HomeProducer}
@@ -30,6 +33,8 @@ const TabRoutes = () => {
           tabBarLabel: "Início",
         }}
       />
+
+      {/* Rota para a tela "Meus Produtos" (MyProducts) */}
       <Tab.Screen
         name="MeusProdutos"
         component={MyProducts}
