@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
-import AntDesign from "react-native-vector-icons/AntDesign"
+import { Ionicons, MaterialIcons } from "react-native-vector-icons"
 
 import MyProducts from "../../pages/ProducerScreens/MyProducts"
 import HomeProducer from "../../pages/ProducerScreens/HomeProducer"
@@ -24,9 +24,9 @@ const TabRoutes = () => {
         name="HomeProducer"
         component={HomeProducer}
         options={{
-          tabBarIcon: ({ color, size }) => {
-            <AntDesign name="home" color={color} size={size} />
-          },
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" color={color} size={size} />
+          ),
           tabBarLabel: "Início",
         }}
       />
@@ -35,9 +35,9 @@ const TabRoutes = () => {
         component={MyProducts}
         options={{
           title: "MEUS PRODUTOS",
-          tabBarIcon: ({ color, size }) => {
-            <AntDesign name="tags" color={color} size={size} />
-          },
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="my-library-books" color={color} size={size} />
+          ),
           tabBarLabel: "Meus produtos",
         }}
       />

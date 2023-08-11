@@ -1,5 +1,7 @@
 import { createDrawerNavigator } from "@react-navigation/drawer"
 
+import { Ionicons, AntDesign, Feather } from "react-native-vector-icons"
+
 import TabRoutes from "./ProducerTab.routes"
 import Instagram from "../../components/LinkInstagram"
 import Logout from "../../components/Logout"
@@ -22,6 +24,9 @@ const ProducerDrawerRoutes = () => {
         component={TabRoutes}
         options={{
           drawerLabel: "Início",
+          drawerIcon: ({ size, color }) => (
+            <Ionicons name="home" size={size} color={color} />
+          ),
         }}
       />
 
@@ -30,6 +35,9 @@ const ProducerDrawerRoutes = () => {
         component={Instagram}
         options={{
           drawerLabel: "Instagram",
+          drawerIcon: ({ size, color }) => (
+            <AntDesign name="instagram" size={size} color={color} />
+          ),
         }}
       />
 
@@ -38,6 +46,9 @@ const ProducerDrawerRoutes = () => {
         component={Logout}
         options={{
           drawerLabel: "Sair",
+          drawerIcon: ({ size, color }) => (
+            <Feather name="log-out" size={size} color={color} />
+          ),
         }}
       />
     </Drawer.Navigator>

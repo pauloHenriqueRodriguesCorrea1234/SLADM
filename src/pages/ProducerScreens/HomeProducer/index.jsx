@@ -17,6 +17,7 @@ import { itens } from "../../../../data/itens.json"
 // Components
 import FruitCards from "../../../components/FruitCards"
 import ExitApp from "../../../components/BackHandler"
+import Icon from "react-native-vector-icons/MaterialIcons"
 
 const HomeProducer = () => {
   const [products, setProducts] = useState([])
@@ -54,8 +55,9 @@ const HomeProducer = () => {
           placeholder="Escreva o nome do produto"
           value={filter}
           onChangeText={setFilter}
-          textAlign="center"
+          textAlign="left"
         />
+        <Icon name="search" size={30} color={"#fff"}/>
       </ViewInput>
 
       {notFaund == true ? (

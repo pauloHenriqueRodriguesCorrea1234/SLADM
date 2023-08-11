@@ -1,7 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
-// Icons
-import Icon from 'react-native-vector-icons/Entypo'
+import Icon from "react-native-vector-icons/Ionicons"
 
 import HomeProducer from "../../pages/ProducerScreens/HomeProducer"
 
@@ -23,9 +22,9 @@ const UserTabRoutes = () => {
         component={HomeProducer}
         options={{
           tabBarActiveTintColor: "#fff",
-          tabBarIcon: ({size, color}) =>{
+          tabBarIcon: ({size, color}) =>(
             <Icon name="home" size={size} color={color} />
-          },
+          ),
           headerShown: false,
         }}
       />

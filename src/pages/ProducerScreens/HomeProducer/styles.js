@@ -5,13 +5,6 @@ export const Conteiner = styled.View`
   background-color: #b06c49;
 `
 
-export const TitleProduct = styled.Text`
-  text-align: center;
-  margin-top: 20px;
-  font-size: 30px;
-  color: #fff;
-`
-
 export const ViewInput = styled.View`
   flex-direction: row;
   border-width: 1px;
@@ -20,10 +13,10 @@ export const ViewInput = styled.View`
   justify-content: space-between;
   border-color: #fff;
   margin: 8px 10px 8px 10px;
+  padding-right: 20px;
 `
 export const Input = styled.TextInput`
   font-size: 16px;
-  text-align: center;
   margin-left: 10px;
   color: #fff;
 `
