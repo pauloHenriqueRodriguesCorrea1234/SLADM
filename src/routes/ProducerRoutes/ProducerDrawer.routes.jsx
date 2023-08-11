@@ -6,6 +6,7 @@ import TabRoutes from "./ProducerTab.routes"
 import Instagram from "../../components/LinkInstagram"
 import Logout from "../../components/Logout"
 
+// Criação do Drawer Navigator para as rotas do produtor
 const Drawer = createDrawerNavigator()
 
 const ProducerDrawerRoutes = () => {
@@ -19,6 +20,7 @@ const ProducerDrawerRoutes = () => {
         },
       }}
     >
+       {/* Rota para a tela de início (TabRoutes) */}
       <Drawer.Screen
         name="Home"
         component={TabRoutes}
@@ -30,6 +32,7 @@ const ProducerDrawerRoutes = () => {
         }}
       />
 
+      {/* Rota para a tela de Instagram (LinkInstagram) */}
       <Drawer.Screen
         name="Instagram"
         component={Instagram}
@@ -41,6 +44,7 @@ const ProducerDrawerRoutes = () => {
         }}
       />
 
+      {/* Rota para a tela de Logout (Logout) */}
       <Drawer.Screen
         name="Logout"
         component={Logout}
