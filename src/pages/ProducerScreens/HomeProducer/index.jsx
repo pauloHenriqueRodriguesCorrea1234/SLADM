@@ -1,4 +1,4 @@
-import { ScrollView, TouchableOpacity, Text } from "react-native"
+import { TouchableOpacity } from "react-native"
 
 import {
   Conteiner,
@@ -6,6 +6,7 @@ import {
   Input,
   NotFaundText,
   ViewNotFaund,
+  ScrollView,
 } from "./styles"
 
 // React States
@@ -31,18 +32,18 @@ const HomeProducer = () => {
 
   useEffect(() => {
     if (filter.length > 0) {
-      // Verifica se existe algo que foi digitado existe no array de objeto
+      // Checks if anything that was typed exists in the object array
       const filteredProducts = itens.filter((p) =>
-        p.nomeProduto.toLowerCase().includes(filter.toLowerCase())
+        p.productName.toLowerCase().includes(filter.toLowerCase())
       )
 
-      // Se o que estiver dentro de filteredProducts
+      // If filteredProducts equals 0 no products were found
       if (filteredProducts.length == 0) {
         setNotFaund(true)
         setProducts(filteredProducts)
       } else {
-        setProducts(itens)
         setNotFaund(false)
+        setProducts(filteredProducts)
       }
     }
   }, [filter])
@@ -57,7 +58,7 @@ const HomeProducer = () => {
           onChangeText={setFilter}
           textAlign="left"
         />
-        <Icon name="search" size={30} color={"#fff"}/>
+        <Icon name="search" size={30} color={"#fff"} />
       </ViewInput>
 
       {notFaund == true ? (
@@ -72,7 +73,7 @@ const HomeProducer = () => {
         <ScrollView>
           {products.map((item) => (
             <TouchableOpacity key={item.id}>
-              <FruitCards name={item.nomeProduto} img={item.coverUrl} />
+              <FruitCards name={item.productName} img={item.coverUrl} />
             </TouchableOpacity>
           ))}
         </ScrollView>

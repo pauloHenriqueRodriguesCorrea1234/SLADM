@@ -3,17 +3,25 @@ import { ScrollView, StyleSheet, TouchableOpacity } from "react-native"
 // products json
 import { itens } from "../../../../data/itens.json"
 
-import { Conteiner, ViewInput, Input } from "./style"
+import {
+  Conteiner,
+  ViewInput,
+  Input,
+  ViewNotFaund,
+  NotFaundText,
+} from "./style"
 
 import { useEffect, useState } from "react"
 
 // Components
 import ExitApp from "../../../components/BackHandler"
 import FruitCards from "../../../components/FruitCards"
+import Icon from "react-native-vector-icons/MaterialIcons"
 
 const MyProducts = () => {
   const [products, setProducts] = useState([])
   const [filter, setFilter] = useState("")
+  const [notFaund, setNotFaund] = useState(false)
 
   useEffect(() => {
     setProducts(itens)
@@ -22,13 +30,19 @@ const MyProducts = () => {
 
   useEffect(() => {
     if (filter.length > 0) {
+      // Checks if anything that was typed exists in the object array
       const filteredProducts = itens.filter((p) =>
-        p.nomeProduto.toLowerCase().includes(filter.toLowerCase())
+        p.productName.toLowerCase().includes(filter.toLowerCase())
       )
 
-      setProducts(filteredProducts)
-    } else {
-      setProducts(itens)
+      // If filteredProducts equals 0 no products were found
+      if (filteredProducts.length == 0) {
+        setNotFaund(true)
+        setProducts(filteredProducts)
+      } else {
+        setNotFaund(false)
+        setProducts(filteredProducts)
+      }
     }
   }, [filter])
 
@@ -40,15 +54,23 @@ const MyProducts = () => {
           placeholder="Escreva o nome do produto"
           value={filter}
           onChangeText={setFilter}
-          textAlign="center"
+          textAlign="left"
         />
+        <Icon name="search" size={30} color={"#fff"} />
       </ViewInput>
 
+      {notFaund == true ? (
+        <ViewNotFaund>
+          <NotFaundText>PRODUTO NÃO ENCONTRADO</NotFaundText>
+        </ViewNotFaund>
+      ) : (
+        notFaund == false
+      )}
       {products.length > 0 && (
         <ScrollView>
           {products.map((item) => (
             <TouchableOpacity key={item.id}>
-              <FruitCards name={item.nomeProduto} img={item.coverUrl} />
+              <FruitCards name={item.productName} img={item.coverUrl} />
             </TouchableOpacity>
           ))}
         </ScrollView>

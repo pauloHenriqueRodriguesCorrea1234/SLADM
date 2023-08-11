@@ -31,3 +31,5 @@ export const NotFaundText = styled.Text`
   font-size: 20px;
   color: #fff;
 `
+
+export const ScrollView = styled.ScrollView``

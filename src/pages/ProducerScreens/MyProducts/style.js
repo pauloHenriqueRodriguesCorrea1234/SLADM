@@ -17,7 +17,17 @@ export const ViewInput = styled.View`
 
 export const Input = styled.TextInput`
   font-size: 16px;
-  text-align: center;
   margin-left: 10px;
+  color: #fff;
 `
 
+export const ViewNotFaund = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`
+
+export const NotFaundText = styled.Text`
+  font-size: 20px;
+  color: #fff;
+`

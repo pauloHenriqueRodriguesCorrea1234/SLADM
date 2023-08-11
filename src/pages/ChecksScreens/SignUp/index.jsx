@@ -1,40 +1,48 @@
+// Hooks
 import React, { useState } from "react"
 
-import { Switch, SafeAreaView, View, Alert } from "react-native"
-
+// Styles
 import {
+  Conteiner,
   Input,
   ViewProducer,
   Touchable,
   TextProducer,
   TextCadastrar,
+  AlertStyle,
+  Switch,
 } from "./styles"
 
+// Components
 import Logo from "../../../components/Logo"
 
+// Error vector
 import errorCodeMessages from "../ConfigError/errorCodeMessages"
 
+// Navigation
 import { useNavigation } from "@react-navigation/native"
 
-// Auth
+// Firebase library
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
-
-// Realtime Database
 import { db } from "../../../services/firebaseAuthentication"
 import { ref, set } from "firebase/database"
 
 const SignUp = () => {
   const navigation = useNavigation()
 
+  // User variables
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
+  // Producer variables
   const [producer, setProducer] = useState(false)
   const products = useState({})
   const [phone, setPhone] = useState("")
-  
+
   const auth = getAuth()
+
+  // Function for crate user
   async function createUser() {
     if (name === null || name === "") {
       alert(`Informe seu nome`)
@@ -52,15 +60,15 @@ const SignUp = () => {
         .then((data) => {
           const users = data.user.uid
 
-          // Verifica se o usuário é um produtor
+          // Checks if the user is a producer
           if (producer === true) {
             if (phone === null || phone === "") {
               alert("Informe seu telefone")
               return
             } else {
-              //Enviando dados para o firebase
+              // Sending data to firebase
               set(ref(db, "producer/" + users), {
-                // Dados do produtor
+                // Producer data
                 username: name,
                 email: email,
                 password: password,
@@ -71,7 +79,7 @@ const SignUp = () => {
             }
           } else {
             set(ref(db, "user/" + users), {
-              // Dados do usuário
+              // User data
               username: name,
               email: email,
               password: password,
@@ -90,13 +98,13 @@ const SignUp = () => {
           const errorMessage =
             errorCodeMessages[error.code] ||
             "Erro ao efetuar o cadastramento. Tente novamente mais tarde."
-          Alert.alert(errorMessage)
+          AlertStyle.alert(errorMessage)
         })
     }
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#b06c49" }}>
+    <Conteiner>
       <Logo />
 
       <Input
@@ -146,20 +154,13 @@ const SignUp = () => {
           inputMode="tel"
           keyboardType="numeric"
         />
-      ) : (
-        <View />
-      )}
+      ) : null}
 
       <Touchable onPress={() => createUser()}>
         <TextCadastrar>Cadastrar</TextCadastrar>
       </Touchable>
-    </SafeAreaView>
+    </Conteiner>
   )
 }
 
 export default SignUp
-
-// Se o e-mail não terminar com '@gmail.com'ou '@outlook.com'ou '@yahoo.com' ele dará um alerta para colocar o e-mail corretamente
-/* if (!email.includes('@gmail.com') && !email.includes('@outlook.com') && !email.includes('@yahoo.com')) {
-  alert('Informe o seu e-mail corretamente');
-} */

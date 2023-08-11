@@ -1,85 +1,89 @@
 // States
-import { useContext, useState } from "react";
+import { useContext, useState } from "react"
 
-// Navigation
-import { StackActions } from "@react-navigation/native";
+// Styles
+import {
+  Conteiner,
+  Input,
+  Touchable,
+  TouchableWitOutStyle,
+  Text,
+  AlertStyle,
+} from "./styles"
 
 // Components
-import {
-  Alert,
-  Text,
-} from "react-native";
+import Logo from "../../../components/Logo"
 
-import { Conteiner, Input, Touchable, TouchableWitOutStyle } from './styles'
+// ...
+import { UserContext } from "../../../context/UserContext"
 
-// Componente com a logo do projeto
-import Logo from "../../../components/Logo";
-import errorCodeMessages from "../ConfigError/errorCodeMessages";
+// Error vector
+import errorCodeMessages from "../ConfigError/errorCodeMessages"
+
+// Navigation
 import { useNavigation } from "@react-navigation/native"
 
-// Biblioteca firabase
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { child, get, getDatabase, ref } from "firebase/database";
-import { UserContext } from "../../../context/UserContext";
-import { auth } from "../../../services/firebaseAuthentication";
+// Firebase library
+import { signInWithEmailAndPassword } from "firebase/auth"
+import { child, get, getDatabase, ref } from "firebase/database"
+import { auth } from "../../../services/firebaseAuthentication"
 
-const database = getDatabase();
+const database = getDatabase()
 
 const Login = () => {
   const navigation = useNavigation()
-  const [email, setEmail] = useState("");
-  const [passWord, setPassWord] = useState("");
-  const { setToken, setUserEmail, setIsProducer } = useContext(UserContext);
+  const [email, setEmail] = useState("")
+  const [passWord, setPassWord] = useState("")
+  const { setToken, setUserEmail, setIsProducer } = useContext(UserContext)
 
-  // Verifica se o usuário é um produtor ou não
+  // Checks whether the user is a producer or not
   const goToHome = (isProducer) => {
     if (isProducer === true) {
-      navigation.navigate("ProducerDrawerRoutes");
+      navigation.navigate("ProducerDrawerRoutes")
     } else {
       navigation.navigate("UserDrawerRoutes")
     }
-  };
+  }
 
-  // Função para logar e verificar se o usuario existe
+  // Function to login and check if the user exists
   const verifyUser = async () => {
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         passWord
-      );
+      )
 
-      const { _tokenResponse } = userCredential;
-      const { userEmail = email, idToken } = _tokenResponse;
-      setToken(idToken);
-      setUserEmail(userEmail);
+      const { _tokenResponse } = userCredential
+      const { userEmail = email, idToken } = _tokenResponse
+      setToken(idToken)
+      setUserEmail(userEmail)
 
-      const uid = userCredential.user.uid;
+      const uid = userCredential.user.uid
       const snapshot = await get(
         child(ref(database), `user/${uid}` && `producer/${uid}`)
-      );
-      const isProducer = snapshot.exists() ? snapshot.val().producer : false;
-      setIsProducer(isProducer);
-      goToHome(isProducer);
+      )
+      const isProducer = snapshot.exists() ? snapshot.val().producer : false
+      setIsProducer(isProducer)
+      goToHome(isProducer)
 
-      // Limpa os inputs
-      setEmail('')
-      setPassWord('')
+      // Clear the inputs
+      setEmail("")
+      setPassWord("")
     } catch (error) {
-      console.log(error);
       const errorMessage =
         errorCodeMessages[error.code] ||
-        "Erro ao efetuar login. Tente novamente mais tarde.";
-      Alert.alert(errorMessage); 
+        "Erro ao efetuar login. Tente novamente mais tarde."
+      AlertStyle.alert(errorMessage)
     }
-  };
+  }
 
-  // Vai para tela de cadastro
+  // Go to registration screen
   const goToSignUp = () => {
-    navigation.navigate("SignUp");
-    setEmail("");
-    setPassWord("");
-  };
+    navigation.navigate("SignUp")
+    setEmail("")
+    setPassWord("")
+  }
 
   return (
     <Conteiner>
@@ -92,7 +96,7 @@ const Login = () => {
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
-        autoCapitalize='none'
+        autoCapitalize="none"
       />
 
       <Input
@@ -107,13 +111,11 @@ const Login = () => {
         <Text>Logar</Text>
       </Touchable>
 
-      <TouchableWitOutStyle
-        onPress={goToSignUp}
-      >
+      <TouchableWitOutStyle onPress={goToSignUp}>
         <Text style={{ color: "#fff" }}>Cadastrar</Text>
       </TouchableWitOutStyle>
     </Conteiner>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

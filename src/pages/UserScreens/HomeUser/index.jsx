@@ -38,7 +38,7 @@ const HomeUser = () => {
             {products.map((item) => (
               <TouchableOpacity key={item.id}>
                 <FruitCards
-                  productName={item.nomeProduto}
+                  productName={item.productName}
                   coverUrl={item.coverUrl}
                 />
               </TouchableOpacity>
