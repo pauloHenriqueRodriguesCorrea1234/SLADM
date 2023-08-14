@@ -1,119 +1,121 @@
 // States
-import { useState } from "react";
+import { useContext, useState } from "react"
 
-// Navigation
-import { useNavigation } from "@react-navigation/native";
+// Styles
+import {
+  Conteiner,
+  Input,
+  Touchable,
+  TouchableWitOutStyle,
+  Text,
+  AlertStyle,
+} from "./styles"
 
 // Components
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import Logo from "../../../components/Logo"
 
-// Componente com a logo do projeto
-import Logo from "../../../components/Logo";
+// ...
+import { UserContext } from "../../../context/UserContext"
 
-// Biblioteca firabase
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../services/firebaseAuthentication";
+// Error vector
+import errorCodeMessages from "../ConfigError/errorCodeMessages"
+
+// Navigation
+import { useNavigation } from "@react-navigation/native"
+
+// Firebase library
+import { signInWithEmailAndPassword } from "firebase/auth"
+import { child, get, getDatabase, ref } from "firebase/database"
+import { auth } from "../../../services/firebaseAuthentication"
+
+const database = getDatabase()
 
 const Login = () => {
-  const navigation = useNavigation();
-  const [email, setEmail] = useState("");
-  const [passWord, setPassWors] = useState("");
+  const navigation = useNavigation()
+  const [email, setEmail] = useState("")
+  const [passWord, setPassWord] = useState("")
+  const { setToken, setUserEmail, setIsProducer } = useContext(UserContext)
 
-  // Função para logar e verificar se o usuario existe
-  async function verifiUser() {
-    await signInWithEmailAndPassword(auth, email, passWord)
-      .then(() => {})
-      .catch((error) => alert(error.code));
+  // Checks whether the user is a producer or not
+  const goToHome = (isProducer) => {
+    if (isProducer === true) {
+      navigation.navigate("ProducerDrawerRoutes")
+    } else {
+      navigation.navigate("UserDrawerRoutes")
+    }
+  }
 
-    // limpa os inputs caso tudo de certo
-    setEmail("");
-    setPassWors("");
+  // Function to login and check if the user exists
+  const verifyUser = async () => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        passWord
+      )
+
+      const { _tokenResponse } = userCredential
+      const { userEmail = email, idToken } = _tokenResponse
+      setToken(idToken)
+      setUserEmail(userEmail)
+
+      const uid = userCredential.user.uid
+      const snapshot = await get(
+        child(ref(database), `user/${uid}` && `producer/${uid}`)
+      )
+      const isProducer = snapshot.exists() ? snapshot.val().producer : false
+      setIsProducer(isProducer)
+      goToHome(isProducer)
+
+      // Clear the inputs
+      setEmail("")
+      setPassWord("")
+    } catch (error) {
+      const errorMessage =
+        errorCodeMessages[error.code] ||
+        "Erro ao efetuar login. Tente novamente mais tarde."
+      AlertStyle.alert(errorMessage)
+    }
+  }
+
+  // Go to registration screen
+  const goToSignUp = () => {
+    navigation.navigate("SignUp")
+    setEmail("")
+    setPassWord("")
   }
 
   return (
-    <View style={styles.conteiner}>
+    <Conteiner>
       <Logo />
 
-      <TextInput
-        style={styles.input}
+      <Input
         placeholderTextColor="#FFF"
         placeholder="Informe seu E-mail"
         type="text"
         value={email}
-        onChangeText={(text) => setEmail(text)}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+        autoCapitalize="none"
       />
-      <TextInput
-        style={styles.input}
+
+      <Input
         placeholderTextColor="#FFF"
         secureTextEntry={true}
         placeholder={"Informe sua senha"}
         value={passWord}
-        onChangeText={(text) => setPassWors(text)}
+        onChangeText={setPassWord}
       />
 
-      {/* Verifica se o campo de email e senha foi preenchido se não estiver o botão de login é desabilitado*/}
-      {email === "" || passWord === "" ? (
-        <TouchableOpacity style={styles.touchable} disabled={true}>
-          <Text>LOGIN</Text>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity style={styles.touchable} onPress={() => verifiUser}>
-          <Text>LOGIN</Text>
-        </TouchableOpacity>
-      )}
+      <Touchable onPress={() => verifyUser()}>
+        <Text>Logar</Text>
+      </Touchable>
 
-      <TouchableOpacity style={styles.touchableWitOutStyle}>
-        <Text style={{ color: "#fff" }}>Forgot your passWord?</Text>
-      </TouchableOpacity>
+      <TouchableWitOutStyle onPress={goToSignUp}>
+        <Text style={{ color: "#fff" }}>Cadastrar</Text>
+      </TouchableWitOutStyle>
+    </Conteiner>
+  )
+}
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate("SignUp")}
-        style={styles.touchableWitOutStyle}
-      >
-        <Text style={{ color: "#fff" }}>SIGN UP</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
-
-const styles = StyleSheet.create({
-  conteiner: {
-    flex: 1,
-    backgroundColor: "#008000",
-  },
-  input: {
-    borderBottomWidth: 1,
-    borderBottomColor: "#fff",
-    justifyContent: "center",
-    height: 50,
-    margin: 20,
-    textAlign: "center",
-    color: "#fff",
-    fontSize: 20,
-  },
-  touchable: {
-    alignItems: "center",
-    marginLeft: "25%",
-    marginRight: "25%",
-    marginTop: "5%",
-    backgroundColor: "#fff",
-    borderRadius: 30,
-    padding: 14,
-  },
-  touchableWitOutStyle: {
-    alignItems: "center",
-    marginTop: "11.5%",
-    fontSize: 20,
-    textAlign: "center",
-    marginBottom: 25,
-    height: 30,
-  },
-});
-
-export default Login;
+export default Login

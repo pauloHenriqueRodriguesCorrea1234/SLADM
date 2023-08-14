@@ -1,125 +1,166 @@
-import React, { useState } from "react";
+// Hooks
+import React, { useState } from "react"
 
+// Styles
 import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
+  Conteiner,
+  Input,
+  ViewProducer,
+  Touchable,
+  TextProducer,
+  TextCadastrar,
+  AlertStyle,
   Switch,
-  View,
-} from "react-native";
+} from "./styles"
 
-import Logo from "../../../components/Logo";
+// Components
+import Logo from "../../../components/Logo"
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
+// Error vector
+import errorCodeMessages from "../ConfigError/errorCodeMessages"
 
-import { auth } from "../../../services/firebaseAuthentication";
+// Navigation
+import { useNavigation } from "@react-navigation/native"
+
+// Firebase library
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
+import { db } from "../../../services/firebaseAuthentication"
+import { ref, set } from "firebase/database"
 
 const SignUp = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [producert, setProducer] = useState(false)
+  const navigation = useNavigation()
 
-  const handleAuthError = (error) => {
-    if (error.code) {
-      switch (error.code) {
-        case "auth/weak-password":
-          alert("Senha muito fraca");
-          break;
+  // User variables
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
-        case "auth/email-already-in-use":
-          alert("Este e-mail já está em uso por outro usuário");
-          break;
+  // Producer variables
+  const [producer, setProducer] = useState(false)
+  const products = useState({})
+  const [phone, setPhone] = useState("")
 
-        case "auth/wrong-password":
-          alert("Senha incorreta");
-          break;
+  const auth = getAuth()
 
-        case "auth/invalid-email":
-          alert("Formato de email invalido");
-
-        default:
-          alert("Ops... Aconteceu algum erro");
-      }
-    }
-  };
-
+  // Function for crate user
   async function createUser() {
-    await createUserWithEmailAndPassword(auth, email, password, name)
-      .then((data) => {
-        const user = data.user;
+    if (name === null || name === "") {
+      alert(`Informe seu nome`)
+      return
+    }
+    if (email === null || email === "") {
+      alert(`Informe seu e-mail`)
+      return
+    }
+    if (password === null || password === "") {
+      alert(`Informe sua senha`)
+      return
+    } else {
+      await createUserWithEmailAndPassword(auth, email, password)
+        .then((data) => {
+          const users = data.user.uid
 
-        user.sendEmailVerification()
-          .then((r) => alert("Email de confirmação enviado"))
-          .catch((err) => alert("Ops... Aconteceu algum erro"));
-      })
-      .catch(handleAuthError);
-    setName("");
-    setEmail("");
-    setPassword("");
+          // Checks if the user is a producer
+          if (producer === true) {
+            if (phone === null || phone === "") {
+              alert("Informe seu telefone")
+              return
+            } else {
+              // Sending data to firebase
+              set(ref(db, "producer/" + users), {
+                // Producer data
+                username: name,
+                email: email,
+                password: password,
+                producer: producer,
+                phone: phone,
+                products: products,
+              })
+            }
+          } else {
+            set(ref(db, "user/" + users), {
+              // User data
+              username: name,
+              email: email,
+              password: password,
+            })
+          }
+
+          alert("Usuário cadastrado com sucesso!")
+          navigation.navigate("Login")
+          setName("")
+          setEmail("")
+          setPassword("")
+          setProducer(false)
+          setPhone("")
+        })
+        .catch((error) => {
+          const errorMessage =
+            errorCodeMessages[error.code] ||
+            "Erro ao efetuar o cadastramento. Tente novamente mais tarde."
+          AlertStyle.alert(errorMessage)
+        })
+    }
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#008000" }}>
+    <Conteiner>
       <Logo />
 
-      <TextInput
-        style={styles.input}
+      <Input
         placeholderTextColor="#FFF"
-        placeholder="Informe seu nome"
+        placeholder="Nome"
         value={name}
         onChangeText={(text) => setName(text)}
+        autoCapitalize="words"
       />
 
-      <TextInput
-        style={styles.input}
+      <Input
         placeholderTextColor="#FFF"
-        placeholder="Informe seu email"
+        placeholder="E-mail"
         value={email}
         onChangeText={(text) => setEmail(text)}
+        autoCapitalize="none"
+        keyboardType="email-address"
       />
 
-      <TextInput
-        style={styles.input}
+      <Input
         placeholderTextColor="#FFF"
-        placeholder="Informe sua senha"
+        placeholder="Senha"
         value={password}
         onChangeText={(text) => setPassword(text)}
         secureTextEntry={true}
+        autoCapitalize="none"
       />
 
-      <Switch
-      // Este é na branch test
-      />
+      <ViewProducer>
+        <TextProducer>Você é um produtor? </TextProducer>
 
-      <TouchableOpacity style={styles.touchable} onPress={() => createUser()}>
-        <Text>Cadastrar</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
+        <Switch
+          style={{ alignItems: "flex-start" }}
+          trackColor={{ false: "#fff", true: "#d3d3d3" }}
+          thumbColor={producer ? "#fff" : "#000"}
+          value={producer}
+          onValueChange={() => setProducer(!producer)}
+        />
+      </ViewProducer>
 
-const styles = StyleSheet.create({
-  input: {
-    borderBottomWidth: 1,
-    borderBottomColor: "#fff",
-    justifyContent: "center",
-    height: 50,
-    margin: 20,
-    textAlign: "center",
-    color: "#fff",
-    fontSize: 20,
-  },
-  touchable: {
-    alignItems: "center",
-    marginLeft: "25%",
-    marginRight: "25%",
-    marginTop: "5%",
-    backgroundColor: "#fff",
-    borderRadius: 30,
-    padding: 14,
-  },
-});
+      {producer ? (
+        <Input
+          placeholder="Telefone"
+          placeholderTextColor="#FFF"
+          value={phone}
+          onChangeText={(text) => setPhone(text)}
+          inputMode="tel"
+          keyboardType="numeric"
+        />
+      ) : null}
 
-export default SignUp;
+      <Touchable onPress={() => createUser()}>
+        <TextCadastrar>Cadastrar</TextCadastrar>
+      </Touchable>
+    </Conteiner>
+  )
+}
+
+export default SignUp

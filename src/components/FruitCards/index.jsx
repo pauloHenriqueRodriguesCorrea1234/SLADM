@@ -1,37 +1,15 @@
-import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Conteiner, Image, Text }from './styles'
 
-const FruitCards = ({ productName, imgProduct }) => {
+// Componente FruitsCards recebe duas propriedades: 'name' e 'img'
+const FruitCards = ({ name, img }) => {
   return (
-    <TouchableOpacity style={styles.conteiner}>
-
-      <Image 
-      source={{ uri: imgProduct }} 
-      style={StyleSheet.img} />
-      
-      <Text style={styles.text}>{productName}</Text>
-    </TouchableOpacity>
+    <Conteiner>
+       {/* Renderiza uma imagem usando a URL fornecida na propriedade 'img' */}
+      <Image  source={{ uri: img }} />
+       {/* Renderiza o nome da fruta usando a propriedade 'name' */}
+      <Text>{name}</Text>
+    </Conteiner>
   );
 };
 
-const styles = StyleSheet.create({
-  conteiner: {
-    flex: 1,
-    width: "100%",
-    paddingHorizontal: 20,
-    height: 40,
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-
-  imgProduct: {
-    height: 45,
-    width: 45,
-  },
-  text: {
-    fontSize: 24,
-    paddingRight: 10,
-  },
-});
-
-
-export default FruitCards
+export default FruitCards;

@@ -1,20 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
-import Login from './src/pages/ChecksScreens/Login';
-import SignUp from './src/pages/ChecksScreens/SignUp';
-import Routes from './src/routes';
+import "react-native-gesture-handler";
+
+import { StatusBar } from "expo-status-bar";
+import { Conteiner } from "./AppStyle";
+import { UserContextProvider } from "./src/context/UserContext";
+
+import Routes from "./src/routes";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar  barStyle="light-content" />
-      <Routes/>
-    </View>
+    // Wrapper para o contexto do usuário. Wrapper é uma função destinada a chamar uma ou mais funções.
+    <UserContextProvider>
+      <Conteiner>
+        <StatusBar hidden />
+        <Routes />
+      </Conteiner>
+    </UserContextProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  }
-});
