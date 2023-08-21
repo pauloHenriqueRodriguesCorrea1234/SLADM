@@ -1,10 +1,10 @@
-import "react-native-gesture-handler";
+import "react-native-gesture-handler"
 
-import { StatusBar } from "expo-status-bar";
-import { Conteiner } from "./AppStyle";
-import { UserContextProvider } from "./src/context/UserContext";
+import { StatusBar } from "expo-status-bar"
+import { Conteiner } from "./AppStyle"
+import { UserContextProvider } from "./src/context/UserContext"
 
-import Routes from "./src/routes";
+import Routes from "./src/routes"
 
 export default function App() {
   return (
@@ -15,5 +15,5 @@ export default function App() {
         <Routes />
       </Conteiner>
     </UserContextProvider>
-  );
+  )
 }

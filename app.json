@@ -4,30 +4,28 @@
     "slug": "AMD",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/img/logo.png",
+    "icon": "./assets/favicon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./src/assets/img/logo.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#b06c49"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/img/logo.png",
+        "foregroundImage": "./assets/favicon.png",
         "backgroundColor": "#008000"
       }
     },
     "web": {
-      "favicon": "./src/assets/img/logo.png"
+      "favicon": "./assets/favicon.png"
     }
   }
 }
