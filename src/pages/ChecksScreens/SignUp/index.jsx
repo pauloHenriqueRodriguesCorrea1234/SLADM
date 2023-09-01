@@ -71,7 +71,7 @@ const SignUp = () => {
                 // Producer data
                 username: name,
                 email: email,
-                password: password,
+                // password: password, Retirar por causa de brecha de segurança.
                 producer: producer,
                 phone: phone,
                 products: products,

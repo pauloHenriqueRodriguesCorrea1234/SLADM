@@ -8,15 +8,16 @@ export const Conteiner = styled.View`
 export const ViewInput = styled.View`
   flex-direction: row;
   border-width: 1px;
-  height: 50px;
   align-items: center;
   justify-content: space-between;
   border-color: #fff;
-  margin: 8px 10px 8px 10px;
+  margin: 8px 10px;
   padding-right: 20px;
-`
+  `
 export const Input = styled.TextInput`
   font-size: 16px;
+  flex: 1;
+  height: 50px;
   margin-left: 10px;
   color: #fff;
 `
