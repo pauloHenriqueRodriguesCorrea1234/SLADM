@@ -103,6 +103,7 @@ const Login = () => {
         placeholderTextColor="#FFF"
         secureTextEntry={true}
         placeholder={"Informe sua senha"}
+        autoCapitalize="none"
         value={passWord}
         onChangeText={setPassWord}
       />
