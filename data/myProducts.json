@@ -1,35 +1,35 @@
 {
-  "my-products": [
+  "myProducts": [
     {
-      "id": 1,
+      "id": "1",
       "nameProduct": "Banana",
       "urlProduct": "price",
       "UnitOfMeasurement": 1,
       "price": 8.7
     },
     {
-      "id": 2,
+      "id": "2",
       "nameProduct": "blabla",
       "urlProduct": "price",
       "UnitOfMeasurement": 1,
       "price": 8.7
     },
     {
-      "id": 3,
+      "id": "3",
       "nameProduct": "wndwind",
       "urlProduct": "price",
       "UnitOfMeasurement": 1,
       "price": 8.7
     },
     {
-      "id": 4,
+      "id": "4",
       "nameProduct": "Banana",
       "urlProduct": "price",
       "UnitOfMeasurement": 1,
       "price": 8.7
     },
     {
-      "id": 5,
+      "id": "5",
       "nameProduct": "dkwjdw",
       "urlProduct": "price",
       "UnitOfMeasurement": 1,
