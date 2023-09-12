@@ -13,3 +13,6 @@ web-build/
 
 # macOS
 .DS_Store
+
+# Está pasta não será mandada para o gitHub por conta de ser um teste ainda
+FilterProduct/
