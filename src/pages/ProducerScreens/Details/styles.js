@@ -7,31 +7,58 @@ export const Conteiner = styled.View`
 
 export const ViewDetails = styled.View`
   margin: 20px;
-  flex: 0.5;
+flex: 1;
+background-color: #b06c49;
+padding: 20px;
 `
 
-export const Image = styled.Image``
+export const Image = styled.Image`
+`
 
 export const TextDetails = styled.Text`
-  font-size: 18px;
-  color: #fff;
+font-size: 22px;
+font-weight: bold;
+margin-bottom: 20px;
 `
+
+export const ButtonsGestProduct = styled.View`
+flex-direction: row;
+justify-content: space-between;
+padding-top: 20%;
+`
+export const ButtonEdit = styled.TouchableOpacity`
+  background-color: #fff;
+  border-radius: 50px;
+  align-items: center;
+  width: 34%;
+  height: 30px;
+  justify-content: center;
+`
+
+export const ButtonRemove = styled.TouchableOpacity`
+background-color: #fff;
+  border-radius: 50px;
+  align-items: center;
+  width: 34%;
+  height: 30px;
+  justify-content: center;
+`
+
+export const TextGestãoProduct = styled.Text`
+font-size: 20px;
+font-weight: bold;`
 
 export const ViewContact = styled.View`
-  flex-direction: row;
-  justify-content: space-around;
-`
-
-export const Touchable = styled.TouchableOpacity`
-  border-width: 1px;
-  padding: 8px;
-  border-radius: 40px;
-  width: 90px;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
+justify-content: center;
+align-items: center;
+flex: 1;
 `
 
 export const TextContact = styled.Text`
-  font-size: 18px;
+font-size: 22px;
+font-weight: bold;
+margin-bottom: 20px;
 `
+
+export const Touchable = styled.TouchableOpacity``
+          
