@@ -1,4 +1,4 @@
-import { TouchableOpacity, FlatList } from "react-native"
+import { FlatList } from "react-native"
 
 import {
   Conteiner,
@@ -6,7 +6,6 @@ import {
   Input,
   NotFaundText,
   ViewNotFaund,
-  ScrollView,
 } from "./styles"
 
 // React States

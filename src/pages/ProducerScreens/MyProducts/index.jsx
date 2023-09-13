@@ -94,13 +94,18 @@ const MyProducts = () => {
         />
       </ViewInput>
 
+      <NotFaundText>{filter}</NotFaundText>
 
       {/* Component to render producers' products */}
-      <List
-        data={products}
-        keyExtractor={item => item.id}
-        renderItem={renderItem}
-      />
+      {myProducts.length > 0 && (
+        <List
+          data={products}
+          keyExtractor={item => item.id}
+          renderItem={renderItem}
+        />
+      )
+      }
+
 
       {/* Component for add new product */}
       <NewProduct />
