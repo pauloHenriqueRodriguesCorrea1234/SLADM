@@ -5,12 +5,13 @@ const AddProduct = () => {
   return (
     <Conteiner>
 
-      <Title>Informações do produto</Title>
+      <Title>Informações do produto</Title> 
 
       <ViewInput>
         <Input placeholder="Nome" autoCapitalize='words' placeholderTextColor="#FFF" />
         <Input placeholder="Insira a imagem" keyboardType="url" placeholderTextColor="#FFF" />
         <Input keyboardType="decimal-pad" placeholder="preço" placeholderTextColor="#FFF" />
+        <Input keyboardType="decimal-pad" placeholder="Unidade de medida" placeholderTextColor="#FFF" />
       </ViewInput>
 
       <ViewCreateProduct>

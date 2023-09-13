@@ -7,7 +7,7 @@ export const Conteiner = styled.View`
 `
 
 export const Title = styled.Text`
-  font-size: 20px;
+  font-size: 25px;
   color: #fff;
   text-align: center;
 `
