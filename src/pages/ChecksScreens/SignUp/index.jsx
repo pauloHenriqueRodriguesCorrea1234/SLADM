@@ -26,6 +26,11 @@ import { useNavigation } from "@react-navigation/native"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 import { db } from "../../../services/firebaseAuthentication"
 import { ref, set } from "firebase/database"
+import axios from "axios"
+
+const http = axios.create({
+  baseURL: 'https://api-solo-fertil.vercel.app'
+})
 
 const SignUp = () => {
   const navigation = useNavigation()
@@ -76,6 +81,7 @@ const SignUp = () => {
                 phone: phone,
                 products: products,
               })
+
             }
           } else {
             set(ref(db, "user/" + users), {
@@ -100,6 +106,9 @@ const SignUp = () => {
             "Erro ao efetuar o cadastramento. Tente novamente mais tarde."
           AlertStyle.alert(errorMessage)
         })
+      http.post('/producers', { name, email, phone }, { validateStatus: status => status < 500 })
+        .then(response => console.log(response))
+        .catch(err => console.log(err))
     }
   }
 
