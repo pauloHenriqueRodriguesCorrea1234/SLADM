@@ -16,6 +16,7 @@ import { useEffect, useState } from "react"
 // Components 
 import FruitCards from "../../../components/FruitCards"
 import ExitApp from "../../../components/BackHandler"
+import { FlatList } from "react-native"
 
 const MyProducts = () => {
 
@@ -97,16 +98,12 @@ const MyProducts = () => {
       <NotFaundText>{filter}</NotFaundText>
 
       {/* Component to render producers' products */}
-      {myProducts.length > 0 && (
-        <List
+        <FlatList
           data={products}
           keyExtractor={item => item.id}
           renderItem={renderItem}
         />
-      )
-      }
-
-
+  
       {/* Component for add new product */}
       <NewProduct />
 
