@@ -8,7 +8,7 @@ import UserTabRoutes from "./UserTab.routes"
 import Instagram from "../../components/LinkInstagram"
 import Logout from "../../components/Logout"
 
-// Creation of Drawer Navigator for user routes
+// Creation of drawer navigator for user routes
 const Drawer = createDrawerNavigator()
 
 const UserDrawerRoutes = () => {

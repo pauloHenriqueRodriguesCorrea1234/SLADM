@@ -1,10 +1,10 @@
 import { Alert, BackHandler } from "react-native"
 
 const ExitApp = () => {
-  // Cria uma ação quando o botão de retorno é pressionado.
+  // Creates an action when the return button is pressed.
   const backAction = () => {
     console.log("Saindo...")
-    // Mostra um alerta  para confirmação de saída do app.
+    // Shows an alert to confirm exiting the app.
     Alert.alert("Sair", "Deseja realmente sair do app?", [
       {
         text: "Cancelar",
@@ -13,17 +13,17 @@ const ExitApp = () => {
       },
       { text: "Sim", onPress: () => BackHandler.exitApp() },
     ])
-    // Retorna true indicando que foi tratado.
+    // Returns true indicating that it was treated.
     return true
   }
 
-  // Cria um 'ouvinte' ao pressionar o botão 
+  // Creates a 'listener' on button press
   const backHandler = BackHandler.addEventListener(
     "hardwareBackPress",
     backAction
   )
 
-  // Retorna a função que remove o 'ouvinte' quando o componente é 'desmontado'
+  // Returns the function that removes the 'listener' when the component is 'unmounted'
   return () => backHandler.remove()
 }
 

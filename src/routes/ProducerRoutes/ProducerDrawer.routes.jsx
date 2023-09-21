@@ -1,7 +1,9 @@
 import { createDrawerNavigator } from "@react-navigation/drawer"
 
+// Library – vector icons
 import { Ionicons, AntDesign, Feather } from "react-native-vector-icons"
 
+// Producer menu components 
 import TabRoutes from "./ProducerTab.routes"
 import Instagram from "../../components/LinkInstagram"
 import Logout from "../../components/Logout"

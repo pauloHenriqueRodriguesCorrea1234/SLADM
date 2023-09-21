@@ -1,12 +1,12 @@
-import { Conteiner, Image, Text }from './styles'
+import { Conteiner, Image, Text } from './styles'
 
-// Componente FruitsCards recebe duas propriedades: 'name' e 'img'
+// Fruits Cards component receives two properties: 'name' and 'igm'
 const FruitCards = ({ name, img }) => {
   return (
     <Conteiner>
-       {/* Renderiza uma imagem usando a URL fornecida na propriedade 'img' */}
-      <Image  source={{ uri: img }} />
-       {/* Renderiza o nome da fruta usando a propriedade 'name' */}
+      {/* Render an image using the URL provided in the 'img' property */}
+      <Image source={{ uri: img }} />
+      {/* Renders the name of the fruit using the 'name' property */}
       <Text>{name}</Text>
     </Conteiner>
   );

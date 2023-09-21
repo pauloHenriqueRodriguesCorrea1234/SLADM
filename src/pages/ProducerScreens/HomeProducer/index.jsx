@@ -1,5 +1,6 @@
 import { FlatList } from "react-native"
 
+// Styled Components
 import {
   Conteiner,
   ViewInput,

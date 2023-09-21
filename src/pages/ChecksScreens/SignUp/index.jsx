@@ -1,7 +1,7 @@
-// Hooks
+// React hooks
 import React, { useState } from "react"
 
-// Styles
+// Styled Components
 import {
   Conteiner,
   Input,
@@ -76,7 +76,6 @@ const SignUp = () => {
                 // Producer data
                 username: name,
                 email: email,
-                // password: password, Retirar por causa de brecha de segurança.
                 producer: producer,
                 phone: phone,
                 products: products,

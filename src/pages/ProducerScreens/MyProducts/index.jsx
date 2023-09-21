@@ -98,12 +98,12 @@ const MyProducts = () => {
       <NotFaundText>{filter}</NotFaundText>
 
       {/* Component to render producers' products */}
-        <FlatList
-          data={products}
-          keyExtractor={item => item.id}
-          renderItem={renderItem}
-        />
-  
+      <FlatList
+        data={products}
+        keyExtractor={item => item.id}
+        renderItem={renderItem}
+      />
+
       {/* Component for add new product */}
       <NewProduct />
 

@@ -75,6 +75,8 @@ const Login = () => {
         errorCodeMessages[error.code] ||
         "Erro ao efetuar login. Tente novamente mais tarde."
       AlertStyle.alert(errorMessage)
+      setEmail("")
+      setPassWord("")
     }
   }
 

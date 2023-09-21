@@ -3,15 +3,15 @@ import { useState } from "react"
 import { Linking } from "react-native"
 
 const Instagram = () => {
-  // Define um estado usando o hook 'useState'
+  // Sets a state using the 'useState' hook
   const LinkInstagram = useState([
-    // Abre a URL do Instagram ao criar o estado
+    // Open Instagram URL when creating status
     Linking.openURL("https://www.instagram.com/solo_fertil_campus_aquidauana/"),
   ])
 
-  // Obtém o objeto de navegação usando o hook 'useNavigation'
+  // Get the navigation object using the 'useNavigate' hook
   const navigation = useNavigation()
-  // Navega para a tela "Home"
+  // Navigate to the "Home" screen
   navigation.navigate("Home")
 }
 

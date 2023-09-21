@@ -1,12 +1,14 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
-import { Ionicons, MaterialIcons, Entypo } from "react-native-vector-icons"
+// Library – vector icons
+import { Ionicons, MaterialIcons } from "react-native-vector-icons"
 
+// Producer route components
 import MyProducts from "../../pages/ProducerScreens/MyProducts"
 import HomeProducer from "../../pages/ProducerScreens/HomeProducer"
 import AddProduct from "../../pages/ProducerScreens/AddProduct"
 
-// Criação do Bottom Tab Navigator para as rotas do produtor
+// Creation of the Bottom Tab Navigator for producer routes
 const Tab = createBottomTabNavigator()
 
 const TabRoutes = () => {
@@ -23,7 +25,7 @@ const TabRoutes = () => {
       }}
     >
 
-      {/* Rota para a tela de início do produtor (HomeProducer) */}
+      {/* Route to the producer's home screen (HomeProducer) */}
       <Tab.Screen
         name="HomeProducer"
         component={HomeProducer}
@@ -47,7 +49,7 @@ const TabRoutes = () => {
         }}
       /> */}
 
-      {/* Rota para a tela "Meus Produtos" (MyProducts) */}
+      {/* Route to the "My Products" screen */}
       <Tab.Screen
         name="MeusProdutos"
         component={MyProducts}

@@ -2,11 +2,11 @@ import { useNavigation } from "@react-navigation/native"
 import { auth } from "../../services/firebaseAuthentication"
 
 const Logout = () => {
-  // Obtém o objeto de navegação usando o hook 'useNavigation'
+  // Get the navigation object using the 'useNavigation' hook
   const navigation = useNavigation()
-   // Navega para a tela "Login"
+  // Navigate to the "Login" screen
   navigation.navigate("Login")
-  // Realiza o logout do usuário usando a função 'signOut' do serviço de autenticação
+  // Logs the user out using the 'signOut' function of the authentication service
   auth.signOut()
 }
 

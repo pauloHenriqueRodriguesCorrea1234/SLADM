@@ -1,3 +1,4 @@
+// Styled Components
 import { Conteiner, ViewDetails, Image, TextDetails, ViewContact, TextContact, Touchable, ButtonEdit, ButtonRemove, TextGestãoProduct, ButtonsGestProduct } from './styles'
 
 const Details = () => {
