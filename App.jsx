@@ -1,17 +1,18 @@
 import "react-native-gesture-handler"
 
-import { StatusBar } from "expo-status-bar"
+// Styles componets
 import { Conteiner } from "./AppStyle"
+
 import { UserContextProvider } from "./src/context/UserContext"
 
+// Route context
 import Routes from "./src/routes"
 
 export default function App() {
   return (
-    // Wrapper para o contexto do usuário. Wrapper é uma função destinada a chamar uma ou mais funções.
+    // Wrapper for user context. Wrapper is a function intended to call one or more functions.
     <UserContextProvider>
       <Conteiner>
-        <StatusBar hidden />
         <Routes />
       </Conteiner>
     </UserContextProvider>

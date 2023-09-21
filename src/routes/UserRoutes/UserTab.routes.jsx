@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/Ionicons"
 
 import HomeUser from "../../pages/UserScreens/HomeUser"
 
-// Criação do Bottom Tab Navigator para as rotas do usuário
+// Creation of the Bottom Tab Navigator for user routes
 const Tab = createBottomTabNavigator()
 
 const UserTabRoutes = () => {
@@ -19,7 +19,7 @@ const UserTabRoutes = () => {
       }}
     >
 
-      {/* Rota para a tela de início do usuário (HomeProducer) */}
+      {/* Route to the user's home screen (HomeProducer) */}
       <Tab.Screen
         name="HomeUser"
         component={HomeUser}

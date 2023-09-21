@@ -1,13 +1,14 @@
 import { createDrawerNavigator } from "@react-navigation/drawer"
 
+// Library – vector icons
 import { Ionicons, AntDesign, Feather } from "react-native-vector-icons"
 
-// Componentes
+// User menu components 
 import UserTabRoutes from "./UserTab.routes"
 import Instagram from "../../components/LinkInstagram"
 import Logout from "../../components/Logout"
 
-// Criação do Drawer Navigator para as rotas do usuário
+// Creation of Drawer Navigator for user routes
 const Drawer = createDrawerNavigator()
 
 const UserDrawerRoutes = () => {
@@ -24,7 +25,7 @@ const UserDrawerRoutes = () => {
       }}
     >
 
-       {/* Rota para a tela de início do usuário (UserTabRoutes) */}
+      {/* Route to the user's home screen (UserTabRoutes) */}
       <Drawer.Screen
         name="Home"
         component={UserTabRoutes}
@@ -36,7 +37,7 @@ const UserDrawerRoutes = () => {
         }}
       />
 
-      {/* Rota para a tela de Instagram (LinkInstagram) */}
+      {/* {Route to Instagram screen (LinkInstagram)} */}
       <Drawer.Screen
         name="Instagram"
         component={Instagram}
@@ -48,7 +49,7 @@ const UserDrawerRoutes = () => {
         }}
       />
 
-      {/* Rota para a tela de Logout (Logout) */}
+      {/* Route to Logout screen */}
       <Drawer.Screen
         name="Logout"
         component={Logout}
