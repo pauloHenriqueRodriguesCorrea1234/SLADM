@@ -72,7 +72,7 @@ const StackRoutes = () => {
         component={SignUp}
         name="SignUp"
         options={{
-          headerTransparent: false,
+          headerTransparent: true,
           headerTintColor: "#fff",
           headerTitle: "Voltar",
         }}

@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components/native"
 import { Alert } from "react-native"
 
 export const Conteiner = styled.SafeAreaView`
@@ -45,3 +45,4 @@ export const TextCadastrar = styled.Text`
 export const AlertStyle = Alert
 
 export const Switch = styled.Switch``
+

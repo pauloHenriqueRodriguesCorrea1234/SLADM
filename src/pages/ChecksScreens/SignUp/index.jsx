@@ -2,16 +2,7 @@
 import React, { useState } from "react"
 
 // Styled Components
-import {
-  Conteiner,
-  Input,
-  ViewProducer,
-  Touchable,
-  TextProducer,
-  TextCadastrar,
-  AlertStyle,
-  Switch,
-} from "./styles"
+import { Conteiner, Input, ViewProducer, Touchable, TextProducer, TextCadastrar, AlertStyle, Switch } from "./styles"
 
 // Components
 import Logo from "../../../components/Logo"
@@ -26,11 +17,7 @@ import { useNavigation } from "@react-navigation/native"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 import { db } from "../../../services/firebaseAuthentication"
 import { ref, set } from "firebase/database"
-import axios from "axios"
-
-const http = axios.create({
-  baseURL: 'https://api-solo-fertil.vercel.app'
-})
+import api from "../../../services/api"
 
 const SignUp = () => {
   const navigation = useNavigation()
@@ -46,6 +33,14 @@ const SignUp = () => {
   const [phone, setPhone] = useState("")
 
   const auth = getAuth()
+
+  const ClearInputs = () => {
+    setName("")
+    setEmail("")
+    setPassword("")
+    setProducer(false)
+    setPhone("")
+  }
 
   // Function for crate user
   async function createUser() {
@@ -93,21 +88,22 @@ const SignUp = () => {
 
           alert("Usuário cadastrado com sucesso!")
           navigation.navigate("Login")
-          setName("")
-          setEmail("")
-          setPassword("")
-          setProducer(false)
-          setPhone("")
+          ClearInputs()
         })
         .catch((error) => {
-          const errorMessage =
-            errorCodeMessages[error.code] ||
-            "Erro ao efetuar o cadastramento. Tente novamente mais tarde."
+          const errorMessage = errorCodeMessages[error.code] || "Erro ao efetuar o cadastramento. Tente novamente mais tarde."
           AlertStyle.alert(errorMessage)
+          ClearInputs()
         })
-      http.post('/producers', { name, email, phone }, { validateStatus: status => status < 500 })
-        .then(response => console.log(response))
-        .catch(err => console.log(err))
+      if (!errorCodeMessages == "auth/uid-alread-exists") {
+        api.post('/producers', { name, email, phone }, { validateStatus: status => status < 500 })
+          .then((response) => {
+            if (api.get()) {
+              console.log(response)
+            }
+          })
+          .catch(err => console.log(err))
+      }
     }
   }
 

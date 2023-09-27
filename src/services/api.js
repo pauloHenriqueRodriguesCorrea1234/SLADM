@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const api = axios.create({
-  baseURL: "https://api-solo-fertil.vercel.app",
+  baseURL: "http://locahost:3001",
 })
 
 export default api
