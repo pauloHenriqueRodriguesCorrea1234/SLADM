@@ -4,7 +4,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer"
 import { Ionicons, AntDesign, Feather } from "react-native-vector-icons"
 
 // User menu components 
-import UserTabRoutes from "./UserTab.routes"
+import HomeUser from "../../pages/UserScreens/HomeUser"
 import Instagram from "../../components/LinkInstagram"
 import Logout from "../../components/Logout"
 
@@ -20,15 +20,16 @@ const UserDrawerRoutes = () => {
         headerTintColor: "#fff",
         headerTransparent: false,
         headerStyle: {
-          backgroundColor: "#777a67",
+          backgroundColor: "#006400",
         },
+        
       }}
     >
 
       {/* Route to the user's home screen (UserTabRoutes) */}
       <Drawer.Screen
         name="Home"
-        component={UserTabRoutes}
+        component={HomeUser}
         options={{
           drawerLabel: "Inicio",
           drawerIcon: ({ size, color }) => (

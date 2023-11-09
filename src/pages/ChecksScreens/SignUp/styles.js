@@ -3,7 +3,7 @@ import { Alert } from "react-native"
 
 export const Conteiner = styled.SafeAreaView`
   flex: 1;
-  background-color: #b06c49;
+  background-color: #006400;
 `
 
 export const Input = styled.TextInput`

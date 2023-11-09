@@ -96,7 +96,7 @@ const SignUp = () => {
           ClearInputs()
         })
       if (!errorCodeMessages == "auth/uid-alread-exists") {
-        api.post('/producers', { name, email, phone }, { validateStatus: status => status < 500 })
+        await api.post('/producers', { name, email, phone }, { validateStatus: status => status < 500 })
           .then((response) => {
             if (api.get()) {
               console.log(response)

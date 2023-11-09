@@ -19,11 +19,23 @@ import { itens } from "../../../../data/itens.json"
 import FruitCards from '../../../components/FruitCards'
 import ExitApp from "../../../components/BackHandler"
 import Icon from "react-native-vector-icons/MaterialIcons"
+import api from "../../../services/api"
 
 const HomeProducer = () => {
   const [products, setProducts] = useState([])
   const [filter, setFilter] = useState("")
   const [notFaund, setNotFaund] = useState(false)
+
+  async function ListAllProducts() {
+    const response = await api.get('/', {
+      validateStatus: (status) => status < 500,
+    })
+
+    if (response.status === 200) {
+      const { products } = response.data
+      console.log(products);
+    }
+  }
 
   useEffect(() => {
     setProducts(itens)
@@ -48,10 +60,10 @@ const HomeProducer = () => {
     }
   }, [filter])
 
-
   function renderItem({ item }) {
     return <FruitCards img={item.coverUrl} name={item.productName} />
   }
+
   return (
     <Conteiner>
       <ViewInput>

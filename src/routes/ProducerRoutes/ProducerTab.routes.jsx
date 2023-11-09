@@ -20,7 +20,7 @@ const TabRoutes = () => {
         tabBarActiveTintColor: "#d3d3d3",
         tabBarInactiveTintColor: "#fff",
         tabBarStyle: {
-          backgroundColor: "#b06c49",
+          backgroundColor: "#006400",
         },
       }}
     >

@@ -12,6 +12,7 @@ import UserDrawerRoutes from "./UserRoutes/UserDrawer.routes"
 import ProducerDrawerRoutes from "./ProducerRoutes/ProducerDrawer.routes"
 import AddProduct from "../pages/ProducerScreens/AddProduct"
 import Details from "../pages/ProducerScreens/Details"
+import AvaliableProducts from "../components/AvailableProducts"
 
 // Creation of Stack Navigator for stack routes
 const Stack = createStackNavigator()
@@ -77,6 +78,13 @@ const StackRoutes = () => {
           headerTitle: "Voltar",
         }}
       />
+
+      <Stack.Screen
+        component={AvaliableProducts}
+        name="AvaliableProducts"
+      />
+
+
     </Stack.Navigator>
   )
 }

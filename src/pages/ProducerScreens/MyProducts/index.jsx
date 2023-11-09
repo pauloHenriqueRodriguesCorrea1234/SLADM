@@ -6,6 +6,7 @@ import { MaterialIcons, Entypo } from 'react-native-vector-icons'
 
 // Data
 import { myProducts } from '../../../../data/myProducts.json'
+import { itens } from "../../../../data/itens.json"
 
 // Styles Components
 import { Conteiner, ViewInput, Input, ViewNotFaund, NotFaundText, List, TouchableOpacityDetails, TouchableOpacityNewProduct, ConteinerNewProduct, ViewNewProduct } from './styles'
@@ -27,7 +28,7 @@ const MyProducts = () => {
   const [notFaund, setNotFaund] = useState(false)
 
   useEffect(() => {
-    setProducts(myProducts)
+    setProducts(itens)
     ExitApp()
   }, [])
 
@@ -53,7 +54,7 @@ const MyProducts = () => {
   function renderItem({ item }) {
     return (
       <TouchableOpacityDetails onPress={() => navigation.navigate("Details")}>
-        <FruitCards name={item.nameProduct} />
+        <FruitCards img={item.coverUrl} name={item.productName} />
       </TouchableOpacityDetails>
     )
   }

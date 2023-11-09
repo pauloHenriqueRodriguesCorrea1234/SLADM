@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const Conteiner = styled.View`
   flex: 1;
-  background-color: #b06c49;
+  background-color: #006400;
   justify-content: center;
 `
 

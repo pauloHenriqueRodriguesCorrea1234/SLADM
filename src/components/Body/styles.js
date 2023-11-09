@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const Conteiner = styled.View`
   flex: 1;
-  background-color: #b06c49;
+  background-color: #006400;
 `
 
 export const ViewInput = styled.View`
@@ -13,7 +13,7 @@ export const ViewInput = styled.View`
   border-color: #fff;
   margin: 8px 10px;
   padding-right: 20px;
-  `
+`
 export const Input = styled.TextInput`
   font-size: 16px;
   flex: 1;

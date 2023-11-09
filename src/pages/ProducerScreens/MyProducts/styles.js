@@ -1,8 +1,8 @@
-import styled from "styled-components"
+import styled from "styled-components/native"
 
 export const Conteiner = styled.View`
   flex: 1;
-  background-color: #b06c49;
+  background-color: #006400;
 `
 
 export const ViewInput = styled.View`

@@ -20,7 +20,12 @@ import FruitCards from "../FruitCards"
 import ExitApp from "../BackHandler"
 import Icon from "react-native-vector-icons/MaterialIcons"
 
+import { useNavigation } from "@react-navigation/native"
+
 const Body = () => {
+
+  const navigation = useNavigation()
+
   const [products, setProducts] = useState([])
   const [filter, setFilter] = useState("")
   const [notFaund, setNotFaund] = useState(false)

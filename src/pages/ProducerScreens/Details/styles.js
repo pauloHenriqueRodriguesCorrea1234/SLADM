@@ -7,9 +7,9 @@ export const Conteiner = styled.View`
 
 export const ViewDetails = styled.View`
   margin: 20px;
-flex: 1;
-background-color: #b06c49;
-padding: 20px;
+  flex: 1;
+  background-color: #006400;
+  padding: 20px;
 `
 
 export const Image = styled.Image`

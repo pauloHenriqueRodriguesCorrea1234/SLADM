@@ -18,11 +18,11 @@ const ProducerDrawerRoutes = () => {
         title: "Menu",
         headerTintColor: "#fff",
         headerStyle: {
-          backgroundColor: "#777a67",
+          backgroundColor: "#006400",
         },
       }}
     >
-       {/* Rota para a tela de início (TabRoutes) */}
+      {/* Rota para a tela de início (TabRoutes) */}
       <Drawer.Screen
         name="Home"
         component={TabRoutes}
