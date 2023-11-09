@@ -7,14 +7,16 @@ import { UserContextProvider } from "./src/context/UserContext"
 
 // Route context
 import Routes from "./src/routes"
+import AddProduct from "./src/pages/ProducerScreens/AddProduct"
 
 export default function App() {
   return (
     // Wrapper for user context. Wrapper is a function intended to call one or more functions.
     <UserContextProvider>
-      <Conteiner>
+      <AddProduct/>
+      {/* <Conteiner>
         <Routes />
-      </Conteiner>
+      </Conteiner> */}
     </UserContextProvider>
   )
 }

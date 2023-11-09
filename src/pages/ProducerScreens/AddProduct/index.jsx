@@ -1,26 +1,22 @@
 // Styles Components
-import { Conteiner, Input, Title, ViewCreateProduct, Touchable, ViewInput, TextCreateProduct } from "./styles"
+import { Conteiner, Title, Touchable, TextCreateProduct } from "./styles"
 
 const AddProduct = () => {
   return (
     <Conteiner>
 
-      <Title>Informações do produto</Title> 
+      <Title>Informações do produto</Title>
 
-      <ViewInput>
-        <Input placeholder="Nome" autoCapitalize='words' placeholderTextColor="#FFF" />
-        <Input placeholder="Insira a imagem" keyboardType="url" placeholderTextColor="#FFF" />
-        <Input keyboardType="decimal-pad" placeholder="preço" placeholderTextColor="#FFF" />
-        <Input keyboardType="decimal-pad" placeholder="Unidade de medida" placeholderTextColor="#FFF" />
-      </ViewInput>
+      {/*Seletor de produtos*/}
 
-      <ViewCreateProduct>
-        <Touchable>
-          <TextCreateProduct>
-            Cadastrar Produto
-          </TextCreateProduct>
-        </Touchable>
-      </ViewCreateProduct>
+
+      {/*Botão para criar um novo produto*/}
+      <Touchable>
+        <TextCreateProduct>
+          Cadastrar Produto
+        </TextCreateProduct>
+      </Touchable>
+
     </Conteiner>
   )
 }
