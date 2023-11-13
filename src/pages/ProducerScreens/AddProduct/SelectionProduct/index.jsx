@@ -17,15 +17,19 @@ export default SelectProduct = ({ options, onChange, initialSelect = [] }) => {
           <View>
 
             <View>
-              <TouchableModal>
+              <FlatList>
+                {/* Aqui entraria a renderização dos produtos não consegui usar o código do professor
+                E quando não dá erro na renderização da no useContext e até agr não descobri */}
+              </FlatList>
+              <TouchableModal onPress={() => setVisible(false)}>
                 <Text>Voltar</Text>
               </TouchableModal>
-              <TouchableModal>
+              <TouchableModal onPress={() => setVisible(false)}>
                 <Text>Concluir</Text>
               </TouchableModal>
-              <TouchableModal>
+              {/* <TouchableModal>
                 <Text>Voltar</Text>
-              </TouchableModal>
+              </TouchableModal> */}
             </View>
 
           </View>

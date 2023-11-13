@@ -14,7 +14,7 @@ const Tab = createBottomTabNavigator()
 const TabRoutes = () => {
   return (
     <Tab.Navigator
-      initialRouteName="HomeProducer"
+      initialRouteName="MeusProdutos"
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: "#d3d3d3",
