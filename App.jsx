@@ -13,10 +13,9 @@ export default function App() {
   return (
     // Wrapper for user context. Wrapper is a function intended to call one or more functions.
     <UserContextProvider>
-      <AddProduct/>
-      {/* <Conteiner>
+      <Conteiner>
         <Routes />
-      </Conteiner> */}
+      </Conteiner>
     </UserContextProvider>
   )
 }

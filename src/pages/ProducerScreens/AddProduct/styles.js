@@ -11,6 +11,10 @@ export const Title = styled.Text`
   color: #fff;
   text-align: center;
 `
+export const ViewAddProduct = styled.View`
+  align-items: center;
+  justify-content: center;
+`
 
 export const Touchable = styled.TouchableOpacity`
   align-items: center;

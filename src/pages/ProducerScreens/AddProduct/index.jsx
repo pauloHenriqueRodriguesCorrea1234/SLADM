@@ -1,5 +1,5 @@
 // Styles Components
-import { Conteiner, Title, Touchable, TextCreateProduct } from "./styles"
+import { Conteiner, Title, Touchable, TextCreateProduct, ViewAddProduct } from "./styles"
 import SelectionProduct from "./SelectionProduct"
 
 const AddProduct = () => {
@@ -12,11 +12,13 @@ const AddProduct = () => {
       <SelectionProduct />
 
       {/*Botão para criar um novo produto*/}
-      <Touchable>
-        <TextCreateProduct>
-          Cadastrar Produto
-        </TextCreateProduct>
-      </Touchable>
+      <ViewAddProduct>
+        <Touchable>
+          <TextCreateProduct>
+            Cadastrar Produto
+          </TextCreateProduct>
+        </Touchable>
+      </ViewAddProduct>
 
     </Conteiner>
   )
