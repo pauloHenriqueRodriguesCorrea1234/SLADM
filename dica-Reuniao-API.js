@@ -10,6 +10,7 @@ useEffect(() => {
     const responseProducts = response.data
 
     response = await api.get(`/products/producer/${userEmail}`)
+
     const { products } = response.data
     const producerProducts = products
     // Talvez esse diff não dê certo
