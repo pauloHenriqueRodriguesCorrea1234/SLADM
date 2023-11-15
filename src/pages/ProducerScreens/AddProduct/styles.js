@@ -24,4 +24,6 @@ export const Touchable = styled.TouchableOpacity`
   width: 50%;
   height: 45px;
 `
-export const TextCreateProduct = styled.Text``
+export const TextCreateProduct = styled.Text`
+font-size: 18px;
+`

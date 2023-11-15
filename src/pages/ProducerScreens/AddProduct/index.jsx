@@ -6,7 +6,7 @@ const AddProduct = () => {
   return (
     <Conteiner>
 
-      <Title>Informações do produto</Title>
+      <Title>Selecione os produtos que deseja vender</Title>
 
       {/*Seletor de produtos*/}
       <SelectionProduct />
