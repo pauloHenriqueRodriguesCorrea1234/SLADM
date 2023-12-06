@@ -1,5 +1,3 @@
-import { FlatList } from "react-native"
-
 // Styled Components
 import {
   Conteiner,
@@ -7,18 +5,17 @@ import {
   Input,
   NotFaundText,
   ViewNotFaund,
+  FlatList
 } from "./styles"
 
 // React States
 import { useEffect, useState } from "react"
 
-// products json
-import { itens } from "../../../../data/itens.json"
-
 // Components
 import FruitCards from '../../../components/FruitCards'
 import exitApp from "../../../components/BackHandler"
 import Icon from "react-native-vector-icons/MaterialIcons"
+
 import api from "../../../services/api"
 
 const HomeProducer = () => {
@@ -45,7 +42,7 @@ const HomeProducer = () => {
   useEffect(() => {
     if (filter.length > 0) {
       // Checks if anything that was typed exists in the object array
-      const filteredProducts = itens.filter((p) =>
+      const filteredProducts = products.filter((p) =>
         p.name.toLowerCase().includes(filter.toLowerCase())
       )
 
@@ -90,17 +87,6 @@ const HomeProducer = () => {
         keyExtractor={item => item._id}
         renderItem={renderItem}
       />
-
-      {/* 
-      {products.length > 0 && (
-        <ScrollView>
-          {products.map((item) => (
-            <TouchableOpacity key={item.id}>
-              <FruitCards name={item.productName} img={item.coverUrl} />
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      )} */}
     </Conteiner>
   )
 }

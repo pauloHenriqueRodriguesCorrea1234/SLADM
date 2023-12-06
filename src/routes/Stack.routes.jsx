@@ -13,6 +13,7 @@ import ProducerDrawerRoutes from "./ProducerRoutes/ProducerDrawer.routes"
 import AddProduct from "../pages/ProducerScreens/AddProduct"
 import Details from "../pages/ProducerScreens/Details"
 import AvaliableProducts from "../components/AvailableProducts"
+import ProducersWithThisProduct from "../pages/UserScreens/ProducersWithThisProduct"
 
 // Creation of Stack Navigator for stack routes
 const Stack = createStackNavigator()
@@ -84,7 +85,10 @@ const StackRoutes = () => {
         name="AvaliableProducts"
       />
 
-
+      <Stack.Screen
+        name="ProducersWithThisProduct"
+        component={ProducersWithThisProduct}
+      />
     </Stack.Navigator>
   )
 }

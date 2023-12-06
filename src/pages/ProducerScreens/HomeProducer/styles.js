@@ -33,4 +33,4 @@ export const NotFaundText = styled.Text`
   color: #fff;
 `
 
-export const ScrollView = styled.ScrollView``
+export const FlatList = styled.FlatList``

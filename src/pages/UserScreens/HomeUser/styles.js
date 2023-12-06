@@ -21,7 +21,8 @@ export const Input = styled.TextInput`
   margin-left: 10px;
   color: #fff;
 `
-
+export const ActivityIndicator = styled.ActivityIndicator`
+`
 export const ViewNotFaund = styled.View`
   flex: 1;
   align-items: center;
@@ -33,4 +34,4 @@ export const NotFaundText = styled.Text`
   color: #fff;
 `
 
-export const ScrollView = styled.ScrollView``
+export const FlatList = styled.FlatList``

@@ -6,10 +6,7 @@ export const UserContext = createContext();
 export const UserContextProvider = ({ children }) => {
   // States that will be shared across context
   const [token, setToken] = useState("");
-  /**
-   * Tira esse e-mail depois pelo amor de Deus!!!
-   */
-  const [userEmail, setUserEmail] = useState("routes@gmail.com");
+  const [userEmail, setUserEmail] = useState("");
   const [isProducer, setIsProducer] = useState(false);
 
   // Returns the context provider, wrapping child components with states
