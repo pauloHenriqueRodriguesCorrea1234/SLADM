@@ -18,14 +18,12 @@ export default SelectProduct = ({ options, onChange, initialSelect = [] }) => {
   useEffect(() => {
     ; (async () => {
       let response = await api.get("/products")
-      const responseProducts = response.data
-      response = await api.get(`/products/producer/${userEmail}`)
+      const { products } = response.data
+      const { data } = await api.get(`/products/producer/${userEmail}`)
 
-      const { products } = responseProducts
-
-      const producerProducts = products
+      const producerProducts = data.products
       // Talvez esse diff não dê certo
-      const diffArray = responseProducts.filter(
+      const diffArray = products.filter(
         (p) =>  !producerProducts.includes(p)
       )
       console.log(diffArray);

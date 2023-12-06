@@ -1,4 +1,4 @@
-import { TouchableOpacity } from "react-native"
+import { ActivityIndicator, TouchableOpacity } from "react-native"
 
 import {
   Conteiner,
@@ -12,15 +12,13 @@ import {
 // React States
 import { useEffect, useState } from "react"
 
-// products json
-import { itens } from "../../../data/itens.json"
-
 // Components
 import FruitCards from "../FruitCards"
-import ExitApp from "../BackHandler"
+import exitApp from "../BackHandler"
 import Icon from "react-native-vector-icons/MaterialIcons"
 
 import { useNavigation } from "@react-navigation/native"
+import api from '../../services/api'
 
 const Body = () => {
 
@@ -29,17 +27,25 @@ const Body = () => {
   const [products, setProducts] = useState([])
   const [filter, setFilter] = useState("")
   const [notFaund, setNotFaund] = useState(false)
+  const [loading, isLoading] = useState(false)
 
   useEffect(() => {
-    setProducts(itens)
-    ExitApp()
+    ;(async () => {
+      isLoading(true)
+      const response = await api.get('/products')
+      const { products } = response.data
+      console.log(products)
+      setProducts(products)
+      isLoading(false)
+    })()
+    exitApp()
   }, [])
 
   useEffect(() => {
     if (filter.length > 0) {
       // Checks if anything that was typed exists in the object array
       const filteredProducts = itens.filter((p) =>
-        p.productName.toLowerCase().includes(filter.toLowerCase())
+        p.name.toLowerCase().includes(filter.toLowerCase())
       )
 
       // If filteredProducts equals 0 no products were found
@@ -66,6 +72,8 @@ const Body = () => {
         <Icon name="search" size={30} color={"#fff"} />
       </ViewInput>
 
+      {loading && <ActivityIndicator />}
+
       {notFaund == true ? (
         <ViewNotFaund>
           <NotFaundText>PRODUTO NÃO ENCONTRADO</NotFaundText>
@@ -77,8 +85,8 @@ const Body = () => {
       {products.length > 0 && (
         <ScrollView>
           {products.map((item) => (
-            <TouchableOpacity key={item.id}>
-              <FruitCards name={item.productName} img={item.coverUrl} />
+            <TouchableOpacity key={item._id}>
+              <FruitCards name={item.name} img={item.imageURL} />
             </TouchableOpacity>
           ))}
         </ScrollView>

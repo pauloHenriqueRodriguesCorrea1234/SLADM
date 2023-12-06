@@ -17,7 +17,7 @@ import { itens } from "../../../../data/itens.json"
 
 // Components
 import FruitCards from '../../../components/FruitCards'
-import ExitApp from "../../../components/BackHandler"
+import exitApp from "../../../components/BackHandler"
 import Icon from "react-native-vector-icons/MaterialIcons"
 import api from "../../../services/api"
 
@@ -26,27 +26,27 @@ const HomeProducer = () => {
   const [filter, setFilter] = useState("")
   const [notFaund, setNotFaund] = useState(false)
 
-  async function ListAllProducts() {
-    const response = await api.get('/', {
+  async function listAllProducts() {
+    const response = await api.get('/products', {
       validateStatus: (status) => status < 500,
     })
 
     if (response.status === 200) {
       const { products } = response.data
-      console.log(products);
+      setProducts(products)
     }
   }
 
   useEffect(() => {
-    setProducts(itens)
-    ExitApp()
+    listAllProducts()
+    exitApp()
   }, [])
 
   useEffect(() => {
     if (filter.length > 0) {
       // Checks if anything that was typed exists in the object array
       const filteredProducts = itens.filter((p) =>
-        p.productName.toLowerCase().includes(filter.toLowerCase())
+        p.name.toLowerCase().includes(filter.toLowerCase())
       )
 
       // If filteredProducts equals 0 no products were found
@@ -61,7 +61,7 @@ const HomeProducer = () => {
   }, [filter])
 
   function renderItem({ item }) {
-    return <FruitCards img={item.coverUrl} name={item.productName} />
+    return <FruitCards img={item.imageURL} name={item.name} />
   }
 
   return (
@@ -87,7 +87,7 @@ const HomeProducer = () => {
 
       <FlatList
         data={products}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item._id}
         renderItem={renderItem}
       />
 

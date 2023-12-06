@@ -1,6 +1,6 @@
 import { Alert, BackHandler } from "react-native"
 
-const ExitApp = () => {
+const exitApp = () => {
   // Creates an action when the return button is pressed.
   const backAction = () => {
     console.log("Saindo...")
@@ -27,4 +27,4 @@ const ExitApp = () => {
   return () => backHandler.remove()
 }
 
-export default ExitApp
+export default exitApp
