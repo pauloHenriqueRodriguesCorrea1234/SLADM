@@ -3,25 +3,26 @@ import {
   Conteiner,
   ViewInput,
   Input,
-  NotFaundText,
-  ViewNotFaund,
+  notFoundText,
+  ViewnotFound,
   FlatList
-} from "./styles"
+} from "./styles";
 
 // React States
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 // Components
-import FruitCards from '../../../components/FruitCards'
-import exitApp from "../../../components/BackHandler"
-import Icon from "react-native-vector-icons/MaterialIcons"
+import FruitCards from '../../../components/FruitCards';
+import exitApp from "../../../components/BackHandler";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
-import api from "../../../services/api"
+import api from "../../../services/api";
 
 const HomeProducer = () => {
-  const [products, setProducts] = useState([])
-  const [filter, setFilter] = useState("")
-  const [notFaund, setNotFaund] = useState(false)
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filter, setFilter] = useState("");
+  const [notFound, setNotFound] = useState(false);
 
   async function listAllProducts() {
     const response = await api.get('/products', {
@@ -29,31 +30,26 @@ const HomeProducer = () => {
     })
 
     if (response.status === 200) {
-      const { products } = response.data
-      setProducts(products)
+      const { products } = response.data;
+      setProducts(products);
+      setFilteredProducts(products);
     }
   }
 
   useEffect(() => {
-    listAllProducts()
-    exitApp()
+    listAllProducts();
+    exitApp();
   }, [])
 
   useEffect(() => {
-    if (filter.length > 0) {
-      // Checks if anything that was typed exists in the object array
+    if (filter) {
       const filteredProducts = products.filter((p) =>
-        p.name.toLowerCase().includes(filter.toLowerCase())
+        p.name.trim().toLowerCase().includes(filter.trim().toLowerCase())
       )
-
-      // If filteredProducts equals 0 no products were found
-      if (filteredProducts.length == 0) {
-        setNotFaund(true)
-        setProducts(filteredProducts)
-      } else {
-        setNotFaund(false)
-        setProducts(filteredProducts)
-      }
+      setNotFound(!filteredProducts);
+      setFilteredProducts(filteredProducts);
+    } else {
+      setFilteredProducts(products);
     }
   }, [filter])
 
@@ -74,16 +70,16 @@ const HomeProducer = () => {
         <Icon name="search" size={30} color={"#fff"} />
       </ViewInput>
 
-      {notFaund == true ? (
-        <ViewNotFaund>
-          <NotFaundText>PRODUTO NÃO ENCONTRADO</NotFaundText>
-        </ViewNotFaund>
+      {notFound == true ? (
+        <ViewnotFound>
+          <notFoundText>PRODUTO NÃO ENCONTRADO</notFoundText>
+        </ViewnotFound>
       ) : (
-        notFaund == false
+        notFound == false
       )}
 
       <FlatList
-        data={products}
+        data={filteredProducts}
         keyExtractor={item => item._id}
         renderItem={renderItem}
       />
@@ -91,4 +87,4 @@ const HomeProducer = () => {
   )
 }
 
-export default HomeProducer
+export default HomeProducer;

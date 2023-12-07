@@ -6,7 +6,6 @@ import { Ionicons, MaterialIcons } from "react-native-vector-icons"
 // Producer route components
 import MyProducts from "../../pages/ProducerScreens/MyProducts"
 import HomeProducer from "../../pages/ProducerScreens/HomeProducer"
-import AddProduct from "../../pages/ProducerScreens/AddProduct"
 
 // Creation of the Bottom Tab Navigator for producer routes
 const Tab = createBottomTabNavigator()
@@ -17,8 +16,8 @@ const TabRoutes = () => {
       initialRouteName="MeusProdutos"
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: "#d3d3d3",
-        tabBarInactiveTintColor: "#fff",
+        tabBarActiveTintColor: "#fff",
+        tabBarInactiveTintColor: "#d1d1d1",
         tabBarStyle: {
           backgroundColor: "#006400",
         },
@@ -36,18 +35,6 @@ const TabRoutes = () => {
           tabBarLabel: "Início",
         }}
       />
-
-      {/* <Tab.Screen
-        name="AddProduct"
-        component={AddProduct}
-        options={{
-          title: "",
-          tabBarIcon: ({ color, size }) => (
-            <Entypo name="plus" color={color} size={size} />
-          ),
-          tabBarLabel: "Adicionar produto",
-        }}
-      /> */}
 
       {/* Route to the "My Products" screen */}
       <Tab.Screen

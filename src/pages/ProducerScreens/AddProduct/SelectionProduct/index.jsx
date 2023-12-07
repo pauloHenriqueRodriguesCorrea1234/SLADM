@@ -26,6 +26,7 @@ export default SelectProduct = ({ options, onChange, initialSelect = [] }) => {
       const diffArray = products.filter(
         (p) =>  !producerProducts.includes(p)
       )
+      console.log(diffArray);
       setProducts(diffArray)
     })()
   }, [])

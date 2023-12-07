@@ -9,15 +9,17 @@ export const ViewInput = styled.View`
   flex-direction: row;
   border-width: 1px;
   border-color: #fff;
-  margin: 8px 10px;
   align-items: center;
+  justify-content: space-between;
+  margin: 8px 10px;
+  padding-right: 20px;
 `
 
 export const Input = styled.TextInput`
   flex: 1;
   font-size: 16px;
   height: 50px;
-  padding: 8px;
+  margin-left: 10px;
   color: #fff;
 `
 export const ViewNotFaund = styled.View`

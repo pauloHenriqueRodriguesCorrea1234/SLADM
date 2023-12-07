@@ -7,7 +7,7 @@ const Details = ({img, name, price, }) => {
 
       <ViewDetails>
         <Image />
-        <TextDetails>Nome: {} </TextDetails>
+        <TextDetails>Nome:</TextDetails>
         <TextDetails>Preço: </TextDetails>
         <TextDetails>Unidade de medida: </TextDetails>
 

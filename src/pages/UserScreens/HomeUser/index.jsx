@@ -2,10 +2,11 @@ import {
   Conteiner,
   ViewInput,
   Input,
-  NotFaundText,
-  ViewNotFaund,
+  notFoundText,
+  ViewnotFound,
   ActivityIndicator,
-  FlatList
+  FlatList,
+  TouchableOpacity
 } from "./styles"
 
 // React States
@@ -25,46 +26,48 @@ const HomeUser = () => {
   const navigation = useNavigation()
 
   const [products, setProducts] = useState([])
-  // Arrumar o filter, pois quando apagamos todas as letras 
+  const [filteredProducts, setFilteredProducts] = useState([])
   const [filter, setFilter] = useState("")
-  const [notFaund, setNotFaund] = useState(false)
+  const [notFound, setNotFound] = useState(false)
   const [loading, isLoading] = useState(false)
 
-  useEffect(() => {
-    ; (async () => {
-      isLoading(true)
-      const response = await api.get('/products')
-      const { products } = response.data
+  async function listAllProducts() {
+    isLoading(true)
+    const response = await api.get('/products', {
+      validateStatus: (status) => status < 500,
+    })
 
+    if (response.status === 200) {
+      const { products } = response.data
       setProducts(products)
-      isLoading(false)
-    })()
+      setFilteredProducts(products)
+    }
+  }
+  useEffect(() => {
+    listAllProducts()
+    isLoading(false)
     exitApp()
   }, [])
 
   useEffect(() => {
-    if (filter.length > 0) {
-      // Checks if anything that was typed exists in the object array
+    if (filter) {
       const filteredProducts = products.filter((p) =>
-        p.name.toLowerCase().includes(filter.toLowerCase())
+        p.name.trim().toLowerCase().includes(filter.trim().toLowerCase())
       )
-
-      // If filteredProducts equals 0 no products were found
-      if (filteredProducts.length == 0) {
-        setNotFaund(true)
-        setProducts(filteredProducts)
-      } else {
-        setNotFaund(false)
-        setProducts(filteredProducts)
-      }
+      setNotFound(!filteredProducts)
+      setFilteredProducts(filteredProducts)
+    } else {
+      setFilteredProducts(products)
     }
   }, [filter])
 
-
   function renderItem({ item }) {
-    return <FruitCards img={item.imageURL} name={item.name} />
+    return (
+      <TouchableOpacity onPress={() => navigation.navigate('ProducersWithThisProduct', { product: item })}>
+        <FruitCards img={item.imageURL} name={item.name} />
+      </TouchableOpacity>
+    )
   }
-
   return (
     <Conteiner>
       <ViewInput>
@@ -77,24 +80,19 @@ const HomeUser = () => {
         />
         <Icon name="search" size={30} color={"#fff"} />
       </ViewInput>
-
       {loading && <ActivityIndicator />}
-
-      {notFaund == true ? (
-        <ViewNotFaund>
-          <NotFaundText>PRODUTO NÃO ENCONTRADO</NotFaundText>
-        </ViewNotFaund>
+      {notFound == true ? (
+        <ViewnotFound>
+          <notFoundText>PRODUTO NÃO ENCONTRADO</notFoundText>
+        </ViewnotFound>
       ) : (
-        notFaund == false
+        notFound == false
       )}
-
       <FlatList
-        data={products}
+        data={filteredProducts}
         keyExtractor={item => item._id}
         renderItem={renderItem}
       />
-
-
     </Conteiner>
   )
 }
