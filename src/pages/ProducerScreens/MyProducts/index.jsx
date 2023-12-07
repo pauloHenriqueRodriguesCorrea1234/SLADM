@@ -1,14 +1,5 @@
-// Navigation Library
-import { useNavigation } from "@react-navigation/native"
-
-// Icons
-import { MaterialIcons, Entypo } from 'react-native-vector-icons'
-
 // Styles Components
-import { Conteiner, ViewInput, Input, ViewNotFaund, NotFaundText, List, TouchableOpacityDetails, TouchableOpacityNewProduct, ConteinerNewProduct, ViewNewProduct } from './styles'
-
-// React Components
-import { useContext, useEffect, useState } from "react"
+import { Conteiner, ViewInput, Input, ViewNotFaund, NotFaundText, TouchableOpacityDetails, TouchableOpacityNewProduct, ConteinerNewProduct, ViewNewProduct } from './styles'
 
 // Components 
 import FruitCards from "../../../components/FruitCards"
@@ -17,18 +8,27 @@ import { FlatList } from "react-native"
 import { UserContext } from '../../../context/UserContext'
 import api from '../../../services/api'
 
+// Navigation Library
+import { useNavigation } from "@react-navigation/native"
+
+// Icons
+import { MaterialIcons, Entypo } from 'react-native-vector-icons'
+
+// React Components
+import { useContext, useEffect, useState } from "react"
+
 const MyProducts = () => {
 
   const navigation = useNavigation()
 
   const [products, setProducts] = useState([])
   const [filter, setFilter] = useState("")
-  const [notFaund, setNotFaund] = useState(false)
+  const [notFound, setNotFound] = useState(false)
 
   const { userEmail } = useContext(UserContext)
 
   useEffect(() => {
-    ;(async () => {
+    ; (async () => {
       const response = await api.get(`/products/producer/${userEmail}`)
       const { products } = response.data
       console.log(products)
@@ -46,9 +46,9 @@ const MyProducts = () => {
 
       // If filteredProducts equals 0 no products were found
       if (filteredProducts.length == 0) {
-        setNotFaund(true)
+        setNotFound(true)
       } else {
-        setNotFaund(false)
+        setNotFound(false)
       }
       setProducts(filteredProducts)
     }
@@ -68,13 +68,10 @@ const MyProducts = () => {
     return (
       <ConteinerNewProduct>
         <ViewNewProduct>
-          {
-            notFaund == false ?
               <TouchableOpacityNewProduct
                 onPress={() => navigation.navigate("AddProduct")}>
                 <Entypo name="plus" size={20} color={'#000'} />
-              </TouchableOpacityNewProduct> : null
-          }
+              </TouchableOpacityNewProduct>
         </ViewNewProduct>
       </ConteinerNewProduct>
     )
@@ -109,11 +106,9 @@ const MyProducts = () => {
         renderItem={renderItem}
       />
 
-      {/* Component for add new product */}
       <NewProduct />
 
-      {/* Conditional surrender if no product found */}
-      {notFaund == true ?
+      {notFound?
         <ViewNotFaund>
           <NotFaundText>PRODUTO NÃO ENCONTRADO</NotFaundText>
         </ViewNotFaund>

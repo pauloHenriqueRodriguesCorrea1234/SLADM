@@ -1,70 +1,75 @@
-// React hooks
-import React, { useState } from "react"
-
 // Styled Components
-import { Conteiner, Input, ViewProducer, Touchable, TextProducer, TextCadastrar, AlertStyle, Switch } from "./styles"
-
-// Components
-import Logo from "../../../components/Logo"
-
-// Error vector
-import errorCodeMessages from "../ConfigError/errorCodeMessages"
-
-// Navigation
-import { useNavigation } from "@react-navigation/native"
+import { Conteiner, Input, ViewProducer, Touchable, TextProducer, TextCadastrar, AlertStyle, Switch } from "./styles";
 
 // Firebase library
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
-import { db } from "../../../services/firebaseAuthentication"
-import { ref, set } from "firebase/database"
-import api from "../../../services/api"
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { db } from "../../../services/firebaseAuthentication";
+import { ref, set } from "firebase/database";
+
+// 
+import api from "../../../services/api";
+
+// Navigation
+import { useNavigation } from "@react-navigation/native";
+
+
+// React hooks
+import React, { useState } from "react";
+
+// Error vector
+import errorCodeMessages from "../ConfigError/errorCodeMessages";
+
+// Components
+import Logo from "../../../components/Logo";
 
 const SignUp = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   // User variables
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // Producer variables
-  const [producer, setProducer] = useState(false)
-  const products = useState({})
-  const [phone, setPhone] = useState("")
+  const [producer, setProducer] = useState(false);
+  const products = useState({});
+  const [phone, setPhone] = useState("");
 
-  const auth = getAuth()
+  const auth = getAuth();
 
-  const ClearInputs = () => {
-    setName("")
-    setEmail("")
-    setPassword("")
-    setProducer(false)
-    setPhone("")
-  }
+  const clearInputs = () => {
+    setName("");
+    setEmail("");
+    setPassword("");
+    setProducer(false);
+    setPhone("");
+  };
 
   // Function for crate user
   async function createUser() {
     if (name === null || name === "") {
-      alert(`Informe seu nome`)
-      return
-    }
+      alert(`Informe seu nome`);
+      return;
+    };
+
     if (email === null || email === "") {
-      alert(`Informe seu e-mail`)
-      return
-    }
+      alert(`Informe seu e-mail`);
+      return;
+    };
+
     if (password === null || password === "") {
-      alert(`Informe sua senha`)
-      return
+      alert(`Informe sua senha`);
+      return;
     } else {
       await createUserWithEmailAndPassword(auth, email, password)
         .then((data) => {
-          const users = data.user.uid
+          const users = data.user.uid;
 
           // Checks if the user is a producer
           if (producer === true) {
             if (phone === null || phone === "") {
-              alert("Informe seu telefone")
-              return
+              alert("Informe seu telefone");
+              return;
             } else {
               // Sending data to firebase
               set(ref(db, "producer/" + users), {
@@ -74,38 +79,37 @@ const SignUp = () => {
                 producer: producer,
                 phone: phone,
                 products: products,
-              })
-
-            }
+              });
+            };
           } else {
             set(ref(db, "user/" + users), {
               // User data
               username: name,
               email: email,
-              password: password,
-            })
-          }
+            });
+          };
 
-          alert("Usuário cadastrado com sucesso!")
-          navigation.navigate("Login")
-          ClearInputs()
+          alert("Usuário cadastrado com sucesso!");
+          navigation.navigate("Login");
+          clearInputs();
         })
         .catch((error) => {
-          const errorMessage = errorCodeMessages[error.code] || "Erro ao efetuar o cadastramento. Tente novamente mais tarde."
-          AlertStyle.alert(errorMessage)
-          ClearInputs()
-        })
+          const errorMessage = errorCodeMessages[error.code] || "Erro ao efetuar o cadastramento. Tente novamente mais tarde.";
+          AlertStyle.alert(errorMessage);
+          clearInputs();
+        });
+
       if (!errorCodeMessages == "auth/uid-alread-exists") {
         await api.post('/producers', { name, email, phone }, { validateStatus: status => status < 500 })
           .then((response) => {
             if (api.get()) {
-              console.log(response)
+              console.log(response);
             }
           })
-          .catch(err => console.log(err))
-      }
-    }
-  }
+          .catch(err => console.log(err));
+      };
+    };
+  };
 
   return (
     <Conteiner>
@@ -164,7 +168,7 @@ const SignUp = () => {
         <TextCadastrar>Cadastrar</TextCadastrar>
       </Touchable>
     </Conteiner>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;

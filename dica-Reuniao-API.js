@@ -1,23 +1,23 @@
 ///////////////////////////////////
-const { userEmail } = useContext(UserContext)
-const [selectedProductId, setSelectedProductId] = useState("")
-const [products, setProducts] = useState([])
-const [price, setPrice] = useState(0)
+const { userEmail } = useContext(UserContext);
+const [selectedProductId, setSelectedProductId] = useState("");
+const [products, setProducts] = useState([]);
+const [price, setPrice] = useState(0);
 
 useEffect(() => {
   ;(async () => {
-    let response = await api.get("/products")
-    const responseProducts = response.data
+    let response = await api.get("/products");
+    const responseProducts = response.data;
 
-    response = await api.get(`/products/producer/${userEmail}`)
+    response = await api.get(`/products/producer/${userEmail}`);
 
-    const { products } = response.data
-    const producerProducts = products
+    const { products } = response.data;
+    const producerProducts = products;
     // Talvez esse diff não dê certo
     const diffArray = responseProducts.filter(
       (p) => !producerProducts.includes(p)
-    )
-    setProducts(diffArray)
+    );
+    setProducts(diffArray);
   })()
 }, [])
 

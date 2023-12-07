@@ -1,4 +1,4 @@
-import { View, Image } from "./styles"
+import { View, Image } from "./styles";
 
 const Logo = () => {
   return (
@@ -6,5 +6,6 @@ const Logo = () => {
       <Image source={require("../../../assets/splash.png")} />
     </View>
   )
-}
-export default Logo
+};
+
+export default Logo;

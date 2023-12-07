@@ -1,4 +1,4 @@
-import { Conteiner, Image, Text } from './styles'
+import { Conteiner, Image, Text } from './styles';
 
 const FruitCards = ({ name, img }) => {
   return (

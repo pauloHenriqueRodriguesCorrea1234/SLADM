@@ -8,12 +8,13 @@ export const Conteiner = styled.View`
     justify-content: space-between;
     border-radius: 10px;
     border-color: #777a67;
-`
+`;
 
 export const Image = styled.Image `
   height: 120px;
     width: 120px;
-`
+`;
+
 export const Text = styled.Text`
     text-align: center;
     font-style: italic;
@@ -22,4 +23,4 @@ export const Text = styled.Text`
     align-items: flex-end;
     color: #777a67;
     font-weight: bold;
-`
+`;

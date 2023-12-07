@@ -38,7 +38,9 @@ export const List = styled.FlatList``
 export const TouchableOpacityDetails = styled.TouchableOpacity``
 
 export const ConteinerNewProduct = styled.View`
-  flex: 1;
+  position: absolute;
+  justify-content: flex-end;
+  align-items: flex-end;
 `
 
 export const TouchableOpacityNewProduct = styled.TouchableOpacity`
@@ -50,8 +52,4 @@ export const TouchableOpacityNewProduct = styled.TouchableOpacity`
   justify-content: center;
 `
 
-export const ViewNewProduct = styled.View`
-  justify-content: flex-end;
-  align-items: flex-end;
-  position: relative;
-`
+export const ViewNewProduct = styled.View``
