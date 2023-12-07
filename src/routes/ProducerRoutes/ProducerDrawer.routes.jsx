@@ -1,15 +1,15 @@
-import { createDrawerNavigator } from "@react-navigation/drawer"
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
 // Library – vector icons
-import { Ionicons, AntDesign, Feather } from "react-native-vector-icons"
+import { Ionicons, AntDesign, Feather } from "react-native-vector-icons";
 
 // Producer menu components 
-import TabRoutes from "./ProducerTab.routes"
-import Instagram from "../../components/LinkInstagram"
-import Logout from "../../components/Logout"
+import TabRoutes from "./ProducerTab.routes";
+import Logout from "../../components/Logout";
+import Instagram from "../../components/LinkInstagram";
 
 // Criação do Drawer Navigator para as rotas do produtor
-const Drawer = createDrawerNavigator()
+const Drawer = createDrawerNavigator();
 
 const ProducerDrawerRoutes = () => {
   return (
@@ -58,7 +58,7 @@ const ProducerDrawerRoutes = () => {
         }}
       />
     </Drawer.Navigator>
-  )
-}
+  );
+};
 
-export default ProducerDrawerRoutes
+export default ProducerDrawerRoutes;

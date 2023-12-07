@@ -27,31 +27,31 @@ const HomeProducer = () => {
   async function listAllProducts() {
     const response = await api.get('/products', {
       validateStatus: (status) => status < 500,
-    })
+    });
 
     if (response.status === 200) {
       const { products } = response.data;
       setProducts(products);
       setFilteredProducts(products);
-    }
-  }
+    };
+  };
 
   useEffect(() => {
     listAllProducts();
     exitApp();
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (filter) {
       const filteredProducts = products.filter((p) =>
         p.name.trim().toLowerCase().includes(filter.trim().toLowerCase())
-      )
+      );
       setNotFound(!filteredProducts);
       setFilteredProducts(filteredProducts);
     } else {
       setFilteredProducts(products);
     }
-  }, [filter])
+  }, [filter]);
 
   function renderItem({ item }) {
     return <FruitCards img={item.imageURL} name={item.name} />

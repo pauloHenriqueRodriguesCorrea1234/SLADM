@@ -1,58 +1,58 @@
 // Styles Components
-import { Conteiner, ViewInput, Input, ViewNotFaund, NotFaundText, TouchableOpacityDetails, TouchableOpacityNewProduct, ConteinerNewProduct, ViewNewProduct } from './styles'
+import { Conteiner, ViewInput, Input, ViewNotFaund, NotFaundText, TouchableOpacityDetails, TouchableOpacityNewProduct, ConteinerNewProduct, ViewNewProduct } from './styles';
 
 // Components 
-import FruitCards from "../../../components/FruitCards"
-import exitApp from "../../../components/BackHandler"
-import { FlatList } from "react-native"
-import { UserContext } from '../../../context/UserContext'
-import api from '../../../services/api'
+import FruitCards from "../../../components/FruitCards";
+import exitApp from "../../../components/BackHandler";
+import { FlatList } from "react-native";
+import { UserContext } from '../../../context/UserContext';
+import api from '../../../services/api';
 
 // Navigation Library
-import { useNavigation } from "@react-navigation/native"
+import { useNavigation } from "@react-navigation/native";
 
 // Icons
-import { MaterialIcons, Entypo } from 'react-native-vector-icons'
+import { MaterialIcons, Entypo } from 'react-native-vector-icons';
 
 // React Components
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react";
 
 const MyProducts = () => {
 
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
-  const [products, setProducts] = useState([])
-  const [filter, setFilter] = useState("")
-  const [notFound, setNotFound] = useState(false)
+  const [products, setProducts] = useState([]);
+  const [filter, setFilter] = useState("");
+  const [notFound, setNotFound] = useState(false);
 
-  const { userEmail } = useContext(UserContext)
+  const { userEmail } = useContext(UserContext);
 
   useEffect(() => {
     ; (async () => {
-      const response = await api.get(`/products/producer/${userEmail}`)
-      const { products } = response.data
-      console.log(products)
-      setProducts(products)
-    })()
-    exitApp()
-  }, [])
+      const response = await api.get(`/products/producer/${userEmail}`);
+      const { products } = response.data;
+      console.log(products);
+      setProducts(products);
+    })();
+    exitApp();
+  }, []);
 
   useEffect(() => {
     if (filter.length > 0) {
       // Checks if anything that was typed exists in the object array
       const filteredProducts = products.filter((p) =>
         p.name.toLowerCase().includes(filter.toLowerCase())
-      )
+      );
 
       // If filteredProducts equals 0 no products were found
       if (filteredProducts.length == 0) {
-        setNotFound(true)
+        setNotFound(true);
       } else {
-        setNotFound(false)
+        setNotFound(false);
       }
-      setProducts(filteredProducts)
+      setProducts(filteredProducts);
     }
-  }, [filter])
+  }, [filter]);
 
   // It is used to not create a new function every time the item is assembled
   function renderItem({ item }) {
@@ -68,14 +68,14 @@ const MyProducts = () => {
     return (
       <ConteinerNewProduct>
         <ViewNewProduct>
-              <TouchableOpacityNewProduct
-                onPress={() => navigation.navigate("AddProduct")}>
-                <Entypo name="plus" size={20} color={'#000'} />
-              </TouchableOpacityNewProduct>
+          <TouchableOpacityNewProduct
+            onPress={() => navigation.navigate("AddProduct")}>
+            <Entypo name="plus" size={20} color={'#000'} />
+          </TouchableOpacityNewProduct>
         </ViewNewProduct>
       </ConteinerNewProduct>
-    )
-  }
+    );
+  };
 
   return (
     <Conteiner>
@@ -108,7 +108,7 @@ const MyProducts = () => {
 
       <NewProduct />
 
-      {notFound?
+      {notFound ?
         <ViewNotFaund>
           <NotFaundText>PRODUTO NÃO ENCONTRADO</NotFaundText>
         </ViewNotFaund>
@@ -116,7 +116,7 @@ const MyProducts = () => {
       }
 
     </Conteiner>
-  )
-}
+  );
+};
 
-export default MyProducts
+export default MyProducts;

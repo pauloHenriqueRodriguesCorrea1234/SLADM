@@ -46,7 +46,7 @@ const SignUp = () => {
   };
 
   // Function for crate user
-  async function createUser() {
+  const createUser = async () => {
     if (name === null || name === "") {
       alert(`Informe seu nome`);
       return;

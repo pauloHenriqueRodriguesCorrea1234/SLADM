@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Conteiner, Text } from "./styles"
+import { Conteiner, Text } from "./styles";
 import api from "../../../services/api";
 import { FlatList, TouchableOpacity } from "react-native";
 import FruitCards from "../../../components/FruitCards";

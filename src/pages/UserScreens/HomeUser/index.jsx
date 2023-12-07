@@ -7,59 +7,61 @@ import {
   ActivityIndicator,
   FlatList,
   TouchableOpacity
-} from "./styles"
+} from "./styles";
 
 // React States
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 // Components
-import FruitCards from "../../../components/FruitCards"
-import exitApp from "../../../components/BackHandler"
-import Icon from "react-native-vector-icons/MaterialIcons"
+import FruitCards from "../../../components/FruitCards";
+import exitApp from "../../../components/BackHandler";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
-import { useNavigation } from "@react-navigation/native"
+import { useNavigation } from "@react-navigation/native";
 
-import api from '../../../services/api'
+import api from '../../../services/api';
 
 const HomeUser = () => {
 
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
-  const [products, setProducts] = useState([])
-  const [filteredProducts, setFilteredProducts] = useState([])
-  const [filter, setFilter] = useState("")
-  const [notFound, setNotFound] = useState(false)
-  const [loading, isLoading] = useState(false)
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filter, setFilter] = useState("");
+  const [notFound, setNotFound] = useState(false);
+  const [loading, isLoading] = useState(false);
 
   async function listAllProducts() {
     isLoading(true)
     const response = await api.get('/products', {
       validateStatus: (status) => status < 500,
-    })
+    });
 
     if (response.status === 200) {
-      const { products } = response.data
-      setProducts(products)
-      setFilteredProducts(products)
-    }
-  }
+      const { products } = response.data;
+      setProducts(products);
+      setFilteredProducts(products);
+    };
+  };
+
   useEffect(() => {
-    listAllProducts()
-    isLoading(false)
-    exitApp()
+    listAllProducts();
+    isLoading(false);
+    exitApp();
   }, [])
 
   useEffect(() => {
     if (filter) {
       const filteredProducts = products.filter((p) =>
         p.name.trim().toLowerCase().includes(filter.trim().toLowerCase())
-      )
-      setNotFound(!filteredProducts)
-      setFilteredProducts(filteredProducts)
+      );
+
+      setNotFound(!filteredProducts);
+      setFilteredProducts(filteredProducts);
     } else {
-      setFilteredProducts(products)
+      setFilteredProducts(products);
     }
-  }, [filter])
+  }, [filter]);
 
   function renderItem({ item }) {
     return (
@@ -94,7 +96,7 @@ const HomeUser = () => {
         renderItem={renderItem}
       />
     </Conteiner>
-  )
-}
+  );
+};
 
-export default HomeUser
+export default HomeUser;

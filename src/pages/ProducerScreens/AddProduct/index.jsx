@@ -1,15 +1,18 @@
 // Styles Components
-import { Conteiner, Title, Touchable, TextCreateProduct, ViewAddProduct } from "./styles"
-import SelectionProduct from "./SelectionProduct"
-import { useContext, useState } from 'react'
-import api from '../../../services/api'
-import { UserContext } from '../../../context/UserContext'
+import { Conteiner, Title, Touchable, TextCreateProduct, ViewAddProduct } from "./styles";
+
+import api from '../../../services/api';
+
+import SelectionProduct from "./SelectionProduct";
+
+import { UserContext } from '../../../context/UserContext';
+import { useContext, useState } from 'react';
 
 const AddProduct = () => {
-  const [price, setPrice] = useState(0)
-  const [product, setProduct] = useState(null)
+  const [price, setPrice] = useState(0);
+  const [product, setProduct] = useState(null);
 
-  const {userEmail} = useContext(UserContext)
+  const {userEmail} = useContext(UserContext);
 
 
   const addProduct = async () => {
@@ -17,7 +20,7 @@ const AddProduct = () => {
       producerEmail: userEmail,
       productId: product._id,
       price: price
-    }, { validateStatus: status => status < 500 })
+    }, { validateStatus: status => status < 500 });
     
     if(response.status === 201) {
       // Deu certo!

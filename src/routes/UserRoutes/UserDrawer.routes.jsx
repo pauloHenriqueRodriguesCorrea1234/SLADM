@@ -1,15 +1,15 @@
-import { createDrawerNavigator } from "@react-navigation/drawer"
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
 // Library – vector icons
-import { Ionicons, AntDesign, Feather } from "react-native-vector-icons"
+import { Ionicons, AntDesign, Feather } from "react-native-vector-icons";
 
 // User menu components 
-import HomeUser from "../../pages/UserScreens/HomeUser"
-import Instagram from "../../components/LinkInstagram"
-import Logout from "../../components/Logout"
+import HomeUser from "../../pages/UserScreens/HomeUser";
+import Instagram from "../../components/LinkInstagram";
+import Logout from "../../components/Logout";
 
 // Creation of drawer navigator for user routes
-const Drawer = createDrawerNavigator()
+const Drawer = createDrawerNavigator();
 
 const UserDrawerRoutes = () => {
   return (
@@ -22,7 +22,6 @@ const UserDrawerRoutes = () => {
         headerStyle: {
           backgroundColor: "#006400",
         },
-
       }}
     >
 
@@ -62,7 +61,7 @@ const UserDrawerRoutes = () => {
         }}
       />
     </Drawer.Navigator>
-  )
-}
+  );
+};
 
-export default UserDrawerRoutes
+export default UserDrawerRoutes;
