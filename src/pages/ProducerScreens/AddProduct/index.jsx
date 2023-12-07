@@ -1,19 +1,42 @@
 // Styles Components
 import { Conteiner, Title, Touchable, TextCreateProduct, ViewAddProduct } from "./styles"
 import SelectionProduct from "./SelectionProduct"
+import { useContext, useState } from 'react'
+import api from '../../../services/api'
+import { UserContext } from '../../../context/UserContext'
 
 const AddProduct = () => {
+  const [price, setPrice] = useState(0)
+  const [product, setProduct] = useState(null)
+
+  const {userEmail} = useContext(UserContext)
+
+
+  const addProduct = async () => {
+    const response = api.post('/producers/add/product', {
+      producerEmail: userEmail,
+      productId: product._id,
+      price: price
+    }, { validateStatus: status => status < 500 })
+    
+    if(response.status === 201) {
+      // Deu certo!
+    } else {
+      // Deu ruim por algum motivo
+    }
+  }
+
   return (
     <Conteiner>
 
-      <Title>Informações do produto</Title>
+      <Title>Selecione os produtos que deseja vender</Title>
 
       {/*Seletor de produtos*/}
       <SelectionProduct />
 
       {/*Botão para criar um novo produto*/}
       <ViewAddProduct>
-        <Touchable>
+        <Touchable onPress={() => addProduct()}>
           <TextCreateProduct>
             Cadastrar Produto
           </TextCreateProduct>

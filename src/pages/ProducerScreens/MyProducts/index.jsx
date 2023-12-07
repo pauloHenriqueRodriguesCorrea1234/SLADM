@@ -4,20 +4,18 @@ import { useNavigation } from "@react-navigation/native"
 // Icons
 import { MaterialIcons, Entypo } from 'react-native-vector-icons'
 
-// Data
-import { myProducts } from '../../../../data/myProducts.json'
-import { itens } from "../../../../data/itens.json"
-
 // Styles Components
 import { Conteiner, ViewInput, Input, ViewNotFaund, NotFaundText, List, TouchableOpacityDetails, TouchableOpacityNewProduct, ConteinerNewProduct, ViewNewProduct } from './styles'
 
 // React Components
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 
 // Components 
 import FruitCards from "../../../components/FruitCards"
-import ExitApp from "../../../components/BackHandler"
+import exitApp from "../../../components/BackHandler"
 import { FlatList } from "react-native"
+import { UserContext } from '../../../context/UserContext'
+import api from '../../../services/api'
 
 const MyProducts = () => {
 
@@ -27,26 +25,32 @@ const MyProducts = () => {
   const [filter, setFilter] = useState("")
   const [notFaund, setNotFaund] = useState(false)
 
+  const { userEmail } = useContext(UserContext)
+
   useEffect(() => {
-    setProducts(itens)
-    ExitApp()
+    ;(async () => {
+      const response = await api.get(`/products/producer/${userEmail}`)
+      const { products } = response.data
+      console.log(products)
+      setProducts(products)
+    })()
+    exitApp()
   }, [])
 
   useEffect(() => {
     if (filter.length > 0) {
       // Checks if anything that was typed exists in the object array
-      const filteredProducts = myProducts.filter((p) =>
-        p.nameProduct.toLowerCase().includes(filter.toLowerCase())
+      const filteredProducts = products.filter((p) =>
+        p.name.toLowerCase().includes(filter.toLowerCase())
       )
 
       // If filteredProducts equals 0 no products were found
       if (filteredProducts.length == 0) {
         setNotFaund(true)
-        setProducts(filteredProducts)
       } else {
         setNotFaund(false)
-        setProducts(filteredProducts)
       }
+      setProducts(filteredProducts)
     }
   }, [filter])
 

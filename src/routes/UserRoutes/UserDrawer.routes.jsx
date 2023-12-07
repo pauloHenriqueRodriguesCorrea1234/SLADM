@@ -22,7 +22,7 @@ const UserDrawerRoutes = () => {
         headerStyle: {
           backgroundColor: "#006400",
         },
-        
+
       }}
     >
 

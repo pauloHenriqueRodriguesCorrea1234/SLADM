@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { Modal, FlatList, SafeAreaView } from 'react-native'
-import { Touchable, Text, TouchableModal } from './styles'
+import { Touchable, Text, TouchableModal, ViewModal, TextModal, Title, ViewSelect, FlatListt } from './styles'
 
 import { View } from 'react-native'
 
@@ -18,14 +18,12 @@ export default SelectProduct = ({ options, onChange, initialSelect = [] }) => {
   useEffect(() => {
     ; (async () => {
       let response = await api.get("/products")
-      const responseProducts = response.data
-      response = await api.get(`/products/producer/${userEmail}`)
+      const { products } = response.data
+      const { data } = await api.get(`/products/producer/${userEmail}`)
 
-      const { products } = responseProducts
-
-      const producerProducts = products
+      const producerProducts = data.products
       // Talvez esse diff não dê certo
-      const diffArray = responseProducts.filter(
+      const diffArray = products.filter(
         (p) =>  !producerProducts.includes(p)
       )
       setProducts(diffArray)
@@ -59,23 +57,28 @@ export default SelectProduct = ({ options, onChange, initialSelect = [] }) => {
 
       <Modal onRequestClose={() => setVisible(false)} visible={visible} animationType={'slide'}>
         <SafeAreaView>
-          <View>
-            <View>
+          <ViewModal>
+            <Title>
+              Selecione seus Produtos
+            </Title>
+            <ViewModal>
               {/* Aqui entraria a renderização dos produtos não consegui usar o código do professor
                 E quando não dá erro na renderização da no useContext e até agr não descobri */}
-              <FlatList />
+              <FlatListt>
+                {/* Tentei mexer mas o estilo nao vem */}
+              </FlatListt>
               <TouchableModal onPress={() => setVisible(false)}>
-                <Text>Voltar</Text>
+                <TextModal>Voltar</TextModal>
               </TouchableModal>
               <TouchableModal onPress={() => setVisible(false)}>
-                <Text>Concluir</Text>
+                <TextModal>Concluir</TextModal>
               </TouchableModal>
               {/* <TouchableModal>
                 <Text>Voltar</Text>
               </TouchableModal> */}
-            </View>
+            </ViewModal>
 
-          </View>
+          </ViewModal>
         </SafeAreaView>
       </Modal>
 
