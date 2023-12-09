@@ -1,7 +1,6 @@
-import "react-native-gesture-handler";
+import 'react-native-gesture-handler';
 
 import { UserContextProvider } from "./src/context/UserContext";
-
 // Route context
 import Routes from "./src/routes";
 
