@@ -1,23 +1,23 @@
-import { useEffect, useState } from "react";
-import { Conteiner, Text } from "./styles";
-import api from "../../../services/api";
-import { FlatList, TouchableOpacity } from "react-native";
-import FruitCards from "../../../components/FruitCards";
+import { useEffect, useState } from "react"
+import { Conteiner, Text } from "./styles"
+import api from "../../../services/api"
+import { FlatList, TouchableOpacity } from "react-native"
+import FruitCards from "../../../components/FruitCards"
 
 const ProducersWithThisProduct = ({ route }) => {
-  const { product } = route.params;
-  const [producers, setProducers] = useState([]);
+  const { product } = route.params
+  const [producers, setProducers] = useState([])
   useEffect(() => {
-    (async () => {
-      const response = await api.get(`/producers/product/${product._id}`);
-      const { producers } = response.data;
-      setProducers(producers);
-      console.log(producers);
-    })();
-  }, []);
+    ;(async () => {
+      const response = await api.get(`/producers/product/${product._id}`)
+      const { producers } = response.data
+      setProducers(producers)
+      console.log(producers)
+    })()
+  }, [])
 
   const renderItem = (item) => {
-    <TouchableOpacity>
+    ;<TouchableOpacity>
       <FruitCards name={producers.name} />
     </TouchableOpacity>
   }
@@ -29,8 +29,9 @@ const ProducersWithThisProduct = ({ route }) => {
           renderItem={renderItem}
           keyExtractor={(item) => item._id}
         />
-      ) : <Text>Nenhum produtor comercializa esse produto ainda</Text>}
-
+      ) : (
+        <Text>Nenhum produtor comercializa esse produto ainda</Text>
+      )}
     </Conteiner>
   )
 }

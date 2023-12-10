@@ -1,10 +1,21 @@
 // Styled Components
-import { Conteiner, ViewDetails, Image, TextDetails, ViewContact, TextContact, Touchable, ButtonEdit, ButtonRemove, TextGestãoProduct, ButtonsGestProduct } from './styles';
+import {
+  Conteiner,
+  ViewDetails,
+  Image,
+  TextDetails,
+  ViewContact,
+  TextContact,
+  Touchable,
+  ButtonEdit,
+  ButtonRemove,
+  TextGestãoProduct,
+  ButtonsGestProduct,
+} from "./styles"
 
-const Details = ({img, name, price, }) => {
+const Details = ({ img, name, price }) => {
   return (
     <Conteiner>
-
       <ViewDetails>
         <Image />
         <TextDetails>Nome:</TextDetails>
@@ -13,35 +24,27 @@ const Details = ({img, name, price, }) => {
 
         <ButtonsGestProduct>
           <ButtonEdit>
-          <TextGestãoProduct>Editar </TextGestãoProduct>
-        </ButtonEdit>
-        <ButtonRemove>
-          <TextGestãoProduct>Remover  </TextGestãoProduct>
-        </ButtonRemove>
+            <TextGestãoProduct>Editar </TextGestãoProduct>
+          </ButtonEdit>
+          <ButtonRemove>
+            <TextGestãoProduct>Remover </TextGestãoProduct>
+          </ButtonRemove>
         </ButtonsGestProduct>
-        
       </ViewDetails>
 
       <ViewContact>
         {/* Edit button */}
         <Touchable>
-          <TextContact>
-            Editar
-          </TextContact>
+          <TextContact>Editar</TextContact>
         </Touchable>
 
         {/* Delete button */}
         <Touchable>
-          <TextContact>
-            Excluir
-            Contato:
-          </TextContact>
+          <TextContact>Excluir Contato:</TextContact>
         </Touchable>
       </ViewContact>
-
-
     </Conteiner>
   )
 }
 
-export default Details;
+export default Details

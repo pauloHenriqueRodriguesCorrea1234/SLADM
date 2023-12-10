@@ -1,21 +1,21 @@
-import styled from "styled-components/native";
+import styled from "styled-components/native"
 
 export const Conteiner = styled.View`
   flex: 1;
   background-color: #006400;
   padding-top: 50px;
-`;
+`
 
 export const Title = styled.Text`
   font-size: 25px;
   color: #fff;
   text-align: center;
-`;
+`
 
 export const ViewAddProduct = styled.View`
   align-items: center;
   justify-content: center;
-`;
+`
 
 export const Touchable = styled.TouchableOpacity`
   align-items: center;
@@ -24,8 +24,8 @@ export const Touchable = styled.TouchableOpacity`
   border-radius: 50px;
   width: 50%;
   height: 45px;
-`;
+`
 
 export const TextCreateProduct = styled.Text`
   font-size: 18px;
-`; 
+`

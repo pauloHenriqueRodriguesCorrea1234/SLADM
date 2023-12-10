@@ -1,6 +1,6 @@
-import { getAuth } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { getDatabase } from 'firebase/database';
+import { getAuth } from "firebase/auth"
+import { initializeApp } from "firebase/app"
+import { getDatabase } from "firebase/database"
 
 let firebaseConfig = {
   apiKey: "AIzaSyBGmrl68Xj3iXNh_5BMiWHvujN8gpvDMcw",
@@ -10,10 +10,10 @@ let firebaseConfig = {
   storageBucket: "solofertiladm-ae735.appspot.com",
   messagingSenderId: "737930469242",
   appId: "1:737930469242:web:ddd928b117e569250500c3",
-};
-const app = initializeApp(firebaseConfig);
+}
+const app = initializeApp(firebaseConfig)
 
-const auth = getAuth(app);
-const db = getDatabase();
+const auth = getAuth(app)
+const db = getDatabase()
 
-export { auth, db };
+export { auth, db }

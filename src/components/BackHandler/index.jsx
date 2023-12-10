@@ -1,8 +1,8 @@
-import { Alert, BackHandler } from "react-native";
+import { Alert, BackHandler } from "react-native"
 
 const exitApp = () => {
   const backAction = () => {
-    console.log("Saindo...");
+    console.log("Saindo...")
     Alert.alert("Sair", "Deseja realmente sair do app?", [
       {
         text: "Cancelar",
@@ -11,16 +11,16 @@ const exitApp = () => {
       },
       { text: "Sim", onPress: () => BackHandler.exitApp() },
     ])
-    return true;
+    return true
   }
-  
+
   const backHandler = BackHandler.addEventListener(
     "hardwareBackPress",
     backAction
-  );
+  )
 
   // Returns the function that removes the 'listener' when the component is 'unmounted'
-  return () => backHandler.remove();
+  return () => backHandler.remove()
 }
 
-export default exitApp;
+export default exitApp

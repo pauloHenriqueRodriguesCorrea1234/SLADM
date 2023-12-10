@@ -1,21 +1,21 @@
 // Navigation Components
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator } from "@react-navigation/stack"
 
 // Verification screen components
-import Login from "../pages/ChecksScreens/Login";
-import SignUp from "../pages/ChecksScreens/SignUp";
+import Login from "../pages/ChecksScreens/Login"
+import SignUp from "../pages/ChecksScreens/SignUp"
 
 // User screen context components
-import UserDrawerRoutes from "./UserRoutes/UserDrawer.routes";
+import UserDrawerRoutes from "./UserRoutes/UserDrawer.routes"
 
 // Producer screen context components
-import Details from "../pages/ProducerScreens/Details";
-import AddProduct from "../pages/ProducerScreens/AddProduct";
-import ProducerDrawerRoutes from "./ProducerRoutes/ProducerDrawer.routes";
-import ProducersWithThisProduct from "../pages/UserScreens/ProducersWithThisProduct";
+import Details from "../pages/ProducerScreens/Details"
+import AddProduct from "../pages/ProducerScreens/AddProduct"
+import ProducerDrawerRoutes from "./ProducerRoutes/ProducerDrawer.routes"
+import ProducersWithThisProduct from "../pages/UserScreens/ProducersWithThisProduct"
 
 // Creation of Stack Navigator for stack routes
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
 const StackRoutes = () => {
   return (
@@ -23,14 +23,13 @@ const StackRoutes = () => {
       <Stack.Group
         screenOptions={{
           headerStyle: {
-            backgroundColor: "#777a67"
+            backgroundColor: "#777a67",
           },
           title: "",
           headerTransparent: true,
           headerShown: false,
         }}
       >
-
         {/* Login route */}
         <Stack.Screen component={Login} name="Login" />
 
@@ -81,13 +80,13 @@ const StackRoutes = () => {
 
       <Stack.Screen
         options={{
-          title: "Produtores que comercializam"
+          title: "Produtores que comercializam",
         }}
         name="ProducersWithThisProduct"
         component={ProducersWithThisProduct}
       />
     </Stack.Navigator>
-  );
-};
+  )
+}
 
-export default StackRoutes;
+export default StackRoutes

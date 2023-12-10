@@ -1,4 +1,4 @@
-import { Conteiner, Image, Text } from './styles';
+import { Conteiner, Image, Text } from "./styles"
 
 const FruitCards = ({ name, img }) => {
   return (
@@ -6,7 +6,7 @@ const FruitCards = ({ name, img }) => {
       <Image source={{ uri: img }} />
       <Text>{name}</Text>
     </Conteiner>
-  );
-};
+  )
+}
 
-export default FruitCards;
+export default FruitCards

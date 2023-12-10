@@ -1,14 +1,14 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
 // Library – vector icons
-import { Ionicons, MaterialIcons } from "react-native-vector-icons";
+import { Ionicons, MaterialIcons } from "react-native-vector-icons"
 
 // Producer route components
-import MyProducts from "../../pages/ProducerScreens/MyProducts";
-import HomeProducer from "../../pages/ProducerScreens/HomeProducer";
+import MyProducts from "../../pages/ProducerScreens/MyProducts"
+import HomeProducer from "../../pages/ProducerScreens/HomeProducer"
 
 // Creation of the Bottom Tab Navigator for producer routes
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 const TabRoutes = () => {
   return (
@@ -23,7 +23,6 @@ const TabRoutes = () => {
         },
       }}
     >
-
       {/* Route to the producer's home screen (HomeProducer) */}
       <Tab.Screen
         name="HomeProducer"
@@ -49,7 +48,7 @@ const TabRoutes = () => {
         }}
       />
     </Tab.Navigator>
-  );
-};
+  )
+}
 
-export default TabRoutes;
+export default TabRoutes

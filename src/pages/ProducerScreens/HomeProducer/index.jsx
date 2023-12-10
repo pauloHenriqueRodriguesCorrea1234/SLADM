@@ -5,53 +5,53 @@ import {
   Input,
   notFoundText,
   ViewnotFound,
-  FlatList
-} from "./styles";
+  FlatList,
+} from "./styles"
 
 // React States
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
 // Components
-import FruitCards from '../../../components/FruitCards';
-import exitApp from "../../../components/BackHandler";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import FruitCards from "../../../components/FruitCards"
+import exitApp from "../../../components/BackHandler"
+import Icon from "react-native-vector-icons/MaterialIcons"
 
-import api from "../../../services/api";
+import api from "../../../services/api"
 
 const HomeProducer = () => {
-  const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [filter, setFilter] = useState("");
-  const [notFound, setNotFound] = useState(false);
+  const [products, setProducts] = useState([])
+  const [filteredProducts, setFilteredProducts] = useState([])
+  const [filter, setFilter] = useState("")
+  const [notFound, setNotFound] = useState(false)
 
   async function listAllProducts() {
-    const response = await api.get('/products', {
+    const response = await api.get("/products", {
       validateStatus: (status) => status < 500,
-    });
+    })
 
     if (response.status === 200) {
-      const { products } = response.data;
-      setProducts(products);
-      setFilteredProducts(products);
-    };
-  };
+      const { products } = response.data
+      setProducts(products)
+      setFilteredProducts(products)
+    }
+  }
 
   useEffect(() => {
-    listAllProducts();
-    exitApp();
-  }, []);
+    listAllProducts()
+    exitApp()
+  }, [])
 
   useEffect(() => {
     if (filter) {
       const filteredProducts = products.filter((p) =>
         p.name.trim().toLowerCase().includes(filter.trim().toLowerCase())
-      );
-      setNotFound(!filteredProducts);
-      setFilteredProducts(filteredProducts);
+      )
+      setNotFound(!filteredProducts)
+      setFilteredProducts(filteredProducts)
     } else {
-      setFilteredProducts(products);
+      setFilteredProducts(products)
     }
-  }, [filter]);
+  }, [filter])
 
   function renderItem({ item }) {
     return <FruitCards img={item.imageURL} name={item.name} />
@@ -80,11 +80,11 @@ const HomeProducer = () => {
 
       <FlatList
         data={filteredProducts}
-        keyExtractor={item => item._id}
+        keyExtractor={(item) => item._id}
         renderItem={renderItem}
       />
     </Conteiner>
   )
 }
 
-export default HomeProducer;
+export default HomeProducer

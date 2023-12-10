@@ -1,9 +1,9 @@
-import styled from "styled-components/native";
+import styled from "styled-components/native"
 
 export const Conteiner = styled.View`
   flex: 1;
   background-color: #006400;
-`;
+`
 
 export const ViewInput = styled.View`
   flex-direction: row;
@@ -13,7 +13,7 @@ export const ViewInput = styled.View`
   border-color: #fff;
   margin: 8px 10px;
   padding-right: 20px;
-`;
+`
 
 export const Input = styled.TextInput`
   font-size: 16px;
@@ -21,21 +21,21 @@ export const Input = styled.TextInput`
   height: 50px;
   margin-left: 10px;
   color: #fff;
-`;
+`
 
-export const ActivityIndicator = styled.ActivityIndicator``;
+export const ActivityIndicator = styled.ActivityIndicator``
 
 export const ViewNotFaund = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
-`;
+`
 
 export const NotFaundText = styled.Text`
   font-size: 20px;
   color: #fff;
-`;
+`
 
-export const FlatList = styled.FlatList``;
+export const FlatList = styled.FlatList``
 
-export const TouchableOpacity = styled.TouchableOpacity``;
+export const TouchableOpacity = styled.TouchableOpacity``

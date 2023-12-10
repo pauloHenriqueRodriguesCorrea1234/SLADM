@@ -6,42 +6,42 @@ import {
   TouchableWitOutStyle,
   Text,
   AlertStyle,
-} from "./styles";
+} from "./styles"
 
 // Firebase library
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { child, get, getDatabase, ref } from "firebase/database";
-import { auth } from "../../../services/firebaseAuthentication";
-const database = getDatabase();
+import { signInWithEmailAndPassword } from "firebase/auth"
+import { child, get, getDatabase, ref } from "firebase/database"
+import { auth } from "../../../services/firebaseAuthentication"
+const database = getDatabase()
 
 // States
-import { useContext, useState } from "react";
+import { useContext, useState } from "react"
 
 // Navigation
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native"
 
 // Components
-import Logo from "../../../components/Logo";
+import Logo from "../../../components/Logo"
 
-// Informações do usuário 
-import { UserContext } from "../../../context/UserContext";
+// Informações do usuário
+import { UserContext } from "../../../context/UserContext"
 
 // Error vector
-import errorCodeMessages from "../ConfigError/errorCodeMessages";
+import errorCodeMessages from "../ConfigError/errorCodeMessages"
 
 const Login = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
-  const [email, setEmail] = useState("");
-  const [passWord, setPassWord] = useState("");
-  const { setToken, setUserEmail, setIsProducer } = useContext(UserContext);
+  const [email, setEmail] = useState("")
+  const [passWord, setPassWord] = useState("")
+  const { setToken, setUserEmail, setIsProducer } = useContext(UserContext)
 
   // Checks whether the user is a producer or not
   const goToHome = (isProducer) => {
     if (isProducer === true) {
-      navigation.navigate("ProducerDrawerRoutes");
+      navigation.navigate("ProducerDrawerRoutes")
     } else {
-      navigation.navigate("UserDrawerRoutes");
+      navigation.navigate("UserDrawerRoutes")
     }
   }
 
@@ -52,39 +52,39 @@ const Login = () => {
         auth,
         email,
         passWord
-      );
+      )
 
-      const { _tokenResponse } = userCredential;
-      const { userEmail = email, idToken } = _tokenResponse;
-      setToken(idToken);
-      setUserEmail(userEmail);
+      const { _tokenResponse } = userCredential
+      const { userEmail = email, idToken } = _tokenResponse
+      setToken(idToken)
+      setUserEmail(userEmail)
 
-      const uid = userCredential.user.uid;
+      const uid = userCredential.user.uid
       const snapshot = await get(
         child(ref(database), `user/${uid}` && `producer/${uid}`)
-      );
-      const isProducer = snapshot.exists() ? snapshot.val().producer : false;
-      setIsProducer(isProducer);
-      goToHome(isProducer);
+      )
+      const isProducer = snapshot.exists() ? snapshot.val().producer : false
+      setIsProducer(isProducer)
+      goToHome(isProducer)
 
       // Clear the inputs
-      setEmail("");
-      setPassWord("");
+      setEmail("")
+      setPassWord("")
     } catch (error) {
       const errorMessage =
         errorCodeMessages[error.code] ||
-        "Erro ao efetuar login. Tente novamente mais tarde.";
-      AlertStyle.alert(errorMessage);
-      setEmail("");
-      setPassWord("");
+        "Erro ao efetuar login. Tente novamente mais tarde."
+      AlertStyle.alert(errorMessage)
+      setEmail("")
+      setPassWord("")
     }
   }
 
   // Go to registration screen
   const goToSignUp = () => {
-    navigation.navigate("SignUp");
-    setEmail("");
-    setPassWord("");
+    navigation.navigate("SignUp")
+    setEmail("")
+    setPassWord("")
   }
 
   return (
@@ -118,7 +118,7 @@ const Login = () => {
         <Text style={{ color: "#fff" }}>Cadastrar</Text>
       </TouchableWitOutStyle>
     </Conteiner>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
