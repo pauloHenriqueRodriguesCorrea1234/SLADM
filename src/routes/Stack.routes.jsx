@@ -80,7 +80,7 @@ const StackRoutes = () => {
 
       <Stack.Screen
         options={{
-          title: "Produtores que comercializam",
+          title: `Produtores que comercializam`,
         }}
         name="ProducersWithThisProduct"
         component={ProducersWithThisProduct}

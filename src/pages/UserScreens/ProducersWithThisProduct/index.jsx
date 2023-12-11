@@ -1,14 +1,19 @@
+import { Conteiner, Text, FlatList, TouchableOpacity } from "./styles"
+
 import { useEffect, useState } from "react"
-import { Conteiner, Text } from "./styles"
+
+import { Linking } from 'react-native'
+
 import api from "../../../services/api"
-import { FlatList, TouchableOpacity } from "react-native"
-import FruitCards from "../../../components/FruitCards"
+
+import Card from "./../Card"
 
 const ProducersWithThisProduct = ({ route }) => {
   const { product } = route.params
   const [producers, setProducers] = useState([])
+
   useEffect(() => {
-    ;(async () => {
+    (async () => {
       const response = await api.get(`/producers/product/${product._id}`)
       const { producers } = response.data
       setProducers(producers)
@@ -16,9 +21,13 @@ const ProducersWithThisProduct = ({ route }) => {
     })()
   }, [])
 
+  const getInTouch = () => {
+    Linking.openURL(`whatsapp://send?phone=${producers.phone}`)
+  }
+
   const renderItem = (item) => {
-    ;<TouchableOpacity>
-      <FruitCards name={producers.name} />
+    <TouchableOpacity>
+      <Card name={producers.name} price={producers.price} onPrees={() => getInTouch()} />
     </TouchableOpacity>
   }
   return (
@@ -30,7 +39,7 @@ const ProducersWithThisProduct = ({ route }) => {
           keyExtractor={(item) => item._id}
         />
       ) : (
-        <Text>Nenhum produtor comercializa esse produto ainda</Text>
+        <Text>Nenhum produtor comercializa {product.name} ainda</Text>
       )}
     </Conteiner>
   )
