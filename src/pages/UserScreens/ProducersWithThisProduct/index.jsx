@@ -1,4 +1,4 @@
-import { Conteiner, Text, FlatList, TouchableOpacity } from "./styles"
+import { Conteiner, Text, FlatList, TouchableOpacity, ViewNotFound } from "./styles"
 
 import { useEffect, useState } from "react"
 
@@ -39,7 +39,9 @@ const ProducersWithThisProduct = ({ route }) => {
           keyExtractor={(item) => item._id}
         />
       ) : (
-        <Text>Nenhum produtor comercializa {product.name} ainda</Text>
+        <ViewNotFound>
+          <Text>NENHUM PRODUTOR COMERCIALIZA {product.name.toUpperCase()} AINDA </Text>
+        </ViewNotFound>
       )}
     </Conteiner>
   )

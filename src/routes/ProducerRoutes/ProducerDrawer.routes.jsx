@@ -3,11 +3,11 @@ import { createDrawerNavigator } from "@react-navigation/drawer"
 // Library – vector icons
 import { Ionicons, AntDesign, Feather } from "react-native-vector-icons"
 
+
 // Producer menu components
 import TabRoutes from "./ProducerTab.routes"
-import Logout from "../../components/Logout"
-import instagram from "../../components/LinkInstagram"
-
+import Logout from '../../components/Logout'
+import Instagram from "../../components/Instagram"
 // Criação do Drawer Navigator para as rotas do produtor
 const Drawer = createDrawerNavigator()
 
@@ -37,7 +37,7 @@ const ProducerDrawerRoutes = () => {
       {/* Rota para a tela de Instagram (LinkInstagram) */}
       <Drawer.Screen
         name="Instagram"
-        component={instagram}
+        component={Instagram}
         options={{
           drawerLabel: "Instagram",
           drawerIcon: ({ size, color }) => (
@@ -48,7 +48,7 @@ const ProducerDrawerRoutes = () => {
 
       {/* Rota para a tela de Logout (Logout) */}
       <Drawer.Screen
-        name="Logout"
+        name="logout"
         component={Logout}
         options={{
           drawerLabel: "Sair",

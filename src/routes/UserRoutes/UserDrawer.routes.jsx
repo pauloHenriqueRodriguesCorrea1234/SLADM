@@ -1,15 +1,12 @@
-import { Linking } from "react-native"
-
 import { createDrawerNavigator } from "@react-navigation/drawer"
 
 // Library – vector icons
 import { Ionicons, AntDesign, Feather } from "react-native-vector-icons"
 
-// User menu components
 import HomeUser from "../../pages/UserScreens/HomeUser"
 import Logout from "../../components/Logout"
+import instagram from "../../components/instagram"
 
-// Creation of drawer navigator for user routes
 const Drawer = createDrawerNavigator()
 
 const UserDrawerRoutes = () => {
@@ -25,7 +22,6 @@ const UserDrawerRoutes = () => {
         },
       }}
     >
-      {/* Route to the user's home screen (UserTabRoutes) */}
       <Drawer.Screen
         name="Home"
         component={HomeUser}
@@ -37,12 +33,9 @@ const UserDrawerRoutes = () => {
         }}
       />
 
-      {/* {Route to Instagram screen (LinkInstagram)} */}
       <Drawer.Screen
-        name="Instagram"
-        component={() => {
-          Linking.openURL("https://www.instagram.com/solo_fertil_campus_aquidauana/")
-        }}
+        name="instagram"
+        component={instagram}
         options={{
           drawerLabel: "Instagram",
           drawerIcon: ({ size, color }) => (

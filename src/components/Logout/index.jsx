@@ -1,10 +1,8 @@
 import { useNavigation } from "@react-navigation/native"
 import { auth } from "../../services/firebaseAuthentication"
 
-const Logout = () => {
+export default logout = () => {
   const navigation = useNavigation()
-  navigation.navigate("Login")
+  navigation.popToTop();
   auth.signOut()
 }
-
-export default Logout
