@@ -7,15 +7,15 @@ import {
   NotFaundText,
   TouchableOpacityDetails,
   TouchableOpacityNewProduct,
-  ConteinerNewProduct,
-  ViewNewProduct,
+  FlatList,
 } from "./styles"
 
 // Components
+import { UserContext } from "../../../context/UserContext"
 import FruitCards from "../../../components/FruitCards"
 import exitApp from "../../../components/BackHandler"
-import { FlatList } from "react-native"
-import { UserContext } from "../../../context/UserContext"
+
+// API
 import api from "../../../services/api"
 
 // Navigation Library
@@ -31,39 +31,40 @@ const MyProducts = () => {
   const navigation = useNavigation()
 
   const [products, setProducts] = useState([])
+  const [filteredProducts, setFilteredProducts] = useState([])
   const [filter, setFilter] = useState("")
   const [notFound, setNotFound] = useState(false)
 
   const { userEmail } = useContext(UserContext)
 
   useEffect(() => {
-    ;(async () => {
+    (async () => {
       const response = await api.get(`/products/producer/${userEmail}`)
       const { products } = response.data
-      console.log(products)
       setProducts(products)
+      setFilteredProducts(products)
     })()
     exitApp()
   }, [])
 
   useEffect(() => {
     if (filter.length > 0) {
-      // Checks if anything that was typed exists in the object array
       const filteredProducts = products.filter((p) =>
         p.name.toLowerCase().includes(filter.toLowerCase())
       )
-
-      // If filteredProducts equals 0 no products were found
       if (filteredProducts.length == 0) {
         setNotFound(true)
+        setFilteredProducts(filteredProducts)
       } else {
         setNotFound(false)
       }
       setProducts(filteredProducts)
+    } else {
+      setNotFound(false)
+      setFilteredProducts(products)
     }
   }, [filter])
 
-  // It is used to not create a new function every time the item is assembled
   function renderItem({ item }) {
     return (
       <TouchableOpacityDetails onPress={() => navigation.navigate("Details")}>
@@ -72,24 +73,19 @@ const MyProducts = () => {
     )
   }
 
-  // Used to go to the details screen
   function NewProduct() {
     return (
-      <ConteinerNewProduct>
-        <ViewNewProduct>
-          <TouchableOpacityNewProduct
-            onPress={() => navigation.navigate("AddProduct")}
-          >
-            <Entypo name="plus" size={20} color={"#000"} />
-          </TouchableOpacityNewProduct>
-        </ViewNewProduct>
-      </ConteinerNewProduct>
+      <TouchableOpacityNewProduct
+        activeOpacity={0.2}
+        onPress={() => navigation.navigate("AddProduct")}
+      >
+        <Entypo name="plus" size={30} color={"#000"} />
+      </TouchableOpacityNewProduct>
     )
   }
 
   return (
     <Conteiner>
-      {/* View for search product */}
       <ViewInput>
         <Input
           placeholderTextColor="#fff"
@@ -98,13 +94,14 @@ const MyProducts = () => {
           onChangeText={setFilter}
           textAlign="left"
         />
-
         <MaterialIcons name="search" color="#fff" size={30} />
       </ViewInput>
 
-      <NotFaundText>{filter}</NotFaundText>
-
-      {/* Component to render producers' products */}
+      {notFound ? (
+        <ViewNotFaund>
+          <NotFaundText>PRODUTO NÃO ENCONTRADO</NotFaundText>
+        </ViewNotFaund>
+      ) : null}
       <FlatList
         data={products}
         keyExtractor={(item) => item.id}
@@ -112,12 +109,6 @@ const MyProducts = () => {
       />
 
       <NewProduct />
-
-      {notFound ? (
-        <ViewNotFaund>
-          <NotFaundText>PRODUTO NÃO ENCONTRADO</NotFaundText>
-        </ViewNotFaund>
-      ) : null}
     </Conteiner>
   )
 }

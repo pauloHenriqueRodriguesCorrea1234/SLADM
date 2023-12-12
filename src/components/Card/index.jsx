@@ -1,4 +1,4 @@
-import { Conteiner, Text, View, Touchable, ViewTouchable } from './styles'
+import { Conteiner, Text, View, Touchable, ViewTouchable } from "./styles"
 
 export default Card = ({ name, price, onPrees }) => {
   return (

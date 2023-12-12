@@ -1,20 +1,15 @@
-// Navigation Components
 import { createStackNavigator } from "@react-navigation/stack"
 
-// Verification screen components
 import Login from "../pages/ChecksScreens/Login"
 import SignUp from "../pages/ChecksScreens/SignUp"
 
-// User screen context components
 import UserDrawerRoutes from "./UserRoutes/UserDrawer.routes"
 
-// Producer screen context components
 import Details from "../pages/ProducerScreens/Details"
 import AddProduct from "../pages/ProducerScreens/AddProduct"
 import ProducerDrawerRoutes from "./ProducerRoutes/ProducerDrawer.routes"
 import ProducersWithThisProduct from "../pages/UserScreens/ProducersWithThisProduct"
 
-// Creation of Stack Navigator for stack routes
 const Stack = createStackNavigator()
 
 const StackRoutes = () => {
@@ -30,20 +25,16 @@ const StackRoutes = () => {
           headerShown: false,
         }}
       >
-        {/* Login route */}
         <Stack.Screen component={Login} name="Login" />
 
-        {/* Route for when you are a producer (ProducerDrawerRoutes) */}
         <Stack.Screen
           name="ProducerDrawerRoutes"
           component={ProducerDrawerRoutes}
         />
 
-        {/* Route for when you are a user (UserDrawerRoutes) */}
         <Stack.Screen name="UserDrawerRoutes" component={UserDrawerRoutes} />
       </Stack.Group>
 
-      {/* Route to add product */}
       <Stack.Screen
         component={AddProduct}
         name="AddProduct"
@@ -55,7 +46,6 @@ const StackRoutes = () => {
         }}
       />
 
-      {/* Route details screen */}
       <Stack.Screen
         component={Details}
         name="Details"
@@ -67,7 +57,6 @@ const StackRoutes = () => {
         }}
       />
 
-      {/* Route Registration screen */}
       <Stack.Screen
         component={SignUp}
         name="SignUp"
@@ -81,6 +70,8 @@ const StackRoutes = () => {
       <Stack.Screen
         options={{
           title: `Produtores que comercializam`,
+          headerTransparent: true,
+          headerTintColor: "#fff",
         }}
         name="ProducersWithThisProduct"
         component={ProducersWithThisProduct}

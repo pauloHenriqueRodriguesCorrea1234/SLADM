@@ -17,6 +17,8 @@ export const ViewNotFound = styled.View`
   align-items: center;
 `
 
-export const FlatList = styled.FlatList``
+export const FlatList = styled.FlatList`
+  
+`
 
 export const TouchableOpacity = styled.TouchableOpacity``

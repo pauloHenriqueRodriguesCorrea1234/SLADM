@@ -1,12 +1,18 @@
-import { Conteiner, Text, FlatList, TouchableOpacity, ViewNotFound } from "./styles"
+import {
+  Conteiner,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  ViewNotFound,
+} from "./styles"
 
 import { useEffect, useState } from "react"
 
-import { Linking } from 'react-native'
+import { Linking } from "react-native"
 
 import api from "../../../services/api"
 
-import Card from "./../Card"
+import Card from "../../../components/Card"
 
 const ProducersWithThisProduct = ({ route }) => {
   const { product } = route.params
@@ -25,9 +31,13 @@ const ProducersWithThisProduct = ({ route }) => {
     Linking.openURL(`whatsapp://send?phone=${producers.phone}`)
   }
 
-  const renderItem = (item) => {
+  const renderItem = () => {
     <TouchableOpacity>
-      <Card name={producers.name} price={producers.price} onPrees={() => getInTouch()} />
+      <Card
+        name={producers.name}
+        price={producers.price}
+        onPrees={() => getInTouch()}
+      />
     </TouchableOpacity>
   }
   return (
@@ -40,7 +50,9 @@ const ProducersWithThisProduct = ({ route }) => {
         />
       ) : (
         <ViewNotFound>
-          <Text>NENHUM PRODUTOR COMERCIALIZA {product.name.toUpperCase()} AINDA </Text>
+          <Text>
+            {product.name}
+          </Text>
         </ViewNotFound>
       )}
     </Conteiner>

@@ -30,6 +30,13 @@ const HomeUser = () => {
   const [notFound, setNotFound] = useState(false)
   const [loading, isLoading] = useState(false)
 
+  const reloadStates = () => {
+    setProducts(products)
+    setFilteredProducts(products)
+    setFilter("")
+    setNotFound(false)
+    isLoading(false)
+  }
   async function listAllProducts() {
     isLoading(true)
     const response = await api.get("/products", {
@@ -41,11 +48,11 @@ const HomeUser = () => {
       setProducts(products)
       setFilteredProducts(products)
     }
+    isLoading(false)
   }
 
   useEffect(() => {
     listAllProducts()
-    isLoading(false)
     exitApp()
   }, [])
 
@@ -54,7 +61,6 @@ const HomeUser = () => {
       const filteredProducts = products.filter((p) =>
         p.name.trim().toLowerCase().includes(filter.trim().toLowerCase())
       )
-
       setNotFound(!filteredProducts)
       setFilteredProducts(filteredProducts)
     } else {
@@ -63,29 +69,49 @@ const HomeUser = () => {
   }, [filter])
 
   function renderItem({ item }) {
+
+    const goToProducersWithThisProduct = () => {
+      reloadStates()
+      navigation.navigate("ProducersWithThisProduct", { product: item })
+    }
     return (
-      <TouchableOpacity
-        onPress={() =>
-          navigation.navigate("ProducersWithThisProduct", { product: item })
-        }
-      >
+      <TouchableOpacity onPress={goToProducersWithThisProduct}>
         <FruitCards img={item.imageURL} name={item.name} />
       </TouchableOpacity>
     )
   }
   return (
     <Conteiner>
-      <ViewInput>
-        <Input
-          placeholderTextColor="#fff"
-          placeholder="Escreva o nome do produto"
-          value={filter}
-          onChangeText={setFilter}
-          textAlign="left"
-        />
-        <Icon name="search" size={30} color={"#fff"} />
-      </ViewInput>
-      {loading && <ActivityIndicator />}
+      {
+        loading === true
+          ?
+          <ActivityIndicator
+            size={80}
+            color="#fff"
+          />
+          :
+          (
+            <>
+              <ViewInput>
+                <Input
+                  placeholderTextColor="#fff"
+                  placeholder="Escreva o nome do produto"
+                  value={filter}
+                  onChangeText={setFilter}
+                  textAlign="left"
+                />
+                <Icon name="search" size={30} color={"#fff"} />
+              </ViewInput>
+              
+              <FlatList
+                data={filteredProducts}
+                keyExtractor={(item) => item._id}
+                renderItem={renderItem}
+              />
+            </>
+          )
+      }
+
       {notFound == true ? (
         <ViewnotFound>
           <notFoundText>PRODUTO NÃO ENCONTRADO</notFoundText>
@@ -93,11 +119,7 @@ const HomeUser = () => {
       ) : (
         notFound == false
       )}
-      <FlatList
-        data={filteredProducts}
-        keyExtractor={(item) => item._id}
-        renderItem={renderItem}
-      />
+
     </Conteiner>
   )
 }

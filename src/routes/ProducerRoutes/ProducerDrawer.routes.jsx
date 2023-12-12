@@ -3,11 +3,11 @@ import { createDrawerNavigator } from "@react-navigation/drawer"
 // Library – vector icons
 import { Ionicons, AntDesign, Feather } from "react-native-vector-icons"
 
-
 // Producer menu components
 import TabRoutes from "./ProducerTab.routes"
-import Logout from '../../components/Logout'
+import Logout from "../../components/Logout"
 import Instagram from "../../components/Instagram"
+
 // Criação do Drawer Navigator para as rotas do produtor
 const Drawer = createDrawerNavigator()
 

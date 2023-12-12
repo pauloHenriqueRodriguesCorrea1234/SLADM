@@ -1,6 +1,8 @@
 import styled from "styled-components/native"
 import { Alert } from "react-native"
 
+import { TextInputMask } from "react-native-masked-text"
+
 export const Conteiner = styled.SafeAreaView`
   flex: 1;
   background-color: #006400;
@@ -16,6 +18,8 @@ export const Input = styled.TextInput`
   font-size: 16px;
   border-radius: 5px;
 `
+
+export const InputPhone = TextInputMask
 
 export const ViewProducer = styled.View`
   flex-direction: row;

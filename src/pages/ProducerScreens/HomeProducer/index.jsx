@@ -3,9 +3,9 @@ import {
   Conteiner,
   ViewInput,
   Input,
-  notFoundText,
-  ViewnotFound,
   FlatList,
+  ViewNotFound,
+  NotFoundText
 } from "./styles"
 
 // React States
@@ -46,10 +46,12 @@ const HomeProducer = () => {
       const filteredProducts = products.filter((p) =>
         p.name.trim().toLowerCase().includes(filter.trim().toLowerCase())
       )
+
       setNotFound(!filteredProducts)
       setFilteredProducts(filteredProducts)
     } else {
       setFilteredProducts(products)
+      setNotFound(true)
     }
   }, [filter])
 
@@ -71,9 +73,9 @@ const HomeProducer = () => {
       </ViewInput>
 
       {notFound == true ? (
-        <ViewnotFound>
-          <notFoundText>PRODUTO NÃO ENCONTRADO</notFoundText>
-        </ViewnotFound>
+        <ViewNotFound>
+          <NotFoundText>PRODUTO NÃO ENCONTRADO</NotFoundText>
+        </ViewNotFound>
       ) : (
         notFound == false
       )}

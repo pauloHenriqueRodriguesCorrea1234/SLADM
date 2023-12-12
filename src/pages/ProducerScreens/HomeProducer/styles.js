@@ -23,13 +23,13 @@ export const Input = styled.TextInput`
   color: #fff;
 `
 
-export const ViewNotFaund = styled.View`
+export const ViewNotFound = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
 `
 
-export const NotFaundText = styled.Text`
+export const NotFoundText = styled.Text`
   font-size: 20px;
   color: #fff;
 `

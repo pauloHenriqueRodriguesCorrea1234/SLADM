@@ -8,6 +8,7 @@ import {
   TextCadastrar,
   AlertStyle,
   Switch,
+  InputPhone,
 } from "./styles"
 
 // Firebase library
@@ -15,7 +16,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 import { db } from "../../../services/firebaseAuthentication"
 import { ref, set } from "firebase/database"
 
-//
+// API
 import api from "../../../services/api"
 
 // Navigation
@@ -169,13 +170,28 @@ const SignUp = () => {
       </ViewProducer>
 
       {producer ? (
-        <Input
-          placeholder="Telefone"
+        <InputPhone
           placeholderTextColor="#FFF"
+          placeholder="Telefone"
           value={phone}
-          onChangeText={(text) => setPhone(text)}
-          inputMode="tel"
-          keyboardType="numeric"
+          style={{
+            textAlign: "center",
+            borderColor: "#fff",
+            borderWidth: 1,
+            height: 50,
+            margin: 10,
+            color: "#fff",
+            fontSize: 16,
+            borderRadius: 5,
+          }}
+          onChangeText={(v) => setPhone(v)}
+          type="cel-phone"
+          autoCapitalize="none"
+          options={{
+            maskType: "BRL",
+            withDDD: true,
+            dddMask: "(99) ",
+          }}
         />
       ) : null}
 

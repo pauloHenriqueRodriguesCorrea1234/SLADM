@@ -5,7 +5,7 @@ import { Ionicons, AntDesign, Feather } from "react-native-vector-icons"
 
 import HomeUser from "../../pages/UserScreens/HomeUser"
 import Logout from "../../components/Logout"
-import instagram from "../../components/instagram"
+import Instagram from "../../components/Instagram"
 
 const Drawer = createDrawerNavigator()
 
@@ -34,8 +34,8 @@ const UserDrawerRoutes = () => {
       />
 
       <Drawer.Screen
-        name="instagram"
-        component={instagram}
+        name="Instagram"
+        component={Instagram}
         options={{
           drawerLabel: "Instagram",
           drawerIcon: ({ size, color }) => (

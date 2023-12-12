@@ -38,19 +38,16 @@ export const List = styled.FlatList``
 
 export const TouchableOpacityDetails = styled.TouchableOpacity``
 
-export const ConteinerNewProduct = styled.View`
-  position: absolute;
-  justify-content: flex-end;
-  align-items: flex-end;
-`
-
 export const TouchableOpacityNewProduct = styled.TouchableOpacity`
-  align-items: center;
-  border-radius: 40px;
+  position: absolute;
+  height: 60px;
+  width: 60px;
+  border-radius: 30px;
   background-color: #d3d3d3;
-  width: 50px;
-  height: 50px;
   justify-content: center;
+  align-items: center;
+  right: 10px;
+  bottom: 30px;
 `
 
-export const ViewNewProduct = styled.View``
+export const FlatList = styled.FlatList``
