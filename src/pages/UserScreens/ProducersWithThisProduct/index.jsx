@@ -35,7 +35,6 @@ const ProducersWithThisProduct = ({ route }) => {
     <TouchableOpacity>
       <Card
         name={producers.name}
-        price={producers.price}
         onPrees={() => getInTouch()}
       />
     </TouchableOpacity>
@@ -51,7 +50,7 @@ const ProducersWithThisProduct = ({ route }) => {
       ) : (
         <ViewNotFound>
           <Text>
-            {product.name}
+            {`Nenhum produto comercializa ${product.name} ainda.`}
           </Text>
         </ViewNotFound>
       )}

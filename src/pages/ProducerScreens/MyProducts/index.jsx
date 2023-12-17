@@ -103,7 +103,7 @@ const MyProducts = () => {
         </ViewNotFaund>
       ) : null}
       <FlatList
-        data={products}
+        data={filteredProducts}
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
       />
