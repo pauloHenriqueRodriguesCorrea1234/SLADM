@@ -13,10 +13,9 @@ export default SelectProduct = ({ options, onChange, initialSelect = [] }) => {
   const [products, setProducts] = useState([])
   const [selectedProducts, setSelectedProducts] = useState([])
   const [allProducts, setAllProducts] = useState([])
-  const [price, setPrice] = useState(0)
 
   useEffect(() => {
-    ;(async () => {
+    ; (async () => {
       let response = await api.get("/products")
 
       // Retorna todos os produtos que existem no banco de dados
@@ -28,19 +27,19 @@ export default SelectProduct = ({ options, onChange, initialSelect = [] }) => {
       // Essa variável contém uma lista de todos o produtos que o determinado produtor comercializa
       let producerProducts = data.products
 
-      /**
+      /*
        * O trecho abaixo foi colocado para se adaptar ao componente SelectMultiple
        */
       const allProductsToBeSelected = products.map((v) => { return { label: v.name, value: v } })
       setAllProducts(allProductsToBeSelected)
-      producerProducts = producerProducts.map((v) => { return {label: v.name, value: v}})
+      producerProducts = producerProducts.map((v) => { return { label: v.name, value: v } })
       setSelectedProducts(producerProducts)
       /* Fim do trecho */
     })()
   }, [])
 
   const addProducts = async () => {
-    for(let s in selectedProducts) {
+    for (let s in selectedProducts) {
       const { value } = s
       const response = await api.post(
         "/producers/add/product",
@@ -62,11 +61,11 @@ export default SelectProduct = ({ options, onChange, initialSelect = [] }) => {
     }
 
     const notSelectedProducts = selectedProducts.filter((s) => !products.includes(s.value))
-    for(let n in notSelectedProducts) {
+    for (let n in notSelectedProducts) {
       try {
         await api.delete(`/producers/product/${n._id}`)
-      } catch(err) {
-        console.log(err)
+      } catch (err) {
+        console.error(err)
       }
     }
   }

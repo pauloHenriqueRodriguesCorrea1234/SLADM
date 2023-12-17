@@ -18,8 +18,6 @@ const exitApp = () => {
     "hardwareBackPress",
     backAction
   )
-
-  // Returns the function that removes the 'listener' when the component is 'unmounted'
   return () => backHandler.remove()
 }
 

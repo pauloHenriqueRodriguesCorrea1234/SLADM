@@ -1,4 +1,3 @@
-// Styles
 import {
   Conteiner,
   Input,
@@ -8,25 +7,19 @@ import {
   AlertStyle,
 } from "./styles"
 
-// Firebase library
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { child, get, getDatabase, ref } from "firebase/database"
 import { auth } from "../../../services/firebaseAuthentication"
 const database = getDatabase()
 
-// States
 import { useContext, useState } from "react"
 
-// Navigation
 import { useNavigation } from "@react-navigation/native"
 
-// Components
 import Logo from "../../../components/Logo"
 
-// Informações do usuário
 import { UserContext } from "../../../context/UserContext"
 
-// Error vector
 import errorCodeMessages from "../ConfigError/errorCodeMessages"
 
 const Login = () => {
@@ -36,7 +29,6 @@ const Login = () => {
   const [passWord, setPassWord] = useState("")
   const { setToken, setUserEmail, setIsProducer } = useContext(UserContext)
 
-  // Checks whether the user is a producer or not
   const goToHome = (isProducer) => {
     if (isProducer === true) {
       navigation.navigate("ProducerDrawerRoutes")
@@ -45,7 +37,6 @@ const Login = () => {
     }
   }
 
-  // Function to login and check if the user exists
   const verifyUser = async () => {
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -67,7 +58,6 @@ const Login = () => {
       setIsProducer(isProducer)
       goToHome(isProducer)
 
-      // Clear the inputs
       setEmail("")
       setPassWord("")
     } catch (error) {
@@ -80,7 +70,6 @@ const Login = () => {
     }
   }
 
-  // Go to registration screen
   const goToSignUp = () => {
     navigation.navigate("SignUp")
     setEmail("")

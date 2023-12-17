@@ -34,12 +34,10 @@ import Logo from "../../../components/Logo"
 const SignUp = () => {
   const navigation = useNavigation()
 
-  // User variables
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  // Producer variables
   const [producer, setProducer] = useState(false)
   const products = useState({})
   const [phone, setPhone] = useState("")
@@ -54,7 +52,6 @@ const SignUp = () => {
     setPhone("")
   }
 
-  // Function for crate user
   const createUser = async () => {
     if (name === null || name === "") {
       alert(`Informe seu nome`)
