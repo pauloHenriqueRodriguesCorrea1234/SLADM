@@ -15,6 +15,7 @@ import { useEffect, useState } from "react"
 // Components
 import FruitCards from "../../../components/FruitCards"
 import exitApp from "../../../components/BackHandler"
+
 import Icon from "react-native-vector-icons/MaterialIcons"
 
 import { useNavigation } from "@react-navigation/native"

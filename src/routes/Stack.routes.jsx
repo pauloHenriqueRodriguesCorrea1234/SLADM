@@ -17,19 +17,16 @@ const Stack = createStackNavigator()
 
 const StackRoutes = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Login">
       <Stack.Group
         screenOptions={{
-          headerStyle: {
-            backgroundColor: "#777a67",
-          },
-          title: "",
           headerTransparent: true,
           headerShown: false,
+          headerTintColor: "#fff",
         }}
       >
         <Stack.Screen component={Login} name="Login" />
-
+        
         <Stack.Screen
           name="ProducerDrawerRoutes"
           component={ProducerDrawerRoutes}
@@ -38,47 +35,37 @@ const StackRoutes = () => {
         <Stack.Screen name="UserDrawerRoutes" component={UserDrawerRoutes} />
       </Stack.Group>
 
-      <Stack.Screen
-        component={AddProduct}
-        name="AddProduct"
-        options={{
+      <Stack.Group
+        screenOptions={{
           headerTransparent: false,
           headerShown: true,
           headerTintColor: "#000",
           headerTitle: "Voltar",
         }}
-      />
+      >
+        <Stack.Screen component={AddProduct} name="AddProduct" />
+        <Stack.Screen component={Details} name="Details" />
+      </Stack.Group>
 
-      <Stack.Screen
-        component={Details}
-        name="Details"
-        options={{
-          headerTransparent: false,
-          headerShown: true,
-          headerTintColor: "#000",
-          headerTitle: "Voltar",
-        }}
-      />
-
-      <Stack.Screen
-        component={SignUp}
-        name="SignUp"
-        options={{
+      <Stack.Group
+        screenOptions={{
           headerTransparent: true,
-          headerTintColor: "#fff",
-          headerTitle: "Voltar",
+          headerTintColor: "#FFF",
         }}
-      />
-
-      <Stack.Screen
-        options={{
-          headerTitle: () => <HeaderScreen /> ,
-          headerTransparent: true,
-          headerTintColor: "#fff",
-        }}
-        name="ProducersWithThisProduct"
-        component={ProducersWithThisProduct}
-      />
+      >
+        <Stack.Screen
+          options={{ headerTitle: () => <HeaderScreen /> }}
+          name="ProducersWithThisProduct"
+          component={ProducersWithThisProduct}
+        />
+        <Stack.Screen
+          component={SignUp}
+          name="SignUp"
+          options={{
+            headerTitle: "Voltar",
+          }}
+        />
+      </Stack.Group>
     </Stack.Navigator>
   )
 }

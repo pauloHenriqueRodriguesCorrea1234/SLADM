@@ -10,10 +10,10 @@ import { useEffect, useState } from "react"
 
 import { Linking } from "react-native"
 
-import api from "../../../services/api"
+import api from "../../services/api"
 
-import Card from "../../../components/Card"
-import HeaderScreen from "../HeaderScreen"
+import Card from "../Card"
+import HeaderScreen from "../../pages/UserScreens/HeaderScreen"
 
 const ProducersWithThisProduct = ({ route }) => {
   const { product } = route.params
@@ -33,7 +33,7 @@ const ProducersWithThisProduct = ({ route }) => {
   }
 
   const renderItem = () => {
-    ; <TouchableOpacity>
+    <TouchableOpacity>
       <Card
         name={producers.name}
         price={producers.price}

@@ -15,7 +15,7 @@ const UserDrawerRoutes = () => {
       screenOptions={{
         title: "",
         headerTintColor: "#fff",
-        headerTransparent: false,
+        headerShown:true,
         headerStyle: {
           backgroundColor: "#006400",
         },
@@ -32,7 +32,6 @@ const UserDrawerRoutes = () => {
         }}
       />
 
-      {/* Route to Logout screen */}
       <Drawer.Screen
         name="Logout"
         component={Logout}
