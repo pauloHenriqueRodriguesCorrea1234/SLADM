@@ -13,17 +13,18 @@ import { Linking } from "react-native"
 import api from "../../../services/api"
 
 import Card from "../../../components/Card"
+import HeaderScreen from "../HeaderScreen"
 
 const ProducersWithThisProduct = ({ route }) => {
-  console.log(route.params);
   const { product } = route.params
   const [producers, setProducers] = useState([])
 
   useEffect(() => {
-    (async () => {
+    ; (async () => {
       const response = await api.get(`/producers/product/${product._id}`)
       const { producers } = response.data
       setProducers(producers)
+      console.log(producers)
     })()
   }, [])
 
@@ -32,7 +33,7 @@ const ProducersWithThisProduct = ({ route }) => {
   }
 
   const renderItem = () => {
-    <TouchableOpacity>
+    ; <TouchableOpacity>
       <Card
         name={producers.name}
         price={producers.price}
@@ -42,6 +43,7 @@ const ProducersWithThisProduct = ({ route }) => {
   }
   return (
     <Conteiner>
+      <HeaderScreen title={`Produtores que comercializam ${product.name}`} />
       {producers.length > 0 ? (
         <FlatList
           data={producers}
@@ -50,9 +52,7 @@ const ProducersWithThisProduct = ({ route }) => {
         />
       ) : (
         <ViewNotFound>
-          <Text>
-            {product.name}
-          </Text>
+          <Text>No momento nenhum produtor tem esse produto disponível</Text>
         </ViewNotFound>
       )}
     </Conteiner>

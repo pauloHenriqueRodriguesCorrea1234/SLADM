@@ -1,5 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack"
 
+import { Text } from "react-native"
+
 import Login from "../pages/ChecksScreens/Login"
 import SignUp from "../pages/ChecksScreens/SignUp"
 
@@ -9,6 +11,7 @@ import Details from "../pages/ProducerScreens/Details"
 import AddProduct from "../pages/ProducerScreens/AddProduct"
 import ProducerDrawerRoutes from "./ProducerRoutes/ProducerDrawer.routes"
 import ProducersWithThisProduct from "../pages/UserScreens/ProducersWithThisProduct"
+import HeaderScreen from "../pages/UserScreens/HeaderScreen"
 
 const Stack = createStackNavigator()
 
@@ -69,7 +72,7 @@ const StackRoutes = () => {
 
       <Stack.Screen
         options={{
-          title: `Produtores que comercializam`,
+          headerTitle: () => <HeaderScreen /> ,
           headerTransparent: true,
           headerTintColor: "#fff",
         }}

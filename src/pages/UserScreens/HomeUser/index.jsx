@@ -72,7 +72,7 @@ const HomeUser = () => {
    */
   function renderItem({ item }) {
     const goToProducersWithThisProduct = () => {
-      navigation.navigate("ProducersWithThisProduct", { product: item })
+      navigation.navigate("ProducersWithThisProduct", { product: item, })
     }
     return (
       <TouchableOpacity onPress={goToProducersWithThisProduct}>
