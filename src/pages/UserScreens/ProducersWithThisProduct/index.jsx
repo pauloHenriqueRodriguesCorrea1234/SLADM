@@ -15,6 +15,7 @@ import api from "../../../services/api"
 import Card from "../../../components/Card"
 
 const ProducersWithThisProduct = ({ route }) => {
+  console.log(route.params);
   const { product } = route.params
   const [producers, setProducers] = useState([])
 
@@ -23,7 +24,6 @@ const ProducersWithThisProduct = ({ route }) => {
       const response = await api.get(`/producers/product/${product._id}`)
       const { producers } = response.data
       setProducers(producers)
-      console.log(producers)
     })()
   }, [])
 

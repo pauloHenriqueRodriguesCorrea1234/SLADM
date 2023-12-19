@@ -2,11 +2,11 @@ import {
   Conteiner,
   ViewInput,
   Input,
-  notFoundText,
-  ViewnotFound,
   ActivityIndicator,
   FlatList,
   TouchableOpacity,
+  NotFoundText,
+  ViewNotFound,
 } from "./styles"
 
 // React States
@@ -30,13 +30,9 @@ const HomeUser = () => {
   const [notFound, setNotFound] = useState(false)
   const [loading, isLoading] = useState(false)
 
-  const reloadStates = () => {
-    setProducts(products)
-    setFilteredProducts(products)
-    setFilter("")
-    setNotFound(false)
-    isLoading(false)
-  }
+  /* Assim que o aplicativo for carregado, essa função retornará todos os
+   * produtos que estão disponíveis para serem comercializados
+   */
   async function listAllProducts() {
     isLoading(true)
     const response = await api.get("/products", {
@@ -51,27 +47,31 @@ const HomeUser = () => {
     isLoading(false)
   }
 
+  // Esse useEffect é executado ao abrir o aplicativo
   useEffect(() => {
     listAllProducts()
     exitApp()
   }, [])
 
+  // Esse useEffect é usado para monitorar o filtro de pesquisa de um produto
   useEffect(() => {
     if (filter) {
       const filteredProducts = products.filter((p) =>
         p.name.trim().toLowerCase().includes(filter.trim().toLowerCase())
       )
-      setNotFound(!filteredProducts)
+      setNotFound(false)
       setFilteredProducts(filteredProducts)
+      if (filteredProducts.length === 0) setNotFound(true)
     } else {
       setFilteredProducts(products)
     }
   }, [filter])
 
+  /* Evitar que toda vez que um produto for rendenizado cria uma nova função
+   * anônima
+   */
   function renderItem({ item }) {
-
     const goToProducersWithThisProduct = () => {
-      reloadStates()
       navigation.navigate("ProducersWithThisProduct", { product: item })
     }
     return (
@@ -82,44 +82,33 @@ const HomeUser = () => {
   }
   return (
     <Conteiner>
-      {
-        loading === true
-          ?
-          <ActivityIndicator
-            size={80}
-            color="#fff"
-          />
-          :
-          (
-            <>
-              <ViewInput>
-                <Input
-                  placeholderTextColor="#fff"
-                  placeholder="Escreva o nome do produto"
-                  value={filter}
-                  onChangeText={setFilter}
-                  textAlign="left"
-                />
-                <Icon name="search" size={30} color={"#fff"} />
-              </ViewInput>
-              
-              <FlatList
-                data={filteredProducts}
-                keyExtractor={(item) => item._id}
-                renderItem={renderItem}
-              />
-            </>
-          )
-      }
+      <ViewInput>
+        <Input
+          placeholderTextColor="#fff"
+          placeholder="Escreva o nome do produto"
+          value={filter}
+          onChangeText={setFilter}
+          textAlign="left"
+        />
+        <Icon name="search" size={30} color={"#fff"} />
+      </ViewInput>
 
-      {notFound == true ? (
-        <ViewnotFound>
-          <notFoundText>PRODUTO NÃO ENCONTRADO</notFoundText>
-        </ViewnotFound>
+      {loading === true ? (
+        <ActivityIndicator size={80} color="#fff" />
       ) : (
-        notFound == false
+        notFound === false && (
+          <FlatList
+            data={filteredProducts}
+            keyExtractor={(item) => item._id}
+            renderItem={renderItem}
+          />
+        )
       )}
-
+      {notFound === true ? (
+        <ViewNotFound>
+          <NotFoundText>NENHUM PRODUTO ENCONTRADO</NotFoundText>
+        </ViewNotFound>
+      ) : null}
     </Conteiner>
   )
 }
