@@ -35,3 +35,5 @@ export const NotFoundText = styled.Text`
 `
 
 export const FlatList = styled.FlatList``
+
+export const TouchableOpacity = styled.TouchableOpacity``

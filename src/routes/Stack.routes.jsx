@@ -10,8 +10,8 @@ import UserDrawerRoutes from "./UserRoutes/UserDrawer.routes"
 import Details from "../pages/ProducerScreens/Details"
 import AddProduct from "../pages/ProducerScreens/AddProduct"
 import ProducerDrawerRoutes from "./ProducerRoutes/ProducerDrawer.routes"
-import ProducersWithThisProduct from "../pages/UserScreens/ProducersWithThisProduct"
-import HeaderScreen from "../pages/UserScreens/HeaderScreen"
+import ProducersWithThisProduct from "../components/ProducersWithThisProduct"
+import Header from "../components/Header"
 
 const Stack = createStackNavigator()
 
@@ -54,7 +54,7 @@ const StackRoutes = () => {
         }}
       >
         <Stack.Screen
-          options={{ headerTitle: () => <HeaderScreen /> }}
+          options={{ headerTitle: () => <Header /> }}
           name="ProducersWithThisProduct"
           component={ProducersWithThisProduct}
         />

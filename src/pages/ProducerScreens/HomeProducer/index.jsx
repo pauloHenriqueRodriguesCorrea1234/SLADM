@@ -6,6 +6,7 @@ import {
   FlatList,
   ViewNotFound,
   NotFoundText,
+  TouchableOpacity
 } from "./styles"
 
 // React States
@@ -16,9 +17,13 @@ import FruitCards from "../../../components/FruitCards"
 import exitApp from "../../../components/BackHandler"
 import Icon from "react-native-vector-icons/MaterialIcons"
 
+import { useNavigation } from "@react-navigation/native"
+
 import api from "../../../services/api"
 
 const HomeProducer = () => {
+  const navigation = useNavigation()
+
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
   const [filter, setFilter] = useState("")
@@ -56,7 +61,15 @@ const HomeProducer = () => {
   }, [filter])
 
   function renderItem({ item }) {
-    return <FruitCards img={item.imageURL} name={item.name} />
+    const goToProducersWithThisProduct = () => {
+      navigation.navigate("ProducersWithThisProduct", { product: item, })
+    }
+
+    return (
+      <TouchableOpacity onPress={goToProducersWithThisProduct}>
+        <FruitCards img={item.imageURL} name={item.name} />
+      </TouchableOpacity>
+    )
   }
 
   return (

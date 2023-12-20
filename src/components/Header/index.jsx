@@ -1,6 +1,6 @@
 import { Text, View } from "./styles";
 
-export default HeaderScreen = ({title}) => {
+export default Header = ({title}) => {
   return(
     <View>
       <Text>{title}</Text>

@@ -13,7 +13,7 @@ import { Linking } from "react-native"
 import api from "../../services/api"
 
 import Card from "../Card"
-import HeaderScreen from "../../pages/UserScreens/HeaderScreen"
+import Header from "../Header"
 
 const ProducersWithThisProduct = ({ route }) => {
   const { product } = route.params
@@ -43,7 +43,7 @@ const ProducersWithThisProduct = ({ route }) => {
   }
   return (
     <Conteiner>
-      <HeaderScreen title={`Produtores que comercializam ${product.name}`} />
+      <Header title={`Produtores que comercializam ${product.name}`} />
       {producers.length > 0 ? (
         <FlatList
           data={producers}
